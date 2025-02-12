@@ -1,0 +1,240 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\datalist[entry]{none/global//global/global}
+  \entry{itu:iot}{manual}{}
+    \field{labeltitlesource}{title}
+    \field{title}{Internet of Things Global Standard Initiative}
+    \list{location}{1}{%
+      {\url{https://www.itu.int/en/ITU-T/gsi/iot/Pages/default.aspx}}%
+    }
+    \field{month}{07}
+    \field{year}{2021}
+  \endentry
+
+  \entry{kisi:osi}{manual}{}
+    \field{labeltitlesource}{title}
+    \field{title}{Model OSI/ISO}
+    \list{location}{1}{%
+  {\url{https://kisi.pcz.pl/Robert_Nowicki/psk-d/slides/030\%20Model\%20OSI.pdf}}%
+    }
+    \field{month}{08}
+    \field{year}{2021}
+  \endentry
+
+  \entry{techdifferences:ositcpip}{manual}{}
+    \field{labeltitlesource}{title}
+    \field{title}{Difference Between TCP/IP and OSI Model}
+    \list{location}{1}{%
+  {\url{https://techdifferences.com/difference-between-tcp-ip-and-osi-model.html}}%
+    }
+    \field{month}{09}
+    \field{year}{2021}
+  \endentry
+
+  \entry{tcpip:layers}{manual}{}
+    \field{labeltitlesource}{title}
+    \field{title}{Protokoły TCP/IP}
+    \list{location}{1}{%
+      {\url{http://www.crypto-it.net/pl/teoria/protokoly-tcp-ip.html}}%
+    }
+    \field{month}{09}
+    \field{year}{2021}
+  \endentry
+
+  \entry{http}{manual}{}
+    \field{labeltitlesource}{title}
+    \field{title}{HTTP}
+    \list{location}{1}{%
+      {\url{https://developer.mozilla.org/pl/docs/Web/HTTP}}%
+    }
+    \field{month}{09}
+    \field{year}{2021}
+  \endentry
+
+  \entry{ibm:smtp}{manual}{}
+    \field{labeltitlesource}{title}
+    \field{title}{Protokół SMTP (Simple Mail Transfer Protocol)}
+    \list{location}{1}{%
+      {\url{https://www.ibm.com/docs/pl/i/7.3?topic=information-smtp}}%
+    }
+    \field{month}{09}
+    \field{year}{2021}
+  \endentry
+
+  \entry{uci:pop3}{manual}{}
+    \field{labeltitlesource}{title}
+    \field{title}{Różnice pomiędzy protokołami POP3 i IMAP}
+    \list{location}{1}{%
+  {\url{https://www.uci.umk.pl/index.php/R\%C3\%B3\%C5\%BCnice_pomi\%C4\%99dzy_protoko\%C5\%82ami_POP3_i_IMAP}}%
+    }
+    \field{month}{09}
+    \field{year}{2021}
+  \endentry
+
+  \entry{slownik:telnet}{manual}{}
+    \field{labeltitlesource}{title}
+    \field{title}{TELNET - słownik pojęć technicznych}
+    \list{location}{1}{%
+      {\url{https://www.atel.com.pl/slownik_produkt_ref.php?haslo=TELNET}}%
+    }
+    \field{month}{09}
+    \field{year}{2021}
+  \endentry
+
+  \entry{ibm:snmp}{manual}{}
+    \field{labeltitlesource}{title}
+    \field{title}{Protokół SNMP (Simple Network Management Protocol)}
+    \list{location}{1}{%
+  {\url{https://www.ibm.com/docs/pl/spectrum-control/5.3.3?topic=standards-simple-network-management-protocol}}%
+    }
+    \field{month}{09}
+    \field{year}{2021}
+  \endentry
+
+  \entry{irc}{manual}{}
+    \field{labeltitlesource}{title}
+    \field{title}{IRC}
+    \list{location}{1}{%
+      {\url{http://www.irc.pl/}}%
+    }
+    \field{month}{09}
+    \field{year}{2021}
+  \endentry
+
+  \entry{tcp:arp}{manual}{}
+    \field{labeltitlesource}{title}
+    \field{title}{ARP}
+    \list{location}{1}{%
+      {\url{https://www.atel.com.pl/slownik_produkt_ref.php?haslo=ARP}}%
+    }
+    \field{month}{09}
+    \field{year}{2021}
+  \endentry
+
+  \entry{8p8c}{manual}{}
+    \field{labeltitlesource}{title}
+    \field{title}{8P8C}
+    \list{location}{1}{%
+      {\url{https://pl.wikipedia.org/wiki/8P8C}}%
+    }
+    \field{month}{09}
+    \field{year}{2021}
+  \endentry
+
+  \entry{wiki:rmii}{manual}{}
+    \field{labeltitlesource}{title}
+    \field{title}{Reduced Media-Independent Interface}
+    \list{location}{1}{%
+      {\url{https://en.wikipedia.org/wiki/Media-independent\_interface}}%
+    }
+    \field{month}{08}
+    \field{year}{2021}
+  \endentry
+
+  \entry{artykul:rmii}{article}{}
+    \name{author}{1}{}{%
+      {{hash=KR}{%
+         family={Kozik},
+         familyi={K\bibinitperiod},
+         given={Rafał},
+         giveni={R\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{KR1}
+    \strng{fullhash}{KR1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{number}{4}
+    \field{pages}{18 \bibrangedash  32}
+    \field{title}{Ethernet w FPGA}
+    \field{volume}{91}
+    \field{journaltitle}{Programista}
+    \field{year}{2020}
+  \endentry
+
+  \entry{enc28j60}{manual}{}
+    \field{labeltitlesource}{title}
+    \field{title}{ENC28J60 Data Sheet. Stand-Alone Ethernet Controller with SPI
+  Interface}
+    \field{month}{09}
+    \field{year}{2021}
+  \endentry
+
+  \entry{w5500}{manual}{}
+    \field{labeltitlesource}{title}
+    \field{title}{W5500 Datasheet}
+    \field{month}{09}
+    \field{year}{2021}
+  \endentry
+
+  \entry{esp8266}{manual}{}
+    \field{labeltitlesource}{title}
+    \field{title}{ESP8266 - co warto wiedzieć ?}
+    \list{location}{1}{%
+      {\url{https://forbot.pl/blog/leksykon/esp8266}}%
+    }
+    \field{month}{09}
+    \field{year}{2021}
+  \endentry
+
+  \entry{esp32}{manual}{}
+    \field{labeltitlesource}{title}
+    \field{title}{ESP32 - co warto wiedzieć ?}
+    \list{location}{1}{%
+      {\url{https://forbot.pl/blog/leksykon/esp32}}%
+    }
+    \field{month}{09}
+    \field{year}{2021}
+  \endentry
+
+  \entry{lwip:protocols}{manual}{}
+    \field{labeltitlesource}{title}
+    \field{title}{Lightweight TCP/IP (lwIP) Stack}
+    \list{location}{1}{%
+  {\url{https://www.analog.com/en/design-center/evaluation-hardware-and-software/software/adswp-lwip.html}}%
+    }
+    \field{month}{09}
+    \field{year}{2021}
+  \endentry
+
+  \entry{ti:uip}{manual}{}
+    \field{labeltitlesource}{title}
+    \field{title}{Using the Stellaris Ethernet Controller with Micro IP (uIP)}
+    \list{location}{1}{%
+      {\url{https://www.ti.com/lit/an/spma026b/spma026b.pdf?ts=1631990328536}}%
+    }
+    \field{month}{09}
+    \field{year}{2021}
+  \endentry
+
+  \entry{nucleo-manual}{manual}{}
+    \field{labeltitlesource}{title}
+    \field{title}{UM1974 User Manual STM32 Nucleo-144 Boards}
+    \field{month}{11}
+    \field{year}{2021}
+  \endentry
+
+  \entry{eziya76}{manual}{}
+    \field{labeltitlesource}{title}
+    \field{title}{[STM32 HAL] Ethernet}
+    \field{month}{12}
+    \field{year}{2021}
+  \endentry
+\enddatalist
+\endinput

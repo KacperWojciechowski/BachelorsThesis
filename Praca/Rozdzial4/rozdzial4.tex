@@ -33,7 +33,7 @@ Ze względu na wybraną platformę sprzętową, implementacja części sprzętow
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=120mm]{Praca/Rysunki/Rozdzial4/nucleo 8p8c.jpg}
+    \includegraphics[width=120mm]{Rysunki/Rozdzial4/nucleo 8p8c.jpg}
     \caption{Złącze 8P8C obecne na płytce Nucleo-F429ZI}
     \label{fig:my_label}
 \end{figure}
@@ -43,7 +43,7 @@ Do komunikacji z układem ESP8266 wykorzystano interfejs USART6 mikrokontrolera 
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics{Praca/Rysunki/Rozdzial4/schemat_esp8266.png}
+    \includegraphics{Rysunki/Rozdzial4/schemat_esp8266.png}
     \caption{Schemat podłączenia modułu ESP8266}
     \label{fig:my_label}
 \end{figure}
@@ -58,14 +58,14 @@ Proces inicjalizacji rozpoczęty został od uruchomienia środowiska STM32CubeID
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=155mm]{Praca/Rysunki/Rozdzial4/wybór mikrokontrolera.jpg}
+    \includegraphics[width=155mm]{Rysunki/Rozdzial4/wybór mikrokontrolera.jpg}
     \caption{Wybór mikrokontrolera w STM32CubeIDE}
     \label{fig:my_label}
 \end{figure}
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=80mm]{Praca/Rysunki/Rozdzial4/utworzenie projektu.jpg}
+    \includegraphics[width=80mm]{Rysunki/Rozdzial4/utworzenie projektu.jpg}
     \caption{Utworzenie projektu}
     \label{fig:my_label}
 \end{figure}
@@ -75,14 +75,14 @@ Jako zegar został wykorzystany sygnał zegarowy dostarczony przez moduł ST-LIN
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=120mm]{Praca/Rysunki/Rozdzial4/tryb bypass.jpg}
+    \includegraphics[width=120mm]{Rysunki/Rozdzial4/tryb bypass.jpg}
     \caption{Przełączenie zegaru HSE w tryb BYPASS}
     \label{fig:my_label}
 \end{figure}
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=155mm]{Praca/Rysunki/Rozdzial4/clock_signal_bypass.jpg}
+    \includegraphics[width=155mm]{Rysunki/Rozdzial4/clock_signal_bypass.jpg}
     \caption{Konfiguracja sygnału zegarowego po przestawieniu HSE w tryb BYPASS}
     \label{fig:my_label}
 \end{figure}
@@ -92,14 +92,14 @@ W zakładce \emph{Connectivity} należy wstępnie skonfigurować interfejs Ether
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=120mm]{Praca/Rysunki/Rozdzial4/rmii1.jpg}
+    \includegraphics[width=120mm]{Rysunki/Rozdzial4/rmii1.jpg}
     \caption{Przypisanie trybu RMII do interfejsu Ethernet}
     \label{fig:my_label}
 \end{figure}
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=120mm]{Praca/Rysunki/Rozdzial4/rmii2.jpg}
+    \includegraphics[width=120mm]{Rysunki/Rozdzial4/rmii2.jpg}
     \caption{Docelowe parametry interfejsu RMII}
     \label{fig:my_label}
 \end{figure}
@@ -109,7 +109,7 @@ W związku z połączeniami występującymi na płytce Nucleo-F429ZI zgodnie z t
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=140mm]{Praca/Rysunki/Rozdzial4/schemat_RMII.png}
+    \includegraphics[width=140mm]{Rysunki/Rozdzial4/schemat_RMII.png}
     \caption{Schemat podłączenia interfejsu RMII}
     \label{fig:my_label}
 \end{figure}
@@ -143,14 +143,14 @@ Kolejny krok stanowiła konfiguracja stosu LwIP wykorzystywanego do obsługi pro
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=120mm]{Praca/Rysunki/Rozdzial4/middleware_lwip.jpg}
+    \includegraphics[width=120mm]{Rysunki/Rozdzial4/middleware_lwip.jpg}
     \caption{Uruchomienie stosu LwIP}
     \label{fig:my_label}
 \end{figure}
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=100mm]{Praca/Rysunki/Rozdzial4/middleware_lwip_2.jpg}
+    \includegraphics[width=100mm]{Rysunki/Rozdzial4/middleware_lwip_2.jpg}
     \caption{Opcja LWIP\texttt{\char`_}NETIF\texttt{\char`_}LINK\texttt{\char`_}CALLBACK}
     \label{fig:my_label}
 \end{figure}
@@ -160,14 +160,14 @@ Korzystając z zakładki \emph{Clock Configuration}, zegar taktujący interfejs 
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=120mm]{Praca/Rysunki/Rozdzial4/clock_config.jpg}
+    \includegraphics[width=120mm]{Rysunki/Rozdzial4/clock_config.jpg}
     \caption{Konfiguracja zegarów}
     \label{fig:my_label}
 \end{figure}
 
 Kolejny krok stanowiło wygenerowanie kodu oraz jego stosowna modyfikacja. Podczas implementacji serwera echo z wykorzystaniem stosu LwIP oraz modyfikacji funkcji \textit{MX\char`_LWIP\char`_Process()} wykorzystano kod z przykładowej implementacji autorstwa koreańskiego użytkownika blogu Naver o pseudonimie eziya76 \cite{eziya76}.
 
-\ccode{Listingi/Ethernet_main.c}{Funkcja \textit{main()} implementacji interfejsu Ethernet}
+\cppcode{Listingi/Ethernet_main.c}{Funkcja \textit{main()} implementacji interfejsu Ethernet}
 
 Listing 4.1 przedstawia implementację funkcji \textit{main()} dla projektu implementującego interfejs Ethernet. Część funkcji została wygenerowana poprzez narzędzie do generowania kodu na podstawie konfiguracji środowiska STM32CubeIDE (części oznaczone komentarzami w języku angielskim). 
 
@@ -175,57 +175,57 @@ Utworzone zostało 5 globalnych buforów tekstowych służących do przechowywan
 
 Funkcja \textit{MX\char`_LWIP\char`_Process()} odpowiada za otrzymanie dynamicznego adresu IP z serwera DHCP uruchomionego na routerze i została przedstawiona na listingu 4.2. Funkcja \textit{init\char`_echo()} inicjalizuje serwer echo, odsyłający kopię otrzymanej wiadomości do nadawcy. Listing 4.3 przedstawia implementację funkcji \textit{notify\char`_dhcp\char`_status()}. Listingi 4.4 - 4.7 przedstawiają implementacje funkcji przekształcających informacje o połączeniu i adresie MAC na podstać ciągu znakowego.
 
-\ccode{Listingi/LWIP_Process.c}{Funkcja MX\textit{\char`_}LWIP\textit{\char`_}Process}
+\cppcode{Listingi/LWIP_Process.c}{Funkcja MX\textit{\char`_}LWIP\textit{\char`_}Process}
 
 \newpage
-\ccode{Listingi/notify_dhcp_status.c}{Funkcja nadzoru stanu połączenia}
+\cppcode{Listingi/notify_dhcp_status.c}{Funkcja nadzoru stanu połączenia}
 
-\ccode{Listingi/parse_ip.c}{Funkcja przekształcająca adres IP na postać ciągu znakowego}
+\cppcode{Listingi/parse_ip.c}{Funkcja przekształcająca adres IP na postać ciągu znakowego}
 
-\ccode{Listingi/parse_mask.c}{Funkcja przekształcająca maskę sieci na postać ciągu znakowego}
+\cppcode{Listingi/parse_mask.c}{Funkcja przekształcająca maskę sieci na postać ciągu znakowego}
 
-\ccode{Listingi/parse_gateway.c}{Funkcja przekształcająca adres bramy na postać ciągu znakowego}
+\cppcode{Listingi/parse_gateway.c}{Funkcja przekształcająca adres bramy na postać ciągu znakowego}
 
 \newpage
-\ccode{Listingi/send_mac_address.c}{Funkcja przesyłająca adres MAC na początku pracy urządzenia}
+\cppcode{Listingi/send_mac_address.c}{Funkcja przesyłająca adres MAC na początku pracy urządzenia}
 
 Do obsługi serwera echo utworzona została struktura \textit{echo\char`_info} przechowująca informacje dotyczące stanu połączenia, ilości retransmisji, wskaźnik na strukturę pcb stosu LwIP, oraz wskaźnik na bufor odbiorczo/nadawczy. Oprócz tego utworzony został typ wyliczeniowy pozwalający na posługiwanie się nazwami stanów połączenia zamiast wartościami numerycznymi. Wymienione wyżej elementy umieszczone zostały w pliku nagłówkowym przedstawionym na listingu 4.8.
 
-\ccode{Listingi/echo.h}{Plik nagłówkowy serwera echo}
+\cppcode{Listingi/echo.h}{Plik nagłówkowy serwera echo}
 
 Plik źródłowy połączony z powyższym plikiem nagłówkowym zawiera prototypy oraz implementacje funkcji zwrotnych oraz funkcji wysyłania i zakończenia połączenia. Zostały one przedstawione na listingu 4.9.
 
-\ccode{Listingi/echo.c}{Fragment pliku źródłowego serwera echo}
+\cppcode{Listingi/echo.c}{Fragment pliku źródłowego serwera echo}
 
 Uruchomienie serwera echo rozpoczyna się od inicjalizacji serwera za pomocą funkcji \textit{init\char`_echo()} wywołanej w funkcji \textit{main()} przed pętlą główną. Funkcja ta tworzy nowy obiekt serwera TCP, łączy go z wybranym portem oraz rejestruje funkcję zwrotną (ang. \emph{callback}) zaakceptowania połączenia. Do komunikacji wybrano port 7. Listing 4.10. przedstawia kod funkcji \textit{init\char`_echo()}.
 
-\ccode{Listingi/init_echo.c}{Funkcja inicjalizująca serwer TCP echo}
+\cppcode{Listingi/init_echo.c}{Funkcja inicjalizująca serwer TCP echo}
 
 Funkcja \textit{app\char`_callback\char`_accepted()} jest wywoływana w momencie akceptacji połączenia przez serwer. Ustawia ona priorytet utworzonego pcb, alokuje strukturę informacji o połączeniu \textit{echo\char`_info}, ustawia jej początkowe parametry oraz rejestruje funkcje zwrotne odbioru danych, błędu i pollingu. Kod funkcji został zamieszczony w listingu 4.11.
 
-\ccode{Listingi/app_callback_accepted.c}{Funkcja zwrotna akceptacji połączenia}
+\cppcode{Listingi/app_callback_accepted.c}{Funkcja zwrotna akceptacji połączenia}
 
 Kolejną funkcję zwrotną stanowi \textit{app\char`_callback\char`_received()}, wywoływana w trakcie otrzymania danych z połączonego urządzenia. Zajmuje się ona nadzorem buforów, wywołuje obsługę wysłania danych z powrotem do nadawcy w postaci echo oraz odpowiednio zmienia stan połączenia zapisany w strukturze \textit{echo\char`_info}. Rejestruje ona także funkcję zwrotną \textit{app\char`_callback\char`_sent} Jej kod jest zaprezentowany na listingu 4.12.
 
-\ccode{Listingi/app_callback_received.c}{Funkcja zwrotna odbioru danych}
+\cppcode{Listingi/app_callback_received.c}{Funkcja zwrotna odbioru danych}
 
 Funkcja \textit{app\char`_callback\char`_sent()} odpowiada za nadzór sytuacji po wykonaniu transmisji. W przypadku wystąpienia dalszych danych do przesłania, inicjalizuje ona kolejną transmisję. Podobnie działa funkcja zwrotna \textit{app\char`_callback\char`_poll()} Listingi 4.13 i 4.14 przedstawiają kod wspomnianych funkcji.
 
-\ccode{Listingi/app_callback_send.c}{Funkcja zwrotna transmisji danych}
+\cppcode{Listingi/app_callback_send.c}{Funkcja zwrotna transmisji danych}
 
-\ccode{Listingi/app_callback_poll.c}{Funkcja zwrotna nasłuchu}
+\cppcode{Listingi/app_callback_poll.c}{Funkcja zwrotna nasłuchu}
 
 Ostatnią z funkcji zwrotnych jest \textit{app\char`_callback\char`_error()} wywoływana w momencie wystąpienia błędu podczas transmisji. Odpowiada ona za sygnalizację błędu za pomocą niebieskiej diody LED oraz zwolnienie zaalokowanej struktury \textit{echo\char`_info}. Jej kod został ukazany na listingu 4.15.
 
-\ccode{Listingi/app_callback_error.c}{Funkcja zwrotna błędu}
+\cppcode{Listingi/app_callback_error.c}{Funkcja zwrotna błędu}
 
 Kluczowym elementem serwera echo jest funkcja realizująca transmisję otrzymanych danych z powrotem do nadawcy. Jest to zadanie funkcji \textit{app\char`_send\char`_data()}, wykorzystującej do transmisji funkcję stosu LwIP \textit{tcp\char`_write()}. Obsługuje ona transmisję ciągu pakietów oraz nadzoruje poprawność przeprowadzenia transmisji, w razie potrzeby wykonując retransmisję. Listing 4.16 przedstawia kod funkcji.
 
-\ccode{Listingi/app_send_data.c}{Funkcja transmisji danych}
+\cppcode{Listingi/app_send_data.c}{Funkcja transmisji danych}
 
 Po zakończeniu pracy z serwerem echo konieczne jest zamknięcie połączenia, za co odpowiada funkcja \textit{app\char`_close\char`_connection()}. Odrejestrowuje ona ustawione wcześniej funkcje zwrotne, zamyka połączenie oraz zwalnia alokację zasobów. Kod funkcji przedstawiony jest na listingu 4.17.
 
-\ccode{Listingi/app_close_connection.c}{Funkcja zamknięcia połączenia}
+\cppcode{Listingi/app_close_connection.c}{Funkcja zamknięcia połączenia}
 
 \subsection{Interfejs bezprzewodowy Wi-Fi}
 
@@ -242,7 +242,7 @@ Obydwa porty zostały skonfigurowane do pracy z częstotliwością 115200 bitów
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=100mm]{Praca/Rysunki/Rozdzial4/usart3_parameters.jpg}
+    \includegraphics[width=100mm]{Rysunki/Rozdzial4/usart3_parameters.jpg}
     \caption{Konfiguracja interfejsów USART3 oraz USART6}
     \label{fig:my_label}
 \end{figure}
@@ -251,7 +251,7 @@ Kolejny krok stanowiło ustawienie w zakładce RCC sekcji System Core zegara HSE
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=155mm]{Praca/Rysunki/Rozdzial4/rcc_wifi.jpg}
+    \includegraphics[width=155mm]{Rysunki/Rozdzial4/rcc_wifi.jpg}
     \caption{Ustawienie zegara HSE}
     \label{fig:my_label}
 \end{figure}
@@ -260,7 +260,7 @@ W zakładce \emph{Clock Configuration} częstotliwość taktowania zegara system
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=155mm]{Praca/Rysunki/Rozdzial4/wifi_zegary.jpg}
+    \includegraphics[width=155mm]{Rysunki/Rozdzial4/wifi_zegary.jpg}
     \caption{Częstotliwości końcowe w menadżerze zegarów}
     \label{fig:my_label}
 \end{figure}
@@ -269,14 +269,14 @@ Ostatnim krokiem konfiguracji była konfiguracja jednego z portów GPIO w tryb w
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=155mm]{Praca/Rysunki/Rozdzial4/gpio_pb3.jpg}
+    \includegraphics[width=155mm]{Rysunki/Rozdzial4/gpio_pb3.jpg}
     \caption{Lista skonfigurowanych linii GPIO}
     \label{fig:my_label}
 \end{figure}
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=100mm]{Praca/Rysunki/Rozdzial4/gpio_pb3_2.jpg}
+    \includegraphics[width=100mm]{Rysunki/Rozdzial4/gpio_pb3_2.jpg}
     \caption{Podgląd parametrów linii PB3}
     \label{fig:my_label}
 \end{figure}
@@ -284,7 +284,7 @@ Ostatnim krokiem konfiguracji była konfiguracja jednego z portów GPIO w tryb w
 Moduł ESP8266 posiada wbudowaną implementację stosu TCP/IP, w związku z czym aktywowanie stosu LwIP nie było konieczne. Na podstawie uzyskanej konfiguracji wygenerowany został kod źródłowy, który następnie został rozbudowany o polecenia konfigurujące moduł Wi-Fi oraz funkcje realizujące rolę serwera echo. Listing 4.18 przedstawia kod funkcji \textit{main()} i elementy globalne.
 
 \newpage
-\ccode{Listingi/WiFi_main.c}{Funkcja \textit{main()} i elementy globalne}
+\cppcode{Listingi/WiFi_main.c}{Funkcja \textit{main()} i elementy globalne}
 
 Jako elementy globalne zadeklarowane zostały:
 
@@ -319,13 +319,13 @@ Drugą sekcją jest pętla konfiguracyjna. Jej zadaniem jest dokonanie resetu or
 Po przesłaniu polecenia restartu modułu, mikrokontroler odczekuje 1 sekundę przed przesłaniem kolejnych poleceń. Na transmisję każdego z poleceń składa się przesłanie polecenia do modułu, wyczyszczenie bufora odbiorczego za pomocą funkcji \textit{clr\char`_buffer()}, ukazanej na listingu 4.19, i odebranie wiadomości zwrotnej z modułu. Po poleceniu \emph{AT+CWJAP} występuje oczekiwanie na otrzymanie adresu DHCP poprzez wysyłanie w interwałach 1-sekundowych zapytania o status połączenia za pomocą funkcji \textit{is\char`_busy()}, której kod przedstawia listing 4.20. Tak długo, jak status informuje o zajętości modułu, następuje oczekiwanie i ponowne zapytanie. Informacje zwrotne odebrane z modułu przesyłane są do komputera nadzorującego za pomocą portu szeregowego.
 
 \newpage
-\ccode{Listingi/clr_buffer.c}{Funkcja czyszcząca bufor odbiorczy}
+\cppcode{Listingi/clr_buffer.c}{Funkcja czyszcząca bufor odbiorczy}
 
-\ccode{Listingi/is_busy.c}{Funkcja sprawdzania stanu zajętości modułu Wi-Fi}
+\cppcode{Listingi/is_busy.c}{Funkcja sprawdzania stanu zajętości modułu Wi-Fi}
 
 Trzecią sekcją funkcji \textit{main()} jest pętla operacyjna, realizująca funkcjonalność serwera echo. Wewnątrz niej czyszczony jest bufor odbiorczy i odbierane są dane wysyłane z modułu przy wystąpieniu zdarzenia, takiego jak nawiązanie połączenia lub odbiór danych. W przypadku odebrania niepustej wiadomości zwrotnej, wykonywane jest przygotowanie do funkcjonalności echo za pomocą funkcji \textit{prepare\char`_echo()}, której kod znajduje się na listingu 4.21.
 
-\ccode{Listingi/prepare_echo.c}{Funkcja przygotowująca funkcjonalność echo}
+\cppcode{Listingi/prepare_echo.c}{Funkcja przygotowująca funkcjonalność echo}
 
 Jeżeli otrzymana wiadomość zwrotna z modułu rozpoczyna się od sekwencji "+IPD", wyciągana jest z niej ilość otrzymanych bajtów oraz jej treść w celu odpowiedniego sformatowania i przygotowania do wysłania. Gotowość do wysłania oznaczana jest za pomocą flagi \textit{ready\char`_to\char`_send}. W przypadku wyciągnięcia wiadomości, wysyłane jest polecenie przesłania danych, a następnie w trzeciej sekcji funkcji \textit{main()} podawana jest do transmisji wiadomość uzyskana od nadawcy. Po wykonaniu transmisji echo, flaga \textit{ready\char`_to\char`_send} jest resetowana.
 
@@ -346,21 +346,21 @@ Rysunki 4.18, 4.19 oraz 4.20 przedstawiają rezultaty przeprowadzonych testów. 
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=50mm]{Praca/Rysunki/Rozdzial4/usart_ethernet.jpg}
+    \includegraphics[width=50mm]{Rysunki/Rozdzial4/usart_ethernet.jpg}
     \caption{Komunikacja za pomocą portu szeregowego}
     \label{fig:my_label}
 \end{figure}
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=130mm]{Praca/Rysunki/Rozdzial4/ping_ethernet.jpg}
+    \includegraphics[width=130mm]{Rysunki/Rozdzial4/ping_ethernet.jpg}
     \caption{Sprawdzenie połączenia za pomocą polecenia ping}
     \label{fig:my_label}
 \end{figure}
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=110mm]{Praca/Rysunki/Rozdzial4/hercules_ethernet.jpg}
+    \includegraphics[width=110mm]{Rysunki/Rozdzial4/hercules_ethernet.jpg}
     \caption{Komunikacja dwustronna z wykorzystaniem programu Hercules SETUP Utility}
     \label{fig:my_label}
 \end{figure}
@@ -372,7 +372,7 @@ Rysunek 4.21 przedstawia zdjęcie przygotowanego układu. Podobnie jak w przypad
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=80mm]{Praca/Rysunki/Rozdzial4/modul.jpg}
+    \includegraphics[width=80mm]{Rysunki/Rozdzial4/modul.jpg}
     \caption{Zdjęcie przygotowanego układu}
     \label{fig:my_label}
 \end{figure}
@@ -380,13 +380,13 @@ Rysunek 4.21 przedstawia zdjęcie przygotowanego układu. Podobnie jak w przypad
 \begin{figure}[!ht]
 \begin{minipage}[b]{0.4\textwidth}
     \centering
-    \includegraphics[width=50mm]{Praca/Rysunki/Rozdzial4/wifi_usart_1.jpg}
+    \includegraphics[width=50mm]{Rysunki/Rozdzial4/wifi_usart_1.jpg}
     \caption{Komunikacja z komputerem nadzorującym cz.1}
   \end{minipage}
   \hfill
   \begin{minipage}[b]{0.4\textwidth}
     \centering
-    \includegraphics[width=50mm]{Praca/Rysunki/Rozdzial4/wifi_usart_2.jpg}
+    \includegraphics[width=50mm]{Rysunki/Rozdzial4/wifi_usart_2.jpg}
     \caption{Komunikacja z kom-puterem nadzorującym cz. 2}
   \end{minipage}
 \end{figure}
@@ -394,14 +394,14 @@ Rysunek 4.21 przedstawia zdjęcie przygotowanego układu. Podobnie jak w przypad
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=120mm]{Praca/Rysunki/Rozdzial4/wifi_ping.jpg}
+    \includegraphics[width=120mm]{Rysunki/Rozdzial4/wifi_ping.jpg}
     \caption{Sprawdzenie połączenia za pomocą polecenia ping}
     \label{fig:my_label}
 \end{figure}
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=130mm]{Praca/Rysunki/Rozdzial4/wifi_hercules.jpg}
+    \includegraphics[width=130mm]{Rysunki/Rozdzial4/wifi_hercules.jpg}
     \caption{Komunikacja dwustronna z wykorzystaniem programu Hercules SETUP Utility}
     \label{fig:my_label}
 \end{figure}

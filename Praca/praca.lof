@@ -1,11 +1,47 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Graficzne porównanie modeli ISO OSI oraz TCP/IP}}{6}{figure.caption.2}%
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Schemat transmisji z wykorzystaniem protokołu TCP}}{8}{figure.caption.3}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Schemat transmisji z wykorzystaniem protokołu UDP}}{9}{figure.caption.4}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Schemat drogi pakietu od nadawcy do odbiorcy w modelu OSI - Computer Notes}}{10}{figure.caption.5}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Numeracja wyprowadzeń gniazda 8P8C - Electronics Stack Exchange}}{11}{figure.caption.6}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Numeracja linii wtyku 8P8C - Electronics Stack Exchange}}{12}{figure.caption.7}%
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Schemat funkcjonalny sterownika Ethernet DB83848-P firmy Texas Instruments - Texas Instruments}}{12}{figure.caption.8}%
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Umiejscowienie sterownika DB83848-P - Texas Instruments}}{12}{figure.caption.9}%
+\contentsline {figure}{\numberline {3.8}{\ignorespaces Ułożenia przewodów w kablu UTP - The Internet Centre Inc.}}{13}{figure.caption.11}%
+\contentsline {figure}{\numberline {3.9}{\ignorespaces Rodzaje anten dla urządzeń systemów wbudowanych - Circuit Digest}}{14}{figure.caption.12}%
+\contentsline {figure}{\numberline {3.10}{\ignorespaces Shield Wi-Fi - Seeed Studio}}{14}{figure.caption.13}%
+\contentsline {figure}{\numberline {3.11}{\ignorespaces Shield GSM - Botland}}{14}{figure.caption.13}%
+\contentsline {figure}{\numberline {3.12}{\ignorespaces Moduł ENC28J60 - Aliexpress}}{15}{figure.caption.14}%
+\contentsline {figure}{\numberline {3.13}{\ignorespaces Moduł W5500 - Aliexpress}}{15}{figure.caption.15}%
+\contentsline {figure}{\numberline {3.14}{\ignorespaces Moduł ESP8266 - Nettigo}}{16}{figure.caption.17}%
+\contentsline {figure}{\numberline {3.15}{\ignorespaces Moduł ESP32 - Botland}}{16}{figure.caption.17}%
+\contentsline {figure}{\numberline {3.16}{\ignorespaces Platforma sprzętowa Nucleo-F429ZI posiadająca złącze Ethernet \kern 0sp\discretionary {-}{-}{-}\penalty 10000\hskip 0sp\relax {} Botland}}{17}{figure.caption.19}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Przyk\IeC {\l }adowy wykres tr\'ojwymiarowy.\relax }}{15}{figure.caption.5}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Przyk\IeC {\l }adowe wykresy funkcji $\qopname \relax o{sin}(x)$ oraz $\qopname \relax o{cos}(x)$ w przedziale $[-\pi , \pi ]$.\relax }}{16}{figure.caption.6}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Wykres funkcji $\qopname \relax o{sin}(x)$}}}{16}{subfigure.2.1}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Wykres funkcji $\qopname \relax o{cos}(x)$}}}{16}{subfigure.2.2}
-\addvspace {10\p@ }
-\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Złącze 8P8C obecne na płytce Nucleo-F429ZI}}{20}{figure.caption.20}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Schemat podłączenia modułu ESP8266}}{21}{figure.caption.21}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Wybór mikrokontrolera w STM32CubeIDE}}{21}{figure.caption.22}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Utworzenie projektu}}{22}{figure.caption.23}%
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Przełączenie zegaru HSE w tryb BYPASS}}{22}{figure.caption.24}%
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Konfiguracja sygnału zegarowego po przestawieniu HSE w tryb BYPASS}}{22}{figure.caption.25}%
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Przypisanie trybu RMII do interfejsu Ethernet}}{23}{figure.caption.26}%
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Docelowe parametry interfejsu RMII}}{23}{figure.caption.27}%
+\contentsline {figure}{\numberline {4.9}{\ignorespaces Schemat podłączenia interfejsu RMII}}{24}{figure.caption.28}%
+\contentsline {figure}{\numberline {4.10}{\ignorespaces Uruchomienie stosu LwIP}}{25}{figure.caption.29}%
+\contentsline {figure}{\numberline {4.11}{\ignorespaces Opcja LWIP\texttt {\char `_}NETIF\texttt {\char `_}LINK\texttt {\char `_}CALLBACK}}{25}{figure.caption.30}%
+\contentsline {figure}{\numberline {4.12}{\ignorespaces Konfiguracja zegarów}}{25}{figure.caption.31}%
+\contentsline {figure}{\numberline {4.13}{\ignorespaces Konfiguracja interfejsów USART3 oraz USART6}}{39}{figure.caption.32}%
+\contentsline {figure}{\numberline {4.14}{\ignorespaces Ustawienie zegara HSE}}{39}{figure.caption.33}%
+\contentsline {figure}{\numberline {4.15}{\ignorespaces Częstotliwości końcowe w menadżerze zegarów}}{40}{figure.caption.34}%
+\contentsline {figure}{\numberline {4.16}{\ignorespaces Lista skonfigurowanych linii GPIO}}{40}{figure.caption.35}%
+\contentsline {figure}{\numberline {4.17}{\ignorespaces Podgląd parametrów linii PB3}}{41}{figure.caption.36}%
+\contentsline {figure}{\numberline {4.18}{\ignorespaces Komunikacja za pomocą portu szeregowego}}{47}{figure.caption.37}%
+\contentsline {figure}{\numberline {4.19}{\ignorespaces Sprawdzenie połączenia za pomocą polecenia ping}}{47}{figure.caption.38}%
+\contentsline {figure}{\numberline {4.20}{\ignorespaces Komunikacja dwustronna z wykorzystaniem programu Hercules SETUP Utility}}{48}{figure.caption.39}%
+\contentsline {figure}{\numberline {4.21}{\ignorespaces Zdjęcie przygotowanego układu}}{48}{figure.caption.40}%
+\contentsline {figure}{\numberline {4.22}{\ignorespaces Komunikacja z komputerem nadzorującym cz.1}}{49}{figure.caption.41}%
+\contentsline {figure}{\numberline {4.23}{\ignorespaces Komunikacja z kom-puterem nadzorującym cz. 2}}{49}{figure.caption.41}%
+\contentsline {figure}{\numberline {4.24}{\ignorespaces Sprawdzenie połączenia za pomocą polecenia ping}}{49}{figure.caption.42}%
+\contentsline {figure}{\numberline {4.25}{\ignorespaces Komunikacja dwustronna z wykorzystaniem programu Hercules SETUP Utility}}{50}{figure.caption.43}%
 \addvspace {10\p@ }
