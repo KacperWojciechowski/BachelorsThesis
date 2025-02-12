@@ -1,0 +1,293 @@
+\chapter{Stos TCP/IP}
+
+\section{Charakterystyka stosu TCP/IP}
+
+Stos TCP/IP, jako uproszczona wersja modelu OSI, pozwala na prostą klasyfikację protokołów ze względu na pełnione przez nie funkcje oraz ich poziom abstrakcji. Niższe warstwy stosu skupiają się w szczególności na aspektach sprzętowych, natomiast wyższe warstwy przykładają większą uwagę do aspektów funkcjonalnych. Niniejszy rozdział omawia poszczególne warstwy stosu TCP/IP w kolejności od najwyższej do najniższej.
+
+\section{Warstwa aplikacji}
+
+Stanowi ona warstwę pośredniczącą pomiędzy programami komputerowymi, a pozostałymi warstwami stosu TCP/IP. W zależności od funkcjonalności udostępnianej przez program końcowy w warstwie aplikacji dostępne są protokoły o zróżnicowanych zastosowaniach \cite{tcpip:layers}.
+
+\begin{itemize}
+    \item [1)] HTTP, HTTPS (ang. \emph{Hypertext Transfer Protocol}, \emph{Hypertext Transfer Protocol Secure}) -- protokóły odpowiedzialne za przesyłanie pomiędzy serwerem a urządzeniem końcowym stron WWW w postaci formularzy, np. HTML w odpowiednio nieszyfrowanej i szyfrowanej wersji \cite{http};
+    
+    \item [2)] FTP, TFTP, NFS (ang. \emph{File Transfer Protocol}, \emph{Trivial File Transfer Protocol}, 
+    \emph{Network File System}) -- protokoły transmisji plików pomiędzy dwoma urządzeniami za pośrednictwem sieci Internet;
+    
+    \item [3)] SMTP, POP3, IMAP (ang. \emph{Simple Mail Transfer Protocol}, \emph{Post Office Protocol}, \emph{Internet Message Access Protocol}) -- zbiór protokołów odpowiedzialny za komunikację za pomocą wiadomości e-mail \cite{ibm:smtp}\cite{uci:pop3};
+    
+    \item [4)] Telnet -- protokół umożliwiający dostęp zdalny do innego komputera, pozwalając na logowanie oraz przesyłanie wprowadzanych znaków z komputera źródłowego do komputera docelowego \cite{slownik:telnet};
+    
+    \item [5)] SNMP (ang. \emph{Simple Network Management Protocol}) -- protokół do zarządzania urządzeniami podłączonymi do sieci komputerowej, wyposażonymi w agenta SNMP. Pozwala on w sposób zdalny konfigurować urządzenia sieciowe takie jak np. routery, serwery lub przełączniki \cite{ibm:snmp};
+    
+    \item [6)] DNS (ang. \emph{Domain Name System}) -- protokół odpowiedzialny za translację nazw domenowych na adresy IP urządzeń sieciowych (serwerów) pełniących rolę hosta dla danej strony;
+    
+    \item [7)] IRC (ang. \emph{Internet Relay Chat}) -- protokół w modelu klient{\dywiz}serwer umożliwiający komunikację na żywo za pomocą komunikatorów tekstowych (tzw. \emph{chatów}) \cite{irc};
+    
+    \item [8)] DHCP (ang. \emph{Dynamic Host Configuration Protocol}) -- odpowiada za dynamiczną konfigurację urządzeń końcowych podłączonych do sieci komputerowej poprzez nadanie im tzw. dynamicznego adresu IP z dostępnej puli adresowej.
+\end{itemize}
+
+Pomimo różnej konstrukcji informacji wytworzonej przez wymienione protokoły, w niższych warstwach są one uniwersalnie interpretowane jako sekcja danych, która następnie jest obudowywana przez protokoły warstw niższych w procesie tzw. enkapsulacji. Do komunikacji pomiędzy warstwą aplikacji a warstwą transportową wykorzystywane są tzw. gniazda sieciowe (ang. \emph{Internet Sockets}) będące konstrukcjami programowymi zawierającymi informacje o adresie IP, numerze portu i wykorzystywanym protokole \cite{tcpip:layers}.
+
+\section{Warstwa transportowa}
+
+W warstwie transportowej otrzymane z warstwy aplikacji dane są dzielone na szereg pakietów i obudowywane nagłówkiem zawierającym m.in. takie informacje jak numer portu nadawcy i odbiorcy wiadomości, który jest istotny ze względu na rozpoznanie, do którego protokołu warstwy aplikacji odebrana wiadomość ma zostać przekazana. Wykorzystywane na tym poziomie protokoły określają cechy przebiegu transmisji. Głównymi protokołami tej warstwy są TCP i UDP.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=90mm]{Praca/Rysunki/Rozdzial3/tcptransmission.png}
+    \caption{Schemat transmisji z wykorzystaniem protokołu TCP}
+    \label{fig:my_label}
+\end{figure}
+
+TCP (ang. \emph{Transmission Control Protocol}) jest protokołem połączeniowym (ang. \emph{connection oriented}), co oznacza, że na początku transmisji tworzy on sesję pomiędzy nadawcą a odbiorcą. Ponadto cechuje się niezawodnością, poprzez wymaganie potwierdzenia otrzymania każdego przesłanego pakietu i wykonanie retransmisji w przypadku błędów transmisji lub braku potwierdzenia. Cecha ta jest szczególnie istotna w przypadku przesyłania danych, których integralność odgrywa kluczową rolę, np. plików lub wiadomości e-mail. Głównymi protokołami w warstwie aplikacji wykorzystującymi protokół TCP są: HTTP, HTTPS, FTP, SMTP i Telnet \cite{tcpip:layers}. Przebieg pojedynczej transmisji został przedstawiony na rysunku 3.1.
+
+Protokół UDP (ang. \emph{User Datagram Protocol}), w przeciwieństwie do TCP, jest protokołem bezpołączeniowym i nie wykorzystuje retransmisji. Oznacza to, że nadanie wiadomości z wykorzystaniem protokołu UDP nie gwarantuje jej dotarcia do odbiorcy. Dodatkowo, kolejność otrzymywanych pakietów nie musi odpowiadać kolejności ich wysłania, co wymusza ich sortowanie przez urządzenie odbiorcy. Zaletą protokołu UDP jest natomiast większa szybkość transmisji dzięki znacznemu uproszczeniu mechanizmów w nim występujących. Szczególnie przydatne jest to w przypadku usług, gdzie zgubienie pojedynczych pakietów nie stanowi problemu, a ważniejsze jest zachowanie bardzo niskiego opóźnienia wynikającego z transmisji. Dotyczy to szczególnie komunikacji głosowej oraz gier komputerowych w trybie on\dywiz{}line. Przykładami protokołów wykorzystujących transmisję UDP są: DNS, DHCP, TFTP, SNMP, RIP, VOIP \cite{tcpip:layers}. Przebieg pojedynczej transmisji został przedstawiony na rysunku 3.2.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=100mm]{Praca/Rysunki/Rozdzial3/udptransmission.png}
+    \caption{Schemat transmisji z wykorzystaniem protokołu UDP}
+    \label{fig:my_label}
+\end{figure}
+
+\section{Warstwa sieciowa (Internetu)}
+
+W warstwie sieciowej ramka komunikacyjna obudowywana jest o pola adresowe zawierające adres IP nadawcy oraz odbiorcy wiadomości. Ich obecność w pakiecie jest istotna ze względu na sposób transmisji danych w Internecie, polegający na przekazywaniu pakietu pomiędzy urządzeniami sieciowymi do momentu, aż pakiet trafi do sieci docelowej. Urządzenia sieciowe wiedzą, na który port należy przekazać pakiet adresowany do danej sieci dzięki konfiguracji. Protokół IP służący do adresacji dostępny jest w wersji IPv4 oraz IPv6, różniących się długością nadawanych adresów, sposobem adresacji sieci i podsieci, oraz translacją adresów publicznych na prywatnych w przypadku IPv4 lub jej brakiem w przypadku IPv6.
+
+Oprócz protokołu IP w warstwie sieciowej operują protokoły:
+
+\begin{itemize}
+    \item [1)] ARP (ang. \emph{Address Resolution Protocol}) -- protokół służący do uzyskania adresu MAC urządzenia, któremu przydzielony jest określony adres IP \cite{tcp:arp};
+    \item [2)] RARP (ang. \emph{Reverse Address Resolution Protocol}) -- protokół służący do uzyskania adresu IP urządzenia posiadającego określony adres MAC;
+    \item [3)] ICMP (ang. \emph{Internet Control Message Protocol}) -- protokół kontrolny pozwalający na nadzorowanie stanu sieci komputerowej.
+\end{itemize}
+
+Konieczność wykorzystania protokołów dostępu do adresu MAC na podstawie adresu IP wynika z różnicy w sposobie adresowania pomiędzy warstwą Internetu, w której wykorzystuje się adresy IP, oraz warstwą dostępu do sieci, w której wykorzystywane są adresy MAC. W trakcie transmisji pakietu każde z pośredniczących urządzeń sieciowych dokonuje dekapsulacji pakietu do postaci dostępnej w warstwie Internetu, a następnie podejmuje decyzję, czy pakiet należy przekazać dalej na podstawie adresu IP. W przypadku konieczności dalszego przekazania pakietu jest on ponownie enkapsulowany informacjami o adresach MAC w warstwie dostępu do sieci. W przeciwnym wypadku pakiet zostaje przekazany do protokołów warstw wyższych. Na rysunku 3.3. przedstawiono schemat warstw, w których przetwarzany jest pakiet w transmisji z dwoma urządzeniami pośredniczącymi.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=155mm]{Praca/Rysunki/Rozdzial3/osi_route.png}
+    \caption{Schemat drogi pakietu od nadawcy do odbiorcy w modelu OSI - Computer Notes}
+    \label{fig:my_label}
+\end{figure}
+
+\section{Warstwa interfejsu sieciowego (dostępu do sieci)}
+
+Warstwa dostępu do sieci odpowiada za przygotowanie pakietów do transmisji za pomocą medium fizycznego oraz jej przeprowadzenie. Zarówno w przypadku sieci przewodowych jak i bezprzewodowych wyróżnić można w tej części trzy podwarstwy:
+
+\begin{itemize}
+    \item [1)] LLC (ang. \emph{Logic Link Control}) -- warstwa dołączająca do ramki informacje o wykorzystanym w warstwie transportowej protokole, aby umożliwić urządzeniu docelowemu prawidłową interpretację otrzymanego pakietu;
+    
+    \item [2)] MAC (ang. \emph{Media Access Control}) -- warstwa tworząca sekcje adresów fizycznych w nagłówku ramki ethernetowej, zapisując adres MAC nadawcy oraz adres MAC odbiorcy lub pośredniczącego routera. W przypadku pośredniczących routerów, adres odbiorcy jest aktualizowany przez router w trakcie przekazywania pakietu;
+    
+    \item [3)] Fizyczna (ang. \emph{Physical, PHY}) -- składa się z fizycznych komponentów transmisji takich jak np. kable transmisyjne, anteny i nadajniki.
+\end{itemize}
+
+Na poziomie fizycznego interfejsu możliwe są do wyróżnienia dwie główne metody połączenia: przewodowe i bezprzewodowe.
+
+\subsection{Połączenie przewodowe}
+
+Do połączenia przewodowego wykorzystywany jest powszechnie spotykany kabel UTP, wykorzystujący gniazdo 8P8C, często mylnie nazywany RJ-45 ze względu na bardzo zbliżoną konstrukcję (wtyk RJ-45 posiada dodatkową wypustkę) \cite{8p8c}. Stanowi on 8-pinowy wtyk, w którym występują 4 pary oznaczane ciągłym i przerywanym kolorem izolacji. Pozwala on na połączenie dwóch urządzeń sieciowych metodą Point-to-Point, z wykrozystaniem protokołu PPPoE (ang. \emph{Point-to-Point Protocol over Ethernet}). Wtyk 8P8C jest często spotykany zarówno w formie modułów rozszerzających wykorzystujących interfejsy szeregowe jak i zintegrowanego portu na płytce PCB. Rysunek 3.4 przedstawia numerację wyprowadzeń gniazda 8P8C, natomiast rysunek 3.5 numerację linii wtyku 8P8C.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=30mm]{Praca/Rysunki/Rozdzial3/rj45 jack.jpg}
+    \caption{Numeracja wyprowadzeń gniazda 8P8C - Electronics Stack Exchange}
+    \label{fig:my_label}
+\end{figure}
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=25mm]{Praca/Rysunki/Rozdzial3/rj45 plug.jpg}
+    \caption{Numeracja linii wtyku 8P8C - Electronics Stack Exchange}
+    \label{fig:my_label}
+\end{figure}
+
+Połączenie pomiędzy warstwą MAC a warstwą fizyczną odbywa się za pomocą niezależnego od platformy interfejsu MII (ang. \emph{Media-Independent Interface}) lub jego zredukowanej wersji RMII (ang. \emph{Reduced Media-Independent Interface}). Stanowi on połączenie pomiędzy procesorem i sterownikiem portu Ethernet, wyposażonym w przetworniki analogowo-cyfrowe i cyfrowo-analogowe w celu umożliwienia transmisji sygnału różnicowego poprzez kabel Ethernet. Rysunek 3.6 przedstawia schemat funkcjonalny przykładowego sterownika Ethernet, natomiast rysunek 3.7 jego umiejscowienie w schemacie platformy pomiędzy warstwą MAC a warstwą PHY.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=70mm]{Praca/Rysunki/Rozdzial3/sterownik-rj45.jpg}
+    \caption{Schemat funkcjonalny sterownika Ethernet DB83848-P firmy Texas Instruments - Texas Instruments}
+    \label{fig:my_label}
+\end{figure}
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=80mm]{Praca/Rysunki/Rozdzial3/driverplacement.jpg}
+    \caption{Umiejscowienie sterownika DB83848-P - Texas Instruments}
+    \label{fig:my_label}
+\end{figure}
+
+Wykorzystanie RMII pozwala na podłączenie różnych warstw fizycznych (np. kabel UTP, światłowód) do tej samej warstwy łącza danych. Tabela 3.1 przedstawia linie występujące w RMII oraz ich przeznaczenie \cite{wiki:rmii}\cite{artykul:rmii}. Skrót MAC oznacza warstwę łącza danych, natomiast skrót PHY warstwę fizyczną.
+
+\begin{table}[!ht]
+    \centering
+    \caption{Spis linii interfejsu RMII}
+    \begin{tabular}{c|c|c}
+        Oznaczenie linii & Kierunek transmisji & Opis  \\
+        \hline
+        REF\texttt{\char`_}CLK & dowolny jednokierunkowy & Zegar referencyjny 50 MHz \\
+        TXD0 & MAC -> PHY & Pierwszy bit nadawczy \\
+        TXD1 & MAC -> PHY & Drugi bit nadawczy \\
+        TX\texttt{\char`_}EN & MAC -> PHY & Sygnał rozpoczęcia transmisji \\
+        RXD0 & PHY -> MAC & Pierwszy bit odbiorczy \\
+        RXD1 & PHY -> MAC & Drugi bit odbiorczy \\
+        CRS\texttt{\char`_}DV & PHY -> MAC & Linia wykrywania nośnej \\
+        RX\texttt{\char`_}ER & PHY -> MAC & Linia błędu odbioru \\
+        MDIO & dwukierunkowy & Linia danych administracyjnych \\
+        MDC & MAC -> PHY & Sygnał zegarowy linii MDIO
+    \end{tabular}
+    \label{tab:my_label}
+\end{table}
+
+Transmisja za pomocą RMII wymaga konwersji binarnej reprezentacji kodu wysyłanego znaku na notację \emph{big-endian}, której bity o indeksie parzystym (przy numeracji od 0) są przesyłane linią TXD0, natomiast bity o indeksie nieparzystym, linią TXD1, tworząc transmisję za pomocą tzw. di-bitów lub \emph{nibbli}. Podobnie jak w przypadku nadawania, odbiór danych odbywa się poprzez otrzymanie bitów o indeksie parzystym (przy numeracji od 0) za pomocą linii RXD0 oraz bitów o indeksie nieparzystym za pomocą linii RXD1. 
+
+Istotną kwestią stanowi połączenie linii wewnątrz kabla UTP do poszczególnych pinów wtyku 8P8C. W przypadku łączenia dwóch urządzeń uznawanych jako \emph{host}, konieczne jest wykorzystanie kabla tzw. krzyżowego (ang. \emph{crossover}), czyli z zamienioną kolejnością pary nadawczej i pary odbiorczej na poszczególnych krańcach kabla. Natomiast w przypadku podłączenia urządzenia typu host do urządzenia takiego jak router (posiadający wbudowany przełącznik), należy wykorzystać kabel prosty (ang. \emph{straight-thru}). Sposoby zaciskania wtyku 8P8C na liniach kabla UTP znane są jako T-568A oraz T-568B. Za kabel krzyżowy uznaje się kabel UTP posiadający różne ułożenie przewodów na końcach, natomiast za kabel prosty uznawany jest kabel o tym samym ułożeniu przewodów na obu końcach.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=54mm]{Praca/Rysunki/Rozdzial3/cross.jpg}
+    \caption{Ułożenia przewodów w kablu UTP - The Internet Centre Inc.}
+    \label{fig:my_label}
+\end{figure}
+
+\newpage
+\subsection{Połączenie bezprzewodowe}
+
+Ze względu na popularność integracji systemów wbudowanych z sieciami bezprzewodowymi, w szczególności w przypadku automatyki domowej i biurowej, na rynku dostępne jest wiele gotowych modułów oferujących funkcjonalności sieci bezprzewodowych, zarówno typu Wi-Fi jak i danych komórkowych. Ze względu na ich bardzo zbliżoną budowę, w której różnice funkcjonalne sprowadzają się często jedynie do rodzaju anteny w związku z obsługą różnych częstotliwości, zdecydowano się na zbiorczy opis w/w modułów.
+
+Większość modułów występuje w formie preprogramowanych układów cyfrowych na płytce drukowanej PCB, najczęściej z wbudowaną anteną mikropaskową (w postaci ścieżki na płytce drukowanej) lub wyprowadzonym wyjściem antenowym SMA, wykorzystywanym dla przewodów koncentrycznych, wyjściem IPEX, lub wyjściem u.FL. Rysunek 3.7 przedstawia przykłady anten wykorzystywanych przez moduły bezprzewodowe.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=45mm]{Praca/Rysunki/Rozdzial3/antenna.jpg}
+    \caption{Rodzaje anten dla urządzeń systemów wbudowanych - Circuit Digest}
+    \label{fig:my_label}
+\end{figure}
+
+Część układów implementujących interfejsy bezprzewodowe utworzonych jest jako rozszerzenia typu Shield, umożliwiając bardzo łatwą integrację z platformą sprzętową Arduino bez konieczności lutowania. Budowa takiego modułu jest bardzo zbliżona do konstrukcji platformy sprzętowej, posiadając wyprowadzenia zgodne co do funkcji i położenia z wyprowadzeniami obecnymi na wybranej płytce. W przypadku modułów oferujących dostęp do sieci GSM konieczne jest dodatkowe uzupełnienie go o gniazdo na kartę SIM, podobnie jak w przypadku telefonów komórkowych.
+
+\begin{figure}[!ht]
+\begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=60mm]{Praca/Rysunki/Rozdzial3/shield.jpg}
+    \caption{Shield Wi-Fi - Seeed Studio}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=60mm]{Praca/Rysunki/Rozdzial3/gsm.jpg}
+    \caption{Shield GSM - Botland}
+  \end{minipage}
+\end{figure}
+
+\newpage
+\section{Implementacje stosu TCP/IP}
+
+Implementacja stosu TCP/IP, zarówno ze względu na ilość jak i złożoność protokołów, stanowi złożone zadanie, w związku z czym najpopularniejszym wariantem jest skorzystanie z gotowych rozwiązań. Część urządzeń (w szczególności moduły rozszerzające) implementują cały stos TCP/IP, wymagając od użytkownika jedynie implementacji komunikacji z wykorzystaniem wybranego lokalnego interfejsu szeregowego, jak np. SPI lub I$^2$C. 
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=60mm]{Praca/Rysunki/Rozdzial3/enc28j60.jpg}
+    \caption{Moduł ENC28J60 - Aliexpress}
+    \label{fig:my_label}
+\end{figure}
+
+Jako przykład rozwiązania zapewniającego zewnętrzny interfejs Ethernet można podać moduł z układem ENC28J60 \cite{enc28j60}, przedstawiony na rys. 3.12. Jest on kompatybilny z sieciami 10/100/\dywiz{}1000Base-T, wspierając w szczególności transmisję 10Base-T. Do komunikacji z mikokontrolerem wykorzystuje on interfejs SPI o częstotliwości zegara 20 MHz. Oferuje on implementację jedynie warstwy fizycznej oraz łącza danych modelu OSI, co wymusza na użytkowniku implementację pozostałych warstw stosu TCP/IP. Posiada on 8 kB programowalnej pamięci na bufory odbioru i nadawania oraz sprzętowe wyznaczanie sumy kontrolnej. Ze względu na implementację warstwy aplikacji po stronie mikrokontrolera, ilość możliwych do wykorzystania gniazd (ang. \emph{socket}) zależy od ilości pamięci RAM mikrokontrolera.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=60mm]{Praca/Rysunki/Rozdzial3/w5500.jpg}
+    \caption{Moduł W5500 - Aliexpress}
+    \label{fig:my_label}
+\end{figure}
+
+Drugim przykładem jest układ W5500 przedstawiony na rys. 3.13. W przeciwieństwie do układu ENC28J60, oferuje on także część protokołów warstw wyższych, takich jak TCP, UDP, ICMP, IPv4, ARP, IGMP i PPPoE \cite{w5500}. Ponadto oferuje on także funkcjonalność \emph{wake on LAN}. Układ ten dostępny jest m.in. w postaci platformy Shield dla płytek Arduino. Działa on ze standardami 10/100 Base-T. Posiada on 32 kB programowalnej pamięci dla buforów odbierania/nadawania i wspiera jednocześnie 8 gniazd. Pracuje on z poziomem logicznym 3,3 V, posiadając tolerancję dla 5 V na pinach wejścia/wyjścia (ang. \emph{Input/Output}, I/O). Tabela 3.2 przedstawia porównanie w/w modułów wraz z orientacyjnymi cenami.
+
+\begin{table}[!ht]
+    \centering
+    \caption{Zestawienie parametrów modułów Ethernet}
+    \begin{tabular}{c|c|c|c|c|c}
+        \multirow{2}{*}{Moduł} & Standard & \multirow{2}{*}{Protokoły} & \multirow{2}{*}{Interfejs} & Prędkość & \multirow{2}{*}{Cena} \\
+        & Transmisji & & & Interfejsu \\
+        \hline
+        ENC28J60 & 10Base-T & MAC & SPI & 20 MHz & 32,70 zł \\
+        \hline
+        \multirow{3}{*}{W5500} & \multirow{3}{*}{10/100Base-T} & MAC, TCP, UDP, & \multirow{3}{*}{SPI} & \multirow{3}{*}{80 MHz} & \multirow{3}{*}{115,00 zł} \\
+        & & ICMP, IPv4, ARP, & & &
+        & & & IGMP, PPPoE & & & 
+    \end{tabular}
+    \label{tab:my_label}
+\end{table}
+
+Dwoma popularnymi modułami bezprzewodowymi są moduły ESP8266 oraz ESP32, przedstawione odpowiednio na rys 3.14 oraz rys 3.15. Drugi z wymienionych modułów stanowi nowszą wersję pierwszego. Oba moduły pracują w częstotliwości 2,4 GHz, w standardzie IEEE 802.11 b/g/n. Różnią się one dostępnymi prędkościami, zabezpieczeniami oraz interfejsami szeregowymi umożliwiającymi podłączenie do mikrokontrolera. Oba moduły wykorzystują jako złącza pady i złącza THT, umożliwiające wlutowanie pinów typu goldpin. Zarówno ESP8266 jak i ESP32 potrafią pracować w trybie miękkiego punktu dostępowego (ang. \emph{Soft Access Point}, softAP) jak i stacji nadawczej (ang. \emph{Station}, STA).
+
+\begin{figure}[!ht]
+\begin{minipage}[b]{0.4\textwidth}
+    \centering
+    \includegraphics[width=70mm]{Praca/Rysunki/Rozdzial3/esp8266.jpg}
+    \caption{Moduł ESP8266 - Nettigo}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.4\textwidth}
+    \centering
+    \includegraphics[width=40mm]{Praca/Rysunki/Rozdzial3/esp32.jpg}
+    \caption{Moduł ESP32 - Botland}
+  \end{minipage}
+\end{figure}
+
+ESP8266 umożliwia komunikację z prędkością do 72,2 Mbps. \emph{Firmware} udostępniany przez producenta układu realizuje implementację protokołów IPv4, TCP, UDP, HTTP, ICMP i MAC oraz oferuje szyfrowanie WEP, WPA/WPA2, TKIP, a także AES \cite{esp8266}. Do komunikacji z mikrokontrolerem wykorzystywany jest interfejs UART. Do sterowania modułem wykorzystywane są komenty AT. Moduł pracuje z napięciem w okolicach 3,3 V oraz dostępny jest w dwóch wariantach anten -- z anteną mikropasową lub złączem u.FL.
+
+ESP32 stanowi nowszą wersję w/w ESP8266. W układzie zaimplementowano dwurdzeniowy procesor, co pozwoliło na zwiększenie prędkości transmisji do 150~Mbps \cite{esp32}. Podobnie jak w przypadku ESP8266, dla układu dostępny jest \emph{firmware} implementujący protokoły IPv4, TCP, UDP, HTTP, ICMP i MAC, lecz posiadający bardziej rozbudowane zabezpieczenia, rozszerzając dostępne protokoły szyfrowania o PSK/Enterprise, SHA-2, ECC i RSA-4096. Niektóre warianty posiadają wbudowaną możliwość obsługi protokołu IPv6. Istnieje możliwość przygotowania przez użytkownika własnej wersji \emph{firmware'u} zawierającego stosownie skonfigurowane protokoły przy pomocy SDK (ang. \emph{Software Development Kit}) udostępnionego przez producenta. Moduł pracuje z napięciem w okolicach 3,3 V. Do komunikacji z urządzeniem wykorzystywane są interfejsy SPI, I$^2$C oraz UART. Tabela 3.3 przedstawia zestawienie parametrów wymienionych modułów wraz z orientacyjnymi cenami.
+
+\begin{table}[!ht]
+    \centering
+    \caption{Zestawienie parametrów modułów bezprzewodowych}
+    \begin{tabular}{c|c|c|c|c|c}
+        \multirow{2}{*}{Moduł} & Standard & \multirow{2}{*}{Protokoły} & \multirow{2}{*}{Interfejs} & Prędkość & \multirow{2}{*}{Cena} \\
+        & Transmisji & & & Transmisji \\
+        \hline
+        \multirow{2}{*}{ESP8266} & \multirow{2}{*}{802.11 b/g/n} & MAC, TCP, UDP, & \multirow{2}{*}{UART} & \multirow{2}{*}{72,2 Mbps} & \multirow{2}{*}{14,90 zł} \\
+                & & HTTP, IPv4, ICMP & & & \\
+        \hline
+        \multirow{3}{*}{ESP32} & \multirow{3}{*}{802.11 b/g/n} & MAC, TCP, UDP, & \multirow{2}{*}{SPI, I$^2$C,} & \multirow{3}{*}{150 Mbps} & \multirow{3}{*}{127,50 zł} \\
+        & & HTTP, IPv4, (IPv6), & \multirow{2}{*}{UART} & & \\
+        & & ICMP & & &
+    \end{tabular}
+    \label{tab:my_label}
+\end{table}
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=100mm]{Praca/Rysunki/Rozdzial3/nucleo.jpg}
+    \caption{Platforma sprzętowa Nucleo-F429ZI posiadająca złącze Ethernet \dywiz{} Botland}
+    \label{fig:my_label}
+\end{figure}
+
+Niektórzy producenci platform sprzętowych decydują się na jedynie częściową implementację stosu TCP/IP dla swoich platform w przypadku, gdy jest ona wyposażona w interfejs sieciowy (np. gniazdo 8P8C). Przykładem tego są platformy sprzętowe Nucleo-F4 (m.in. model Nucleo-F429ZI przedstawiony na rys. 3.16.) wyposażone w w/w gniazdo. Oprogramowanie HAL (ang. \emph{Hardware Abstract Layer}) udostępniane przez firmę ST Microelectronics dla wspomnianych mikrokontrolerów zapewnia implementację warstwy dostępu do sieci stosu TCP/IP, jednak nie oferuje wyższych warstw, wymagając od użytkownika wykorzystania oprogramowania pośredniego (ang. \emph{middleware}) takiego jak m.in. otwarte stosy LwIP (ang. \emph{Lightweight IP}) oraz uIP (ang. \emph{micro IP}). W celu wykorzystania wymienionych stosów protokołów należy wykonać wcześniej ich przeniesienie (ang. \emph{port}) na dany mikrokontroler lub skorzystać z gotowego rozwiązania, jeśli zostało ono przygotowane.
+
+Stos LwIP stanowi implementację protokołów warstw aplikacji, transportowej i Internetu. Oferuje on następujące protokoły \cite{lwip:protocols}:
+
+\begin{itemize}
+    \item [1)] IP;
+    \item [2)] ICMP;
+    \item [3)] UDP;
+    \item [4)] DHCP;
+    \item [5)] TCP;
+    \item [6)] ARP;
+    \item [7)] BSD (opcjonalnie)
+\end{itemize}
+
+Implementacja stosu LwIP od wersji v.2.0.0 wspiera adresację zarówno za pomocą IPv4 jak i IPv6. 
+
+uIP stanowi otwartą implementację stosu TCP/IP dedykowaną dla mikrokontrolerów o bardzo dużych ograniczeniach związanych z pamięcią Flash oraz RAM. Zgodnie z treścią dokumentu \cite{ti:uip} stos uIP potrafi minimalizować użycie RAMu do kilkuset bajtów. Implementuje on następujące protokoły:
+
+\begin{itemize}
+    \item [1)] TCP;
+    \item [2)] UDP;
+    \item [3)] IP;
+    \item [4)] ICMP;
+    \item [5)] ARP
+\end{itemize}
+
+W związku z bardzo dużymi wymaganiami optymalizacji pamięci, wszystkie protokoły warstwy aplikacji są pozostawione do implementacji przez użytkownika. Wynika to również z braku możliwości przewidzenia w jakich aplikacjach stos zostanie wykorzystany.

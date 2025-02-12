@@ -1,0 +1,12 @@
+\chapter{Dyskusja rezultatów i wnioski końcowe}
+%=================================================================================================
+W wyniku analizy istniejących rozwiązań implementacyjnych interfejsów sieciowych oraz analizy struktury stosu TCP/IP podjęte zostały decyzje o wyborze platform sprzętowych do implementacji modułu IoT w postaci serwera echo z obsługą połączeń sieciowych w części praktycznej niniejszej pracy. 
+
+Podczas realizacji niniejszej pracy wyciągnięte zostały następujące uwagi i wnioski:
+
+\begin{itemize}
+    \item [$\bullet$] Istnieje wiele dostępnych na rynku rozwiązań implementacyjnych interfejsów sieciowych, w tym zarówno sieci przewodowych jak i bezprzewodowych;
+    \item [$\bullet$] Część platform sprzętowych posiada gotowe implementacje części sprzętowej interfejsów sieciowych, jak np. wlutowane złącze 8P8C lub moduł Wi-Fi umieszczony na pokładzie płytki PCB;
+    \item [$\bullet$] Istnieje kilka implementacji stosu TCP/IP różniących się od siebie kwestiami takimi jak oferowane funkcjonalności oraz zużycie pamięci i czasu przetwarzania. Przykładami implementacji stosu TCP/IP o otwartej licencji są stosy LwIP oraz uIP.
+    \item [$\bullet$] Mimo zastosowania tego samej częstotliwości zegara systemowego, na podstawie obserwacji szybkości pojawiania się komunikatów w programie Hercules SETUP Utility i terminalu portu szeregowego, oraz na podstawie czasów zmierzonych przez polecenie ping, interfejs Wi-Fi charakteryzował się większym opóźnieniem przy przesyłaniu wiadomości echo niż interfejs Ethernet. W przypadku funkcjonalności echo oraz komunikacji za pomocą portu szeregowego prawdopodobną przyczyną jest konieczność komunikacji z układem mikrokontrolera za pomocą interfejsu UART oraz czas przetwarzania przez niego danych.
+\end{itemize}
