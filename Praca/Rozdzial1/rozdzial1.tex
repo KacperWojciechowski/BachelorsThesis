@@ -1,33 +1,32 @@
-\chapter{Wstęp}
+\chapter{Prelude}
 %======================================================================================================
-\section{Wprowadzenie}
+\section{Introduction}
 
-Wraz z rozwojem technologii, na rynku pojawia się coraz więcej innowacyjnych wynalazków wykorzystujących dotychczasowe osiągnięcia techniki informacyjnej i przyczyniających się do dalszego postępu technologicznego. Bardzo wyraźnym przykładem wspomnianego zjawiska jest przemysł informatyczny. Z upływem lat coraz wyraźniej zaobserwować można obecność urządzeń elektronicznych i komputerowych w różnych dziedzinach codziennego życia, począwszy od edukacji, przez opiekę zdrowotną, aż po relaks i rozrywkę. Nieodzowną rolę odgrywa tu rozwój Internetu, pozwalający na połączenie urządzeń w ogromne sieci do przesyłu informacji. 
+Along with the progress in technology, the market is populated by more and more innovative inventions that utilize previous achievements of information technology and that drive the technological progress forward. IT industry is one very important example of this phenomenon. Over the years, increasingly clearly can be observed the presence of electronic and computing devices in many parts of the daily life, starting with education, through medical care, ending on entertainment. The development of the Internet plays a major role here, allowing to connect many devices into extensive networks for information exchange.
 
-Wiele dostępnych obecnie produktów na rynku konsumenckim stanowi wypadkową szerzącej się automatyzacji i coraz większych korzyści płynących z mediów takich jak Internet. Dobrze obrazuje to dziedzina tzw. Internetu Rzeczy (ang. \emph{Internet of Things}, \emph{IoT}), złożonego z wielu rozproszonych modułów sprzętowych podłączonych do wspólnej sieci komputerowej w celu stworzenia większego systemu.
+Many of currently commercially available products are a derivative of ever increasing automatization and widening benefits of media such as the Internet. One field that presents this very well is the Internet of Things (\emph{IoT}), consisting of many distributed hardware modules connected to a common computer network in order to create a larger system.
 
 % dopisać przegląd literatury
 %======================================================================================================
-\section{Cel i zakres pracy}
+\section{Aim and scope}
 
-Celem pracy jest dokonanie przeglądu metod realizacji interfejsu sieciowego w modułach IoT oraz praktyczna implementacja (sprzętowa i programowa) wybranej metody w systemie bazującym na mikrokontrolerze z procesorem Cortex-M.
+The aim of this dissertation is to provide an overview of network interface implementation methods available for IoT modules and showing practical implementation (both in hardware and software) of selected methods in a system based on Cortex-M microcontroller.
 
-Zakres pracy obejmował:
+The scope of the thesis consists of:
 
 \begin{itemize}
-    \item [$\bullet$] przegląd możliwych do realizacji metod implementacji interfejsu sieciowego w modułach IoT bazujących na mikrokontrolerach z procesorami Cortex-M z uwzględnieniem m.in. wad i zalet każdej z nich,
-    \item [$\bullet$] praktyczna realizacja modułu IoT w oparciu o mikrokontroler z procesorem Cortex-M z interfejsem sieciowym zrealizowanym według jednej z wybranych metod.
-    
+	\item [$\bullet$] overview of possible methods of implementing a network interface in IoT modules based on microcontrollers with Cortex-M processing unit, including pros and cons of each of them;
+	\item [$\bullet$] practical implementation of IoT module based on microcontroller with Cortex-M processing unit and network interface realized according to one of the selected methods.
 \end{itemize}
 %======================================================================================================
-\section{Struktura pracy}
+\section{Document structure}
 
-Rozdział pierwszy pracy zawiera wstęp oraz cel i zakres, w ramach którego zrealizowana została niniejsza praca dyplomowa, a także skróconą informację o poszczególnych sekcjach pracy.
+The first chapter contains an introduction to the topic, aim and scope in which this thesis was made, and short information about each section of this document.
 
-Celem drugiego rozdziału jest zapoznanie Czytelnika z pojęciem Internetu Rzeczy (IoT) wraz z jego formalną definicją, pokazując zalety oraz wady tej dziedziny. Rozdział zwieńczony został uzasadnieniem interpretacji modułów IoT jako urządzeń sieciowych.
+The aim of the second chapter is to familiarize the reader with the term Internet of Things (IoT) along with its formal definition, presenting the pros and cons of this field. This section was completed with substantiation of implementing network interfaces in IoT modules as network devices.
 
-Trzeci z rozdziałów omawia stos TCP/IP oraz jego relację w stosunku do modelu ISO OSI. Jego treść przedstawia i krótko opisuje protokoły dostępne w poszczególnych warstwach modelu TCP/IP. Ponadto, przedstawia on także różnicę pomiędzy transmisją TCP a transmisją UDP, oraz omawia sposób podłączenia warstwy fizycznej.
+The third chapter discusses the TCP/IP stack and its relation to the ISO OSI model. The content presents and shortly describes the protocols available in each of the layers of TCP/IP model. Additionally, a difference between TCP and UDP transmission is presented, and physical layer connection method is discussed.
 
-Tematyką czwartego rozdziału jest praktyczna implementacja interfejsu Ethernet oraz interfejsu bezprzewodowego w paśmie 2,4 GHz dla platformy sprzętowej Nucleo-F429ZI. Rozdział przedstawia krok po kroku sposób konfiguracji urządzenia oraz przygotowany kod źródłowy do obsługi interfejsu.
+The topic of the fourth chapter is a practical implementation of Ethernet and 2.4 GHz band Wi-Fi connectivity for Nucleo-F429ZI hardware platform. This chapter provides step by step explanation of the device configuration process and code procured for handling the interface.
 
-Ostatni rozdział omawia rezultaty pracy oraz przedstawia wnioski wyciągnięte w trakcie jej realizacji.
+The last chapter discusses the results of this thesis and presents the conclusions drawn during its realization.
