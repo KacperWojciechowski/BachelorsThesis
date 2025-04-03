@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2024.6.29)  3 APR 2025 19:38
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2024.6.29)  3 APR 2025 22:02
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1412,47 +1412,47 @@ File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 \c@licznikStron=\count487
 
 (./Rozdzial1/rozdzial1.tex
-Rozdzia\PlPrIeC {\l } 1.
+Chapter 1.
 [1
 
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}])
 (./Rozdzial2/rozdzial2.tex [2]
-Rozdzia\PlPrIeC {\l } 2.
+Chapter 2.
 [3
 
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}] [4] [5]
-<Rysunki/Rozdzial2/iso_osi_vs_tcp.png, id=330, 362.35374pt x 344.28625pt>
+<Rysunki/Rozdzial2/iso_osi_vs_tcp.png, id=330, 472.76625pt x 482.80376pt>
 File: Rysunki/Rozdzial2/iso_osi_vs_tcp.png Graphic file (type png)
 <use Rysunki/Rozdzial2/iso_osi_vs_tcp.png>
 Package pdftex.def Info: Rysunki/Rozdzial2/iso_osi_vs_tcp.png  used on input li
 ne 69.
-(pdftex.def)             Requested size: 227.62204pt x 216.27632pt.
+(pdftex.def)             Requested size: 227.62204pt x 232.45776pt.
 )
 (./Rozdzial3/rozdzial3.tex [6 <./Rysunki/Rozdzial2/iso_osi_vs_tcp.png>]
-Rozdzia\PlPrIeC {\l } 3.
+Chapter 3.
 [7
 
 ]
-<Rysunki/Rozdzial3/tcptransmission.png, id=360, 423.5825pt x 310.15875pt>
+<Rysunki/Rozdzial3/tcptransmission.png, id=360, 523.9575pt x 462.72874pt>
 File: Rysunki/Rozdzial3/tcptransmission.png Graphic file (type png)
 <use Rysunki/Rozdzial3/tcptransmission.png>
 Package pdftex.def Info: Rysunki/Rozdzial3/tcptransmission.png  used on input l
 ine 30.
-(pdftex.def)             Requested size: 256.0748pt x 187.51173pt.
+(pdftex.def)             Requested size: 256.0748pt x 226.15303pt.
  [8 <./Rysunki/Rozdzial3/tcptransmission.png>]
-<Rysunki/Rozdzial3/udptransmission.png, id=369, 423.5825pt x 179.67125pt>
+<Rysunki/Rozdzial3/udptransmission.png, id=369, 523.9575pt x 261.97874pt>
 File: Rysunki/Rozdzial3/udptransmission.png Graphic file (type png)
 <use Rysunki/Rozdzial3/udptransmission.png>
 Package pdftex.def Info: Rysunki/Rozdzial3/udptransmission.png  used on input l
 ine 42.
-(pdftex.def)             Requested size: 284.52756pt x 120.69164pt.
+(pdftex.def)             Requested size: 284.52756pt x 142.2659pt.
  [9 <./Rysunki/Rozdzial3/udptransmission.png>]
-<Rysunki/Rozdzial3/osi_route.png, id=375, 663.47874pt x 433.62pt>
+<Rysunki/Rozdzial3/osi_route.png, id=375, 924.45375pt x 594.22pt>
 File: Rysunki/Rozdzial3/osi_route.png Graphic file (type png)
 <use Rysunki/Rozdzial3/osi_route.png>
 Package pdftex.def Info: Rysunki/Rozdzial3/osi_route.png  used on input line 63
 .
-(pdftex.def)             Requested size: 441.01772pt x 288.22797pt.
+(pdftex.def)             Requested size: 441.01772pt x 283.47241pt.
 
 Overfull \hbox (14.22636pt too wide) in paragraph at lines 63--64
  [][] 
@@ -1477,15 +1477,15 @@ File: Rysunki/Rozdzial3/sterownik-rj45.jpg Graphic file (type jpg)
 Package pdftex.def Info: Rysunki/Rozdzial3/sterownik-rj45.jpg  used on input li
 ne 102.
 (pdftex.def)             Requested size: 199.16928pt x 272.32428pt.
-<Rysunki/Rozdzial3/driverplacement.jpg, id=385, 435.12563pt x 162.6075pt>
+ [11 <./Rysunki/Rozdzial3/rj45 jack.jpg> <./Rysunki/Rozdzial3/rj45 plug.jpg>]
+<Rysunki/Rozdzial3/driverplacement.jpg, id=390, 435.12563pt x 162.6075pt>
 File: Rysunki/Rozdzial3/driverplacement.jpg Graphic file (type jpg)
 <use Rysunki/Rozdzial3/driverplacement.jpg>
 Package pdftex.def Info: Rysunki/Rozdzial3/driverplacement.jpg  used on input l
 ine 109.
 (pdftex.def)             Requested size: 227.62204pt x 85.06502pt.
- [11 <./Rysunki/Rozdzial3/rj45 jack.jpg> <./Rysunki/Rozdzial3/rj45 plug.jpg>] [
-12 <./Rysunki/Rozdzial3/sterownik-rj45.jpg> <./Rysunki/Rozdzial3/driverplacemen
-t.jpg>]
+ [12 <./Rysunki/Rozdzial3/sterownik-rj45.jpg> <./Rysunki/Rozdzial3/driverplacem
+ent.jpg>]
 <Rysunki/Rozdzial3/cross.jpg, id=400, 300.3722pt x 214.55156pt>
 File: Rysunki/Rozdzial3/cross.jpg Graphic file (type jpg)
 <use Rysunki/Rozdzial3/cross.jpg>
@@ -1512,8 +1512,9 @@ Underfull \hbox (badness 2205) in paragraph at lines 170--170
 [][]|\T1/lmr/m/n/10.95 GSM Shield - Bo-
  []
 
-[13 <./Rysunki/Rozdzial3/cross.jpg> <./Rysunki/Rozdzial3/antenna.jpg>]
-<Rysunki/Rozdzial3/enc28j60.jpg, id=408, 602.25pt x 451.6875pt>
+[13 <./Rysunki/Rozdzial3/cross.jpg>] [14 <./Rysunki/Rozdzial3/antenna.jpg> <./R
+ysunki/Rozdzial3/shield.jpg> <./Rysunki/Rozdzial3/gsm.jpg>]
+<Rysunki/Rozdzial3/enc28j60.jpg, id=412, 602.25pt x 451.6875pt>
 File: Rysunki/Rozdzial3/enc28j60.jpg Graphic file (type jpg)
 <use Rysunki/Rozdzial3/enc28j60.jpg>
 Package pdftex.def Info: Rysunki/Rozdzial3/enc28j60.jpg  used on input line 181
@@ -1525,14 +1526,13 @@ Overfull \hbox (3.49016pt too wide) in paragraph at lines 186--187
 -bi-li-ty with 10/100/1000Base-
  []
 
-<Rysunki/Rozdzial3/w5500.jpg, id=410, 564.60938pt x 564.60938pt>
+<Rysunki/Rozdzial3/w5500.jpg, id=414, 564.60938pt x 564.60938pt>
 File: Rysunki/Rozdzial3/w5500.jpg Graphic file (type jpg)
 <use Rysunki/Rozdzial3/w5500.jpg>
 Package pdftex.def Info: Rysunki/Rozdzial3/w5500.jpg  used on input line 190.
 (pdftex.def)             Requested size: 170.71652pt x 170.71947pt.
-[14 <./Rysunki/Rozdzial3/shield.jpg> <./Rysunki/Rozdzial3/gsm.jpg> <./Rysunki/R
-ozdzial3/enc28j60.jpg>]
-<Rysunki/Rozdzial3/esp8266.jpg, id=418, 1445.4pt x 813.0375pt>
+[15 <./Rysunki/Rozdzial3/enc28j60.jpg> <./Rysunki/Rozdzial3/w5500.jpg>]
+<Rysunki/Rozdzial3/esp8266.jpg, id=422, 1445.4pt x 813.0375pt>
 File: Rysunki/Rozdzial3/esp8266.jpg Graphic file (type jpg)
 <use Rysunki/Rozdzial3/esp8266.jpg>
 Package pdftex.def Info: Rysunki/Rozdzial3/esp8266.jpg  used on input line 218.
@@ -1548,38 +1548,36 @@ Underfull \hbox (badness 3503) in paragraph at lines 219--219
 [][]|\T1/lmr/m/n/10.95 ESP8266 mo-du-le -
  []
 
-<Rysunki/Rozdzial3/esp32.jpg, id=419, 602.25pt x 602.25pt>
+<Rysunki/Rozdzial3/esp32.jpg, id=423, 602.25pt x 602.25pt>
 File: Rysunki/Rozdzial3/esp32.jpg Graphic file (type jpg)
 <use Rysunki/Rozdzial3/esp32.jpg>
 Package pdftex.def Info: Rysunki/Rozdzial3/esp32.jpg  used on input line 224.
 (pdftex.def)             Requested size: 113.81102pt x 113.80379pt.
-[15 <./Rysunki/Rozdzial3/w5500.jpg>]
-<Rysunki/Rozdzial3/nucleo.jpg, id=428, 813.0375pt x 490.83376pt>
+[16 <./Rysunki/Rozdzial3/esp8266.jpg> <./Rysunki/Rozdzial3/esp32.jpg>]
+<Rysunki/Rozdzial3/nucleo.jpg, id=432, 813.0375pt x 490.83376pt>
 File: Rysunki/Rozdzial3/nucleo.jpg Graphic file (type jpg)
 <use Rysunki/Rozdzial3/nucleo.jpg>
 Package pdftex.def Info: Rysunki/Rozdzial3/nucleo.jpg  used on input line 254.
 (pdftex.def)             Requested size: 284.52756pt x 171.76442pt.
- [16 <./Rysunki/Rozdzial3/esp8266.jpg> <./Rysunki/Rozdzial3/esp32.jpg> <./Rysun
-ki/Rozdzial3/nucleo.jpg>])
-(./Rozdzial4/rozdzial4.tex [17]
-Rozdzia\PlPrIeC {\l } 4.
-[18
+ [17 <./Rysunki/Rozdzial3/nucleo.jpg>]) (./Rozdzial4/rozdzial4.tex [18]
+Chapter 4.
+[19
 
 ]
-<Rysunki/Rozdzial4/nucleo 8p8c.jpg, id=446, 813.0375pt x 490.83376pt>
+<Rysunki/Rozdzial4/nucleo 8p8c.jpg, id=450, 813.0375pt x 490.83376pt>
 File: Rysunki/Rozdzial4/nucleo 8p8c.jpg Graphic file (type jpg)
 <use Rysunki/Rozdzial4/nucleo 8p8c.jpg>
 Package pdftex.def Info: Rysunki/Rozdzial4/nucleo 8p8c.jpg  used on input line 
 37.
 (pdftex.def)             Requested size: 341.43306pt x 206.1188pt.
-<Rysunki/Rozdzial4/schemat_esp8266.png, id=447, 179.92218pt x 98.61844pt>
+<Rysunki/Rozdzial4/schemat_esp8266.png, id=451, 179.92218pt x 98.61844pt>
 File: Rysunki/Rozdzial4/schemat_esp8266.png Graphic file (type png)
 <use Rysunki/Rozdzial4/schemat_esp8266.png>
 Package pdftex.def Info: Rysunki/Rozdzial4/schemat_esp8266.png  used on input l
 ine 48.
 (pdftex.def)             Requested size: 179.92174pt x 98.61818pt.
- [19 <./Rysunki/Rozdzial4/nucleo 8p8c.jpg>]
-<Rysunki/Rozdzial4/wybór mikrokontrolera.jpg, id=452, 977.90344pt x 427.5975pt
+ [20 <./Rysunki/Rozdzial4/nucleo 8p8c.jpg>]
+<Rysunki/Rozdzial4/wybór mikrokontrolera.jpg, id=457, 977.90344pt x 427.5975pt
 >
 File: Rysunki/Rozdzial4/wybór mikrokontrolera.jpg Graphic file (type jpg)
 <use Rysunki/Rozdzial4/wybór mikrokontrolera.jpg>
@@ -1591,21 +1589,21 @@ Overfull \hbox (14.22636pt too wide) in paragraph at lines 64--65
  [][] 
  []
 
-<Rysunki/Rozdzial4/utworzenie projektu.jpg, id=453, 358.33875pt x 322.20375pt>
+<Rysunki/Rozdzial4/utworzenie projektu.jpg, id=458, 358.33875pt x 322.20375pt>
 File: Rysunki/Rozdzial4/utworzenie projektu.jpg Graphic file (type jpg)
 <use Rysunki/Rozdzial4/utworzenie projektu.jpg>
 Package pdftex.def Info: Rysunki/Rozdzial4/utworzenie projektu.jpg  used on inp
 ut line 71.
 (pdftex.def)             Requested size: 227.62204pt x 204.67085pt.
-[20 <./Rysunki/Rozdzial4/schemat_esp8266.png> <./Rysunki/Rozdzial4/wybór mikro
+[21 <./Rysunki/Rozdzial4/schemat_esp8266.png> <./Rysunki/Rozdzial4/wybór mikro
 kontrolera.jpg>]
-<Rysunki/Rozdzial4/tryb bypass.jpg, id=460, 581.17125pt x 143.78719pt>
+<Rysunki/Rozdzial4/tryb bypass.jpg, id=464, 581.17125pt x 143.78719pt>
 File: Rysunki/Rozdzial4/tryb bypass.jpg Graphic file (type jpg)
 <use Rysunki/Rozdzial4/tryb bypass.jpg>
 Package pdftex.def Info: Rysunki/Rozdzial4/tryb bypass.jpg  used on input line 
 81.
 (pdftex.def)             Requested size: 341.43306pt x 84.47388pt.
-<Rysunki/Rozdzial4/clock_signal_bypass.jpg, id=461, 839.38594pt x 325.215pt>
+<Rysunki/Rozdzial4/clock_signal_bypass.jpg, id=465, 839.38594pt x 325.215pt>
 File: Rysunki/Rozdzial4/clock_signal_bypass.jpg Graphic file (type jpg)
 <use Rysunki/Rozdzial4/clock_signal_bypass.jpg>
 Package pdftex.def Info: Rysunki/Rozdzial4/clock_signal_bypass.jpg  used on inp
@@ -1616,39 +1614,39 @@ Overfull \hbox (14.22636pt too wide) in paragraph at lines 88--89
  [][] 
  []
 
-[21 <./Rysunki/Rozdzial4/utworzenie projektu.jpg> <./Rysunki/Rozdzial4/tryb byp
+[22 <./Rysunki/Rozdzial4/utworzenie projektu.jpg> <./Rysunki/Rozdzial4/tryb byp
 ass.jpg> <./Rysunki/Rozdzial4/clock_signal_bypass.jpg>]
-<Rysunki/Rozdzial4/rmii1.jpg, id=466, 587.19376pt x 331.99031pt>
+<Rysunki/Rozdzial4/rmii1.jpg, id=470, 587.19376pt x 331.99031pt>
 File: Rysunki/Rozdzial4/rmii1.jpg Graphic file (type jpg)
 <use Rysunki/Rozdzial4/rmii1.jpg>
 Package pdftex.def Info: Rysunki/Rozdzial4/rmii1.jpg  used on input line 99.
 (pdftex.def)             Requested size: 341.43306pt x 193.04082pt.
-<Rysunki/Rozdzial4/rmii2.jpg, id=467, 363.60844pt x 183.68625pt>
+<Rysunki/Rozdzial4/rmii2.jpg, id=471, 363.60844pt x 183.68625pt>
 File: Rysunki/Rozdzial4/rmii2.jpg Graphic file (type jpg)
 <use Rysunki/Rozdzial4/rmii2.jpg>
 Package pdftex.def Info: Rysunki/Rozdzial4/rmii2.jpg  used on input line 106.
 (pdftex.def)             Requested size: 341.43306pt x 172.4885pt.
- [22 <./Rysunki/Rozdzial4/rmii1.jpg> <./Rysunki/Rozdzial4/rmii2.jpg>]
-<Rysunki/Rozdzial4/schemat_RMII.png, id=474, 1240.635pt x 558.085pt>
+ [23 <./Rysunki/Rozdzial4/rmii1.jpg> <./Rysunki/Rozdzial4/rmii2.jpg>]
+<Rysunki/Rozdzial4/schemat_RMII.png, id=478, 1240.635pt x 558.085pt>
 File: Rysunki/Rozdzial4/schemat_RMII.png Graphic file (type png)
 <use Rysunki/Rozdzial4/schemat_RMII.png>
 Package pdftex.def Info: Rysunki/Rozdzial4/schemat_RMII.png  used on input line
  117.
 (pdftex.def)             Requested size: 398.33858pt x 179.18695pt.
-<Rysunki/Rozdzial4/middleware_lwip.jpg, id=475, 581.17125pt x 324.46219pt>
+<Rysunki/Rozdzial4/middleware_lwip.jpg, id=479, 581.17125pt x 324.46219pt>
 File: Rysunki/Rozdzial4/middleware_lwip.jpg Graphic file (type jpg)
 <use Rysunki/Rozdzial4/middleware_lwip.jpg>
 Package pdftex.def Info: Rysunki/Rozdzial4/middleware_lwip.jpg  used on input l
 ine 151.
 (pdftex.def)             Requested size: 341.43306pt x 190.61908pt.
-<Rysunki/Rozdzial4/middleware_lwip_2.jpg, id=476, 435.87843pt x 170.13562pt>
+<Rysunki/Rozdzial4/middleware_lwip_2.jpg, id=480, 435.87843pt x 170.13562pt>
 File: Rysunki/Rozdzial4/middleware_lwip_2.jpg Graphic file (type jpg)
 <use Rysunki/Rozdzial4/middleware_lwip_2.jpg>
 Package pdftex.def Info: Rysunki/Rozdzial4/middleware_lwip_2.jpg  used on input
  line 158.
 (pdftex.def)             Requested size: 284.52756pt x 111.05931pt.
- [23 <./Rysunki/Rozdzial4/schemat_RMII.png>]
-<Rysunki/Rozdzial4/clock_config.jpg, id=481, 515.67656pt x 253.69781pt>
+ [24 <./Rysunki/Rozdzial4/schemat_RMII.png>]
+<Rysunki/Rozdzial4/clock_config.jpg, id=486, 515.67656pt x 253.69781pt>
 File: Rysunki/Rozdzial4/clock_config.jpg Graphic file (type jpg)
 <use Rysunki/Rozdzial4/clock_config.jpg>
 Package pdftex.def Info: Rysunki/Rozdzial4/clock_config.jpg  used on input line
@@ -1662,41 +1660,41 @@ File: lstlang1.sty 2023/02/27 1.9 listings language file
 )
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2023/02/27 1.9 (Carsten Heinz)
-) [24 <./Rysunki/Rozdzial4/middleware_lwip.jpg> <./Rysunki/Rozdzial4/middleware
+) [25 <./Rysunki/Rozdzial4/middleware_lwip.jpg> <./Rysunki/Rozdzial4/middleware
 _lwip_2.jpg> <./Rysunki/Rozdzial4/clock_config.jpg>]
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
 nput line 176.
  (./Listingi/Ethernet_main.c
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [25])
-(./Listingi/LWIP_Process.c) [26] (./Listingi/notify_dhcp_status.c
+ [26])
+(./Listingi/LWIP_Process.c) [27] (./Listingi/notify_dhcp_status.c
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [27])
+ [28])
 (./Listingi/parse_ip.c) (./Listingi/parse_mask.c) (./Listingi/parse_gateway.c)
-[28] (./Listingi/send_mac_address.c) (./Listingi/echo.h [29])
-(./Listingi/echo.c) [30] (./Listingi/init_echo.c)
-(./Listingi/app_callback_accepted.c [31]) (./Listingi/app_callback_received.c
-[32]
+[29] (./Listingi/send_mac_address.c) (./Listingi/echo.h [30])
+(./Listingi/echo.c) [31] (./Listingi/init_echo.c)
+(./Listingi/app_callback_accepted.c [32]) (./Listingi/app_callback_received.c
+[33]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [33])
+ [34])
 Overfull \hbox (2.3115pt too wide) in paragraph at lines 217--218
 \T1/lmr/m/n/12 ca-se of sub-se-qu-ent da-ta pre-sent, it in-i-tia-li-zes ano-th
 er trans-mis-sion. \T1/lmr/m/it/12 app_callback_poll
  []
 
-(./Listingi/app_callback_send.c [34]) (./Listingi/app_callback_poll.c) [35]
-(./Listingi/app_callback_error.c) (./Listingi/app_send_data.c [36])
-(./Listingi/app_close_connection.c) [37]
-<Rysunki/Rozdzial4/usart3_parameters.jpg, id=1195, 308.65312pt x 120.45pt>
+(./Listingi/app_callback_send.c [35]) (./Listingi/app_callback_poll.c) [36]
+(./Listingi/app_callback_error.c) (./Listingi/app_send_data.c [37])
+(./Listingi/app_close_connection.c) [38]
+<Rysunki/Rozdzial4/usart3_parameters.jpg, id=1199, 308.65312pt x 120.45pt>
 File: Rysunki/Rozdzial4/usart3_parameters.jpg Graphic file (type jpg)
 <use Rysunki/Rozdzial4/usart3_parameters.jpg>
 Package pdftex.def Info: Rysunki/Rozdzial4/usart3_parameters.jpg  used on input
  line 250.
 (pdftex.def)             Requested size: 284.52756pt x 111.04323pt.
-<Rysunki/Rozdzial4/rcc_wifi.jpg, id=1196, 559.33969pt x 146.04562pt>
+<Rysunki/Rozdzial4/rcc_wifi.jpg, id=1200, 559.33969pt x 146.04562pt>
 File: Rysunki/Rozdzial4/rcc_wifi.jpg Graphic file (type jpg)
 <use Rysunki/Rozdzial4/rcc_wifi.jpg>
 Package pdftex.def Info: Rysunki/Rozdzial4/rcc_wifi.jpg  used on input line 259
@@ -1707,7 +1705,7 @@ Overfull \hbox (14.22636pt too wide) in paragraph at lines 259--260
  [][] 
  []
 
-<Rysunki/Rozdzial4/wifi_zegary.jpg, id=1197, 506.6428pt x 228.10219pt>
+<Rysunki/Rozdzial4/wifi_zegary.jpg, id=1201, 506.6428pt x 228.10219pt>
 File: Rysunki/Rozdzial4/wifi_zegary.jpg Graphic file (type jpg)
 <use Rysunki/Rozdzial4/wifi_zegary.jpg>
 Package pdftex.def Info: Rysunki/Rozdzial4/wifi_zegary.jpg  used on input line 
@@ -1718,7 +1716,7 @@ Overfull \hbox (14.22636pt too wide) in paragraph at lines 268--269
  [][] 
  []
 
-<Rysunki/Rozdzial4/gpio_pb3.jpg, id=1198, 560.0925pt x 147.55125pt>
+<Rysunki/Rozdzial4/gpio_pb3.jpg, id=1202, 560.0925pt x 147.55125pt>
 File: Rysunki/Rozdzial4/gpio_pb3.jpg Graphic file (type jpg)
 <use Rysunki/Rozdzial4/gpio_pb3.jpg>
 Package pdftex.def Info: Rysunki/Rozdzial4/gpio_pb3.jpg  used on input line 277
@@ -1729,80 +1727,80 @@ Overfull \hbox (14.22636pt too wide) in paragraph at lines 277--278
  [][] 
  []
 
-<Rysunki/Rozdzial4/gpio_pb3_2.jpg, id=1199, 366.61969pt x 245.41687pt>
+<Rysunki/Rozdzial4/gpio_pb3_2.jpg, id=1203, 366.61969pt x 245.41687pt>
 File: Rysunki/Rozdzial4/gpio_pb3_2.jpg Graphic file (type jpg)
 <use Rysunki/Rozdzial4/gpio_pb3_2.jpg>
 Package pdftex.def Info: Rysunki/Rozdzial4/gpio_pb3_2.jpg  used on input line 2
 84.
 (pdftex.def)             Requested size: 284.52756pt x 190.47696pt.
-[38 <./Rysunki/Rozdzial4/usart3_parameters.jpg> <./Rysunki/Rozdzial4/rcc_wifi.j
-pg>] [39 <./Rysunki/Rozdzial4/wifi_zegary.jpg> <./Rysunki/Rozdzial4/gpio_pb3.jp
-g> <./Rysunki/Rozdzial4/gpio_pb3_2.jpg>] (./Listingi/Wifi_main.c [40]
+[39 <./Rysunki/Rozdzial4/usart3_parameters.jpg> <./Rysunki/Rozdzial4/rcc_wifi.j
+pg>] [40 <./Rysunki/Rozdzial4/wifi_zegary.jpg> <./Rysunki/Rozdzial4/gpio_pb3.jp
+g> <./Rysunki/Rozdzial4/gpio_pb3_2.jpg>] (./Listingi/Wifi_main.c [41]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [41])
-[42] (./Listingi/clr_buffer.c) [43] (./Listingi/is_busy.c)
-(./Listingi/prepare_echo.c [44])
-<Rysunki/Rozdzial4/usart_ethernet.jpg, id=1426, 85.06781pt x 110.66344pt>
+ [42])
+[43] (./Listingi/clr_buffer.c) [44] (./Listingi/is_busy.c)
+(./Listingi/prepare_echo.c [45])
+<Rysunki/Rozdzial4/usart_ethernet.jpg, id=1430, 85.06781pt x 110.66344pt>
 File: Rysunki/Rozdzial4/usart_ethernet.jpg Graphic file (type jpg)
 <use Rysunki/Rozdzial4/usart_ethernet.jpg>
 Package pdftex.def Info: Rysunki/Rozdzial4/usart_ethernet.jpg  used on input li
 ne 355.
 (pdftex.def)             Requested size: 142.26378pt x 185.0791pt.
-<Rysunki/Rozdzial4/ping_ethernet.jpg, id=1427, 342.5297pt x 211.54031pt>
+<Rysunki/Rozdzial4/ping_ethernet.jpg, id=1431, 342.5297pt x 211.54031pt>
 File: Rysunki/Rozdzial4/ping_ethernet.jpg Graphic file (type jpg)
 <use Rysunki/Rozdzial4/ping_ethernet.jpg>
 Package pdftex.def Info: Rysunki/Rozdzial4/ping_ethernet.jpg  used on input lin
 e 362.
 (pdftex.def)             Requested size: 369.88582pt x 228.45366pt.
-<Rysunki/Rozdzial4/hercules_ethernet.jpg, id=1428, 463.7325pt x 405.01312pt>
+<Rysunki/Rozdzial4/hercules_ethernet.jpg, id=1432, 463.7325pt x 405.01312pt>
 File: Rysunki/Rozdzial4/hercules_ethernet.jpg Graphic file (type jpg)
 <use Rysunki/Rozdzial4/hercules_ethernet.jpg>
 Package pdftex.def Info: Rysunki/Rozdzial4/hercules_ethernet.jpg  used on input
  line 369.
 (pdftex.def)             Requested size: 312.9803pt x 273.3535pt.
- [45]
-<Rysunki/Rozdzial4/modul.jpg, id=1455, 4015.0pt x 3011.25pt>
+ [46]
+<Rysunki/Rozdzial4/modul.jpg, id=1459, 4015.0pt x 3011.25pt>
 File: Rysunki/Rozdzial4/modul.jpg Graphic file (type jpg)
 <use Rysunki/Rozdzial4/modul.jpg>
 Package pdftex.def Info: Rysunki/Rozdzial4/modul.jpg  used on input line 381.
 (pdftex.def)             Requested size: 227.62204pt x 170.6965pt.
-<Rysunki/Rozdzial4/wifi_usart_1.jpg, id=1456, 160.34906pt x 363.60844pt>
+<Rysunki/Rozdzial4/wifi_usart_1.jpg, id=1460, 160.34906pt x 363.60844pt>
 File: Rysunki/Rozdzial4/wifi_usart_1.jpg Graphic file (type jpg)
 <use Rysunki/Rozdzial4/wifi_usart_1.jpg>
 Package pdftex.def Info: Rysunki/Rozdzial4/wifi_usart_1.jpg  used on input line
  389.
 (pdftex.def)             Requested size: 142.26378pt x 322.60626pt.
-<Rysunki/Rozdzial4/wifi_usart_2.jpg, id=1457, 134.00063pt x 345.54094pt>
+<Rysunki/Rozdzial4/wifi_usart_2.jpg, id=1461, 134.00063pt x 345.54094pt>
 File: Rysunki/Rozdzial4/wifi_usart_2.jpg Graphic file (type jpg)
 <use Rysunki/Rozdzial4/wifi_usart_2.jpg>
 Package pdftex.def Info: Rysunki/Rozdzial4/wifi_usart_2.jpg  used on input line
  395.
 (pdftex.def)             Requested size: 142.26378pt x 366.84634pt.
-<Rysunki/Rozdzial4/wifi_ping.jpg, id=1458, 340.27126pt x 145.29282pt>
+<Rysunki/Rozdzial4/wifi_ping.jpg, id=1462, 340.27126pt x 145.29282pt>
 File: Rysunki/Rozdzial4/wifi_ping.jpg Graphic file (type jpg)
 <use Rysunki/Rozdzial4/wifi_ping.jpg>
 Package pdftex.def Info: Rysunki/Rozdzial4/wifi_ping.jpg  used on input line 40
 3.
 (pdftex.def)             Requested size: 341.43306pt x 145.7957pt.
-<Rysunki/Rozdzial4/wifi_hercules.jpg, id=1459, 465.23813pt x 404.26031pt>
+<Rysunki/Rozdzial4/wifi_hercules.jpg, id=1463, 465.23813pt x 404.26031pt>
 File: Rysunki/Rozdzial4/wifi_hercules.jpg Graphic file (type jpg)
 <use Rysunki/Rozdzial4/wifi_hercules.jpg>
 Package pdftex.def Info: Rysunki/Rozdzial4/wifi_hercules.jpg  used on input lin
 e 410.
 (pdftex.def)             Requested size: 369.88582pt x 321.41626pt.
-) (./Rozdzial5/rozdzial5.tex [46 <./Rysunki/Rozdzial4/usart_ethernet.jpg> <./Ry
+) (./Rozdzial5/rozdzial5.tex [47 <./Rysunki/Rozdzial4/usart_ethernet.jpg> <./Ry
 sunki/Rozdzial4/ping_ethernet.jpg>]
-[47 <./Rysunki/Rozdzial4/hercules_ethernet.jpg> <./Rysunki/Rozdzial4/modul.jpg>
-] [48 <./Rysunki/Rozdzial4/wifi_usart_1.jpg> <./Rysunki/Rozdzial4/wifi_usart_2.
-jpg> <./Rysunki/Rozdzial4/wifi_ping.jpg>] [49 <./Rysunki/Rozdzial4/wifi_hercule
+[48 <./Rysunki/Rozdzial4/hercules_ethernet.jpg> <./Rysunki/Rozdzial4/modul.jpg>
+] [49 <./Rysunki/Rozdzial4/wifi_usart_1.jpg> <./Rysunki/Rozdzial4/wifi_usart_2.
+jpg> <./Rysunki/Rozdzial4/wifi_ping.jpg>] [50 <./Rysunki/Rozdzial4/wifi_hercule
 s.jpg>]
-Rozdzia\PlPrIeC {\l } 5.
-) [50
+Chapter 5.
+) [51
 
-] [51
+] [52
 
-] [52] (./praca.aux)
+] [53] (./praca.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
@@ -1826,8 +1824,8 @@ Package logreq Info: Writing requests to 'praca.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 29883 strings out of 476074
- 518890 string characters out of 5793137
+ 29884 strings out of 476074
+ 518897 string characters out of 5793137
  2006975 words of memory out of 5000000
  50294 multiletter control sequences out of 15000+600000
  627543 words of font info for 77 fonts, out of 8000000 for 9000
@@ -1842,10 +1840,10 @@ mri12.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/
 fonts/type1/public/lm/lmtt10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt12
 .pfb></usr/share/texmf/fonts/type1/public/cm-super/sfxc1728.pfb></usr/share/tex
 mf/fonts/type1/public/cm-super/sfxc2074.pfb>
-Output written on praca.pdf (59 pages, 5976473 bytes).
+Output written on praca.pdf (60 pages, 6014657 bytes).
 PDF statistics:
- 1789 PDF objects out of 2073 (max. 8388607)
- 1637 compressed objects within 17 object streams
- 1020 named destinations out of 1200 (max. 500000)
+ 1794 PDF objects out of 2073 (max. 8388607)
+ 1641 compressed objects within 17 object streams
+ 1021 named destinations out of 1200 (max. 500000)
  483 words of extra memory for PDF output out of 10000 (max. 10000000)
 

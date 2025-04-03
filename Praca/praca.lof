@@ -10,38 +10,38 @@
 \contentsline {figure}{\numberline {3.6}{\ignorespaces Functional diagram of DB83848-P Ethernet driver by Texas Instruments - Texas Instruments}}{12}{figure.caption.8}%
 \contentsline {figure}{\numberline {3.7}{\ignorespaces DB83848-P driver placement - Texas Instruments}}{12}{figure.caption.9}%
 \contentsline {figure}{\numberline {3.8}{\ignorespaces Line placement in UTP cable - The Internet Centre Inc.}}{13}{figure.caption.11}%
-\contentsline {figure}{\numberline {3.9}{\ignorespaces Antenna types for embedded systems - Circuit Digest}}{13}{figure.caption.12}%
+\contentsline {figure}{\numberline {3.9}{\ignorespaces Antenna types for embedded systems - Circuit Digest}}{14}{figure.caption.12}%
 \contentsline {figure}{\numberline {3.10}{\ignorespaces Wi-Fi Shield - Seeed Studio}}{14}{figure.caption.13}%
 \contentsline {figure}{\numberline {3.11}{\ignorespaces GSM Shield - Botland}}{14}{figure.caption.13}%
-\contentsline {figure}{\numberline {3.12}{\ignorespaces ENC28J60 module - Aliexpress}}{14}{figure.caption.14}%
+\contentsline {figure}{\numberline {3.12}{\ignorespaces ENC28J60 module - Aliexpress}}{15}{figure.caption.14}%
 \contentsline {figure}{\numberline {3.13}{\ignorespaces W5500 module - Aliexpress}}{15}{figure.caption.15}%
 \contentsline {figure}{\numberline {3.14}{\ignorespaces ESP8266 module - Nettigo}}{16}{figure.caption.17}%
 \contentsline {figure}{\numberline {3.15}{\ignorespaces ESP32 module - Botland}}{16}{figure.caption.17}%
-\contentsline {figure}{\numberline {3.16}{\ignorespaces Nucleo-F429ZI platform with integrated Ethernet port \kern 0sp\discretionary {-}{-}{-}\penalty 10000\hskip 0sp\relax {} Botland}}{16}{figure.caption.19}%
+\contentsline {figure}{\numberline {3.16}{\ignorespaces Nucleo-F429ZI platform with integrated Ethernet port \kern 0sp\discretionary {-}{-}{-}\penalty 10000\hskip 0sp\relax {} Botland}}{17}{figure.caption.19}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces 8P8C connector present on the Nucleo-F429ZI board}}{19}{figure.caption.20}%
-\contentsline {figure}{\numberline {4.2}{\ignorespaces ESP8266 connection schematic}}{20}{figure.caption.21}%
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Microcontroller selection in STM32CubeIDE}}{20}{figure.caption.22}%
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Creating the project}}{21}{figure.caption.23}%
-\contentsline {figure}{\numberline {4.5}{\ignorespaces Switching the HSE clock into BYPASS mode}}{21}{figure.caption.24}%
-\contentsline {figure}{\numberline {4.6}{\ignorespaces Configuring clocking signal after switching HSE to BYPASS mode}}{21}{figure.caption.25}%
-\contentsline {figure}{\numberline {4.7}{\ignorespaces Assigning RMII mode to the Ethernet interface}}{22}{figure.caption.26}%
-\contentsline {figure}{\numberline {4.8}{\ignorespaces Target values of RMII parameters}}{22}{figure.caption.27}%
-\contentsline {figure}{\numberline {4.9}{\ignorespaces RMII interface connection schematics}}{23}{figure.caption.28}%
-\contentsline {figure}{\numberline {4.10}{\ignorespaces Enabling LwIP stack}}{24}{figure.caption.29}%
-\contentsline {figure}{\numberline {4.11}{\ignorespaces LWIP\texttt {\char `_}NETIF\texttt {\char `_}LINK\texttt {\char `_}CALLBACK option}}{24}{figure.caption.30}%
-\contentsline {figure}{\numberline {4.12}{\ignorespaces Clock configuration}}{24}{figure.caption.31}%
-\contentsline {figure}{\numberline {4.13}{\ignorespaces USART3 and USART6 configuration}}{38}{figure.caption.32}%
-\contentsline {figure}{\numberline {4.14}{\ignorespaces HSE clock setup}}{38}{figure.caption.33}%
-\contentsline {figure}{\numberline {4.15}{\ignorespaces Target frequencies in the clock manager}}{39}{figure.caption.34}%
-\contentsline {figure}{\numberline {4.16}{\ignorespaces Configured GPIO lines}}{39}{figure.caption.35}%
-\contentsline {figure}{\numberline {4.17}{\ignorespaces PB3 line parameters}}{39}{figure.caption.36}%
-\contentsline {figure}{\numberline {4.18}{\ignorespaces Serial port communication}}{46}{figure.caption.37}%
-\contentsline {figure}{\numberline {4.19}{\ignorespaces Verifying connection via ping}}{46}{figure.caption.38}%
-\contentsline {figure}{\numberline {4.20}{\ignorespaces Two-way communication validation using Hercules SETUP Utility}}{47}{figure.caption.39}%
-\contentsline {figure}{\numberline {4.21}{\ignorespaces Constructed circuit}}{47}{figure.caption.40}%
-\contentsline {figure}{\numberline {4.22}{\ignorespaces Communication with overseeing computer pt. 1}}{48}{figure.caption.41}%
-\contentsline {figure}{\numberline {4.23}{\ignorespaces Communication with overseeing computer pt. 2}}{48}{figure.caption.41}%
-\contentsline {figure}{\numberline {4.24}{\ignorespaces Testing connectivity using \textit {ping}}}{48}{figure.caption.42}%
-\contentsline {figure}{\numberline {4.25}{\ignorespaces Two-sided communication using Hercules SETUP Utility software}}{49}{figure.caption.43}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces 8P8C connector present on the Nucleo-F429ZI board}}{20}{figure.caption.20}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces ESP8266 connection schematic}}{21}{figure.caption.21}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Microcontroller selection in STM32CubeIDE}}{21}{figure.caption.22}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Creating the project}}{22}{figure.caption.23}%
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Switching the HSE clock into BYPASS mode}}{22}{figure.caption.24}%
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Configuring clocking signal after switching HSE to BYPASS mode}}{22}{figure.caption.25}%
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Assigning RMII mode to the Ethernet interface}}{23}{figure.caption.26}%
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Target values of RMII parameters}}{23}{figure.caption.27}%
+\contentsline {figure}{\numberline {4.9}{\ignorespaces RMII interface connection schematics}}{24}{figure.caption.28}%
+\contentsline {figure}{\numberline {4.10}{\ignorespaces Enabling LwIP stack}}{25}{figure.caption.29}%
+\contentsline {figure}{\numberline {4.11}{\ignorespaces LWIP\texttt {\char `_}NETIF\texttt {\char `_}LINK\texttt {\char `_}CALLBACK option}}{25}{figure.caption.30}%
+\contentsline {figure}{\numberline {4.12}{\ignorespaces Clock configuration}}{25}{figure.caption.31}%
+\contentsline {figure}{\numberline {4.13}{\ignorespaces USART3 and USART6 configuration}}{39}{figure.caption.32}%
+\contentsline {figure}{\numberline {4.14}{\ignorespaces HSE clock setup}}{39}{figure.caption.33}%
+\contentsline {figure}{\numberline {4.15}{\ignorespaces Target frequencies in the clock manager}}{40}{figure.caption.34}%
+\contentsline {figure}{\numberline {4.16}{\ignorespaces Configured GPIO lines}}{40}{figure.caption.35}%
+\contentsline {figure}{\numberline {4.17}{\ignorespaces PB3 line parameters}}{40}{figure.caption.36}%
+\contentsline {figure}{\numberline {4.18}{\ignorespaces Serial port communication}}{47}{figure.caption.37}%
+\contentsline {figure}{\numberline {4.19}{\ignorespaces Verifying connection via ping}}{47}{figure.caption.38}%
+\contentsline {figure}{\numberline {4.20}{\ignorespaces Two-way communication validation using Hercules SETUP Utility}}{48}{figure.caption.39}%
+\contentsline {figure}{\numberline {4.21}{\ignorespaces Constructed circuit}}{48}{figure.caption.40}%
+\contentsline {figure}{\numberline {4.22}{\ignorespaces Communication with overseeing computer pt. 1}}{49}{figure.caption.41}%
+\contentsline {figure}{\numberline {4.23}{\ignorespaces Communication with overseeing computer pt. 2}}{49}{figure.caption.41}%
+\contentsline {figure}{\numberline {4.24}{\ignorespaces Testing connectivity using \textit {ping}}}{49}{figure.caption.42}%
+\contentsline {figure}{\numberline {4.25}{\ignorespaces Two-sided communication using Hercules SETUP Utility software}}{50}{figure.caption.43}%
 \addvspace {10\p@ }

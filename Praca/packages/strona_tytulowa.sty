@@ -48,7 +48,7 @@
 
 	
 	\begin{center}
-        \hyphenpenalty=10000\Large Kierunek: \expandafter{\@kierunek}
+        \hyphenpenalty=10000\Large Degree Course: \expandafter{\@kierunek}
     \end{center}
     \vskip0.5in
 
@@ -72,11 +72,11 @@
     \begin{flushright}
         \begin{tabular}{l}
 %        \@praca \\
-        Promotor:  \\
+        Dissertation advisor:  \\
         \@promotor \\ \\
 			\ifnum\pdfstrcmp{\@konsultant}{}=0
 			\else
-			 Konsultant:  \\
+			 Consultant:  \\
         \@konsultant \\
 			\fi
         \end{tabular}
@@ -87,10 +87,10 @@
 %\else
     \begin{flushleft}
         \begin{tabular}{l}
-        Pracę akceptuję:\\
+        Accepted by:\\
         \\
         ...................................... \\
-            (data i podpis promotora)
+            (date and dissertation advisor signature)
         \end{tabular}
     \end{flushleft}
 %\fi
