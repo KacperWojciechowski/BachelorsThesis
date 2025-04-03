@@ -1,35 +1,31 @@
-/* Makro określające ilość komend konfiguracyjnych */
+/* Command count macro */
 #define COMMANDS 12
 
-/* Bufor odbieranych komunikatów od modułu */
+/* Module feedback buffer */
 char data_r[1000];
-/* Bufor odebranej wiadomości */
+/* Received data buffer */
 char message[100];
 
-/* Flaga gotowości do wysłania wiadomości echo */
+/* Echo message ready flag */
 int ready_to_send = 0;
 
-/* Tablica komend konfiguracyjnych modułu */
+/* Configuration commands LUT */
 char* config[] = {
-  "AT+RST\r\n",                             /* Zresetuj moduł */
-  "ATE0\r\n",                               /* Wyłącz echo komend */
-  "AT\r\n",                                 /* Test komunikacji */
-  "AT+GMR\r\n",                             /* Wersja oprogramowania */
-  "AT+CWMODE=1\r\n",                        /* Tryb pracy jako klient */
-  "AT+CIPMODE=0\r\n",                       /* Wybranie formatu odbieranych
-                                             * wiadomości */
-  "AT+CIPMUX=1\r\n",                        /* Ustawienie obsługi wielu
-                                             * połączeń */
-  "AT+CIPSERVER=1,7\r\n",                   /* Włączenie serwera i 
-                                             * ustawienie portu 7 */
-  "AT+CWMODE=?\r\n",                        /* Sprawdzenie trybu 
-                                             * pracy */
-  "AT+CWJAP=\"marx\",\"************\"\r\n", /* Połączenie z siecią 
-                                             * Wi-Fi */
-  "AT+CIPSTA?\r\n",                         /* Sprawdzenie statusu 
-                                             * połączenia z Wi-Fi */
-  "AT+CIFSR\r\n"                            /* Wyświetlenie adresu 
-                                             * IP serwera */
+  "AT+RST\r\n",                             /* Reset module */
+  "ATE0\r\n",                               /* Disable command echo */
+  "AT\r\n",                                 /* Communication test */
+  "AT+GMR\r\n",                             /* Firmware version */
+  "AT+CWMODE=1\r\n",                        /* Client operation mode */
+  "AT+CIPMODE=0\r\n",                       /* Selecting received data
+                                             * format */
+  "AT+CIPMUX=1\r\n",                        /* Setting multiconnectivity */
+  "AT+CIPSERVER=1,7\r\n",                   /* Enable server and 
+                                             * bind to port 7 */
+  "AT+CWMODE=?\r\n",                        /* Check operating mode */
+  "AT+CWJAP=\"marx\",\"************\"\r\n", /* Connect to Wi-Fi */
+  "AT+CIPSTA?\r\n",                         /* Check Wi-Fi connection 
+                                             * status */
+  "AT+CIFSR\r\n"                            /* Display IP address */
 };
 
 int main(void)
@@ -67,39 +63,38 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 
-  /* Pętla konfiguracji modułu przesyłająca kolejne komendy konfiguracyjne */
+  /* Iterate thorugh the configuration commands LUT configuring the module */
   for(i = 0; i < COMMANDS; i++)
   {
-    /* Przesłanie komendy konfiguracyjnej */
+    /* Send configuration command */
     HAL_UART_Transmit(&huart6, (uint8_t*)(config[i]), strlen(config[i]), 10);
-    /* Wyczyszczenie bufora odbiorczego */
+    /* Clear reception buffer */
     clr_buffer(data_r, 1000);
-    /* Odbiór komunikatu zwrotnego */
+    /* Receive feedback */
     HAL_UART_Receive(&huart6, (uint8_t*)data_r, sizeof(data_r), 100);
 
-    /* Odczekanie sekundy po komendzie restartu modułu */
+    /* Await for the module wake up after restart */
     if(i == 0)
     {
       HAL_Delay(1000);
     }
 
-    /* Pętla oczekiwania na otrzymanie adresu z DHCP routera */
+    /* Await IP address reception from DHCP */
     while(is_busy())
     {
-      /* Odczekanie sekundy */
+      /* Await 1 second */
         HAL_Delay(1000);
-        /* Wysłanie komendy sprawdzającej status otrzymanego adresu IP,
-         * maski oraz bramy */
+        /* Querry for IP address, subnet mask and gateway */
       HAL_UART_Transmit(&huart6, (uint8_t*)(config[i]), strlen(config[i]), 
                         10);
-      /* Wyczyszczenie buforu odbiorczego */
+      /* Clear reception buffer */
       clr_buffer(data_r, 1000);
-      /* Otrzymanie komunikatu zwrotnego */
+      /* Receive feedback */
       HAL_UART_Receive(&huart6, (uint8_t*)data_r, sizeof(data_r), 
                        100);
     }
-    /* Przesłanie komunikatu zwrotnego poprzez port szeregowy do 
-     * komputera nadzorującego */
+    /* Transmit received feedback to the overseeing computer
+       using serial port */
     HAL_UART_Transmit(&huart3, (unsigned char*)data_r, sizeof(data_r), 
                       10);
     HAL_UART_Transmit(&huart3, (unsigned char*)"\r\n\n", sizeof("\r\n\n"), 
@@ -110,25 +105,24 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-    /* Wyczyszczenie bufora odbiorczego */
+    /* Clear reception buffer */
     clr_buffer(data_r, 1000);
-    /* Pobór komunikatu z modułu */
+    /* Read module feedback */
     HAL_UART_Receive(&huart6, (uint8_t*)data_r, sizeof(data_r), 100);
-    /* Jeżeli ustawiona jest flaga gotowości do wysłania wiadomości echo */
+    /* If echo message is ready to be sent */
     if(ready_to_send)
     {
-      /* Wysłanie wiadomości echo */
+      /* Send echo data */
       HAL_UART_Transmit(&huart6, (uint8_t*)message, sizeof(message), 10);
-      /* Reset flagi gotowości do wysłania wiadomości echo */
+      /* Reset echo message ready flag */
       ready_to_send = 0;
     }
-    /* W przeciwnym wypadku, jeżeli otrzymany komunikat nie jest pustym
-     * komunikatem */
+    /* Otherwise, if received message is not empty */
     else if (data_r[0] != 0)
     {
-      /* Przygotowanie do wysłania wiadomości echo */
+      /* Prepare to send an echo data */
       prepare_echo();
-      /* Wysłanie otrzymanego komunikatu za pomocą portu szeregowego */
+      /* Send received feedback through the serial port */
       HAL_UART_Transmit(&huart3, (unsigned char*)data_r, sizeof(data_r), 
                         10);
       HAL_UART_Transmit(&huart3, (unsigned char*)"\r\n\n", 

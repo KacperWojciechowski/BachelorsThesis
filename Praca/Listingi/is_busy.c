@@ -1,21 +1,21 @@
-/* Funkcja oczekująca na uzyskanie adresu z DHCP routera */
+/* DHCP address polling function */
 static int is_busy(void)
 {
-  /* Zmienna na wartość zwracaną */
+  /* Return variable */
   int ret = 0;
   int i;
-  /* Wyszukaj frazę "busy" w otrzymanym z modułu komunikacie */
+  /* Search for "busy" in module feedback */
   for(i = 0; i < sizeof(data_r); i++)
   {
     if(data_r[i] == 'b' && data_r[i+1] == 'u' && data_r[i+2] == 's'
        && data_r[i+3] == 'y')
     {
-      /* Jeśli znaleziono frazę, zwróć informację że moduł jest
-       * zajęty oczekiwaniem na DHCP */
+      /* If the phrase was found, inform that the module is busy
+         waiting for DHCP */
       ret = 1;
       break;
     }
   }
-  /* Zwróć informację o zajętości modułu */
+  /* Return module busy status */
   return ret;
 }

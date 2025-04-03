@@ -1,104 +1,103 @@
-/* Funkcja zwrotna odbioru wiadomości */
+/* Data receive callback */
 static err_t app_callback_received(void* arg, struct tcp_pcb* tpcb,
                                    struct pbuf* p, err_t err)
 {
-  /* Wskaźnik na strukturę echo_info */
+  /* echo_info pointer */
   struct echo_info* info;
-  /* Zmienna informacji o błędach */
+  /* error data variable */
   err_t ret_err;
 
-  /* Sprawdzenie czy argument jest różny od NULL */
+  /* Asserting echo_info is not null */
   LWIP_ASSERT("arg != NULL", arg != NULL);
-  /* Zapisanie zrzutowanego wskaźnika na strukturę echo_info */
+  /* Downcasting the parameter pointer to echo_info pointer */
   info = (struct echo_info*) arg;
 
-  /* Jeżeli funkcja została wywołana, ale nie ma danych */
+  /* If there is no data to be sent */
   if(p == NULL)
   {
-    /* Ustawienie stanu połączenia na zamykane */
+    /* Change connection state to closing */
     info->state = TCP_STATE_CLOSING;
-    /* Jeżeli bufor struktury jest NULL */
+    /* If data buffer is null */
     if(info->p == NULL)
     {
-      /* Zamknięcie połączenia */
+      /* Close connection */
       app_close_connection(tpcb, info);
     }
-    /* Jeżeli w buforze struktury są dane do przesłania */
+    /* If there is data to be sent */
     else
     {
-      /* Zarejestrowanie funkcji zwrotnej wysyłania danych */
+      /* Registering data send callback */
       tcp_sent(tpcb, app_callback_sent);
-      /* Przesłanie danych */
+      /* Transferring data */
       app_send_data(tpcb, info);
     }
     ret_err = ERR_OK;
   }
-  /* Jeśli wystąpił błąd przy odbiorze */
+  /* If there was a reception error */
   else if(err != ERR_OK)
   {
-    /* Jeżeli bufor nie jest pusty */
+    /* If buffer is present */
     if(p != NULL)
     {
-      /* Wyczyszczenie buforu struktury */
+      /* Clearing reception buffer */
       info->p = NULL;
-      /* Zwolnienie buforu */
+      /* Freeing the buffer */
       pbuf_free(p);
     }
-    /* Zapisanie informacji o błędzie */
+    /* Saving error info */
     ret_err = err;
   }
-  /* Odbiór pierwszych danych */
+  /* Reception of first batch of data */
   else if (info->state == TCP_STATE_ACCEPTED)
   {
-    /* Zmiana statusu na odebrano */
+    /* Changing connection status to received */
     info->state = TCP_STATE_RECEIVED;
-    /* Zapisanie buforu w strukturze */
+    /* Saving buffer into the echo_info structure */
     info->p = p;
-    /* Zarejestrowanie funkcji zwrotnej wysyłania danych */
+    /* Registering data send callback */
     tcp_sent(tpcb, app_callback_sent);
-    /* Przesłanie danych */
+    /* Transmitting data */
     app_send_data(tpcb, info);
     ret_err = ERR_OK;
   }
-  /* Odbiór kolejnych danych */
+  /* Reception of subsequent data */
   else if (info->state == TCP_STATE_RECEIVED)
   {
-    /* Jeżeli nie ma danych do wysłania */
+    /* If the buffer is absent */
     if(info->p == NULL)
     {
-      /* Zapisanie buforu w strukturze */
+      /* Saving buffer into the structure */
       info->p = p;
-      /* Wysłanie danych */
+      /* Data transmission */
       app_send_data(tpcb, info);
     }
-    /* Jeżeli są dane do przesłania, a bufor struktury nie jest 
-     * pusty */
+    /* If there is data to be send, but structure
+       buffer is not empty */
     else
     {
-      /* Utworzenie wskaźnika na bufor struktury */
+      /* Creating pointer to the buffer */
       struct pbuf* ptr = info->p;
-      /* Dołączenie do buforu struktury buforu otrzymanych 
-       * danych */
+      /* Appending the buffer */
       pbuf_chain(ptr, p);
     }
     ret_err = ERR_OK;
   }
-  /* Odbiór danych w trakcie zamykania */
+  /* Data reception when connection is being closed */
   else if(info->state == TCP_STATE_CLOSING)
   {
-    /* Rekomendowanie rozmiaru okna */
+    /* Recommending the window size */
     tcp_recved(tpcb, p->tot_len);
-    /* Wyczyszczenie i zwolnienie buforów */
+    /* Clearing and freeing the buffer */
     info->p = NULL;
     pbuf_free(p);
     ret_err = ERR_OK;
   }
-  /* Odbiór zakończony */
+  /* Reception done */
   else
   {
-    /* Rekomendowanie rozmiaru okna */
+    /* Recommending the window size */
     tcp_recved(tpcb, p->tot_len);
-    /* Wyczyszczenie i zwolnienie buforów */
+    /* Clearing and freeing the buffer */
     info->p = NULL;
     pbuf_free(p);
     ret_err = ERR_OK;

@@ -1,32 +1,32 @@
-/* Funkcja zwrotna nasłuchu */
+/* Polling callback */
 static err_t app_callback_poll(void* arg, struct tcp_pcb* tpcb)
 {
-  /* Wskaźnik na strukturę */
+  /* Pointer to echo_info */
   struct echo_info* info;
-  /* Zapisanie zrzutowanego wskaźnika na strukturę */
+  /* Downcasting echo_info pointer */
   info = (struct echo_info*) arg;
-  /* Jeżeli nie ma struktury */
+  /* If it did not downcast properly */
   if(info == NULL)
   {
-    /* Przerwanie połączenia i zwrócenie błędu */
+    /* Aborting the connection and returning an error */
     tcp_abort(tpcb);
     return ERR_ABRT;
   }
-  /* Jeśli są dane do przesłania */
+  /* If there is data to transmit */
   if(info->p != NULL)
   {
-    /* Zarejestrowanie funkcji zwrotnej wysyłania danych */
+    /* Registering data send callback */
     tcp_sent(tpcb, app_callback_sent);
-    /* Przesłanie danych */
+    /* Sending data */
     app_send_data(tpcb, info);
   }
-  /* Jeśli nie ma danych do przesłania */
+  /* If there is no data to be sent */
   else
   {
-    /* Jeżeli status połączenia jest jako zamykane */
+    /* If connection is being closed */
     if(info->state == TCP_STATE_CLOSING)
     {
-      /* Zamknięcie połączenia */
+      /* Disconnecting */
       app_close_connection(tpcb, info);
     }
   }

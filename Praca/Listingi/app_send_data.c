@@ -1,56 +1,56 @@
-/* Funkcja przesyłu danych */
+/* Data transmission callback */
 static void app_send_data(struct tcp_pcb* tpcb, struct echo_info* info)
 {
-  /* Bufor na dane do wysłania */
+  /* Buffor for data to be sent */
   struct pbuf* ptr;
   err_t wr_err = ERR_OK;
 
-  /* Dopóki nie napotkano błędu, są dane do wysłania, i długość danych
-   * jest mniejsza niż długość buforu wysyłkowego */
+  /* As long as no error occured, there is data to be sent, and
+     data length is less than the send buffer length */
   while((wr_err == ERR_OK) && (info->p != NULL)
         && (info->p->len <= tcp_sndbuf(tpcb)))
   {
-    /* Przepisanie wskaźnika na bufor */
+    /* Copying the buffer pointer */
     ptr = info->p;
-    /* Przesłanie danych */
+    /* Data transmission */
     wr_err = tcp_write(tpcb, ptr->payload, ptr->len,
                        TCP_WRITE_FLAG_COPY);
 
-    /* Jeżeli dane zostały przesłane prawidłowo */
+    /* If data was sent successfully */
     if(wr_err == ERR_OK)
     {
-      /* Zmienna na długość bufora */
+      /* Variable for the buffer length */
       uint16_t plen;
       uint8_t freed;
 
-      /* Zapisanie długości bufora */
+      /* Saving the buffer length */
       plen = ptr->len;
-      /* Przestawienie bufora na następny pakiet */
+      /* Moving buffer to the next packet */
       info->p = ptr->next;
 
-      /* Jest do przesłania bufor łańcuchowy */
+      /* If there is a chain buffer */
       if(info->p != NULL)
       {
-        /* Zwiększenie wskaźnika referencyjnego */
+        /* Increase reference counter */
         pbuf_ref(info->p);
       }
 
       do
       {
-        /* Zwolnienie starego bufora */
+        /* Free the old buffer */
         freed = pbuf_free(ptr);
       }
       while(freed == 0);
 
-      /* Rekomendowanie rozmiaru okna */
+      /* Recommending window size */
       tcp_recved(tpcb, plen);
     }
-    /* Jeżeli nie udało się przesłać danych */
+    /* If transmission failed */
     else
     {
-      /* Odzyskanie wskaźnika na bufor */
+      /* Recovering the buffer pointer */
       info->p = ptr;
-      /* Zwiększenie licznika powtórzeń transmisji */
+      /* Increasing the retransmission counter */
       info->retries++;
     }
   }

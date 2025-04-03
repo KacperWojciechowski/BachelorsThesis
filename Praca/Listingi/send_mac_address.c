@@ -1,28 +1,28 @@
-/* Funkcja przesyłająca adres MAC urządzenia */
+/* Function transferring MAC address */
 void send_MAC_address(void)
 {
-  /* Offset dla znaków heksadecymalnych */
+  /* Offset for hexadecimal characters */
   uint8_t hex_offset = 'A' - 10;
-  /* Offset dla znaków dziesiętnych */
+  /* Offset for decimal characters */
   uint8_t dec_offset = '0';
-  /* Bufor znaków adresu MAC */
+  /* MAC address char buffer */
   char mac_part[12];
 
-  /* Iteracja przez adres MAC */
+  /* Iterating through MAC */
   for(uint8_t i = 0; i < 6; i++)
   {
-    /* Wyciągnięcie wartości znaków adresu MAC */
+    /* Extracting MAC address chars */
     mac_part[i*2] = (gnetif.hwaddr[i] & 0xF0) >> 4;
     mac_part[i*2+1] = gnetif.hwaddr[i] & 0x0F;
 
-    /* Sformatowanie otrzymanych wartości do postaci znakowych */
+    /* Formatting MAC values to character representation */
     if(mac_part[i*2] > 10) mac_part[i*2] += hex_offset;
     else mac_part[i*2] += dec_offset;
 
     if(mac_part[i*2+1] > 10) mac_part[i*2+1] += hex_offset;
     else mac_part[i*2+1] += dec_offset;
   }
-  /* Sformatowanie znaków do wiadomości z adresem MAC */
+  /* Formatting MAC into a message */
   sprintf(mac_str, "MAC: %c%c:%c%c:%c%c:%c%c:%c%c:%c%c\n\n\r",
           mac_part[0], mac_part[1],
           mac_part[2], mac_part[3],
@@ -30,6 +30,6 @@ void send_MAC_address(void)
           mac_part[6], mac_part[7],
           mac_part[8], mac_part[9],
           mac_part[10], mac_part[11]);
-  /* Przesłanie adresu MAC za pomocą portu szeregowego */
+  /* Sending MAC through the serial port */
   HAL_UART_Transmit(&huart3, (unsigned char*)mac_str, sizeof(mac_str), 10);
 }

@@ -1,20 +1,20 @@
-/* Funkcja zamykająca połączenie */
+/* Connection close callback */
 static void app_close_connection(struct tcp_pcb* tpcb, struct echo_info* info)
 {
-  /* Wyczyszczenie funkcji zwrotnych */
+  /* De-registering callbacks */
   tcp_arg(tpcb, NULL);
   tcp_sent(tpcb, NULL);
   tcp_recv(tpcb, NULL);
   tcp_err(tpcb, NULL);
   tcp_poll(tpcb, NULL, 0);
 
-  /* Jeżeli zapisano strukturę */
+  /* If echo_info is present */
   if(info != NULL)
   {
-    /* Zwolnienie zaalokowanej pamięci */
+    /* Freeing the memory */
     mem_free(info);
   }
 
-  /* Zamknięcie połączenia */
+  /* Closing connection */
   tcp_close(tpcb);
 }

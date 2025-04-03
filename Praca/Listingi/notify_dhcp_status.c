@@ -1,27 +1,26 @@
-/* Funkcja nadzorująca otrzymanie adresu z DHCP */
+/* DHCP address querrying callback */
 void notify_dhcp_status( struct netif *netif)
 {
-  /* Flaga statusu połączenia */
+  /* Connection status flag */
   static uint8_t connected = 0;
 
-  /* Jeżeli kabel sieciowy jest podłączony, i adres IP jest różny od 0 */
+  /* If network cable is connected and IP is different from 0x0 */
   if (netif_is_link_up(netif) && netif->ip_addr.addr != 0)
   {
-    /* Jeżeli wcześniej stan połączenia był rozłączony */
+    /* If previous state was disconnected */
     if (!connected)
     {
-      /* Przygotowanie wiadomości o połączeniu */
+      /* Prepare connected message */
       sprintf(conn_msg_str, "CONNECTED\n\r");
-      /* Przygotowanie wiadomości z adresem IP */
+      /* Prepare IP address message */
       parse_ip(netif->ip_addr.addr);
-      /* Przygotowanie wiadomości z maską sieci */
+      /* Prepare subnet mask message */
       parse_mask(netif->netmask.addr);
-      /* Przygotowanie wiadomości z adresem bramy */
+      /* Prepare gateway message */
       parse_gateway(netif->gw.addr);
-      /* Ustawienie flagi połączenia */
+      /* Set connection flag */
       connected = 1;
-      /* Przesłanie poszczególnych wiadomości za pomocą portu 
-       * szeregowego */
+      /* Transmit all the data via serial port */
       HAL_UART_Transmit(&huart3, (unsigned char*)conn_msg_str, 
                         sizeof(conn_msg_str), 10);
       HAL_UART_Transmit(&huart3, (unsigned char*)ip_str, 
@@ -31,31 +30,30 @@ void notify_dhcp_status( struct netif *netif)
       HAL_UART_Transmit(&huart3, (unsigned char*)gw_str, 
                         sizeof(gw_str), 10);
     }
-    /* Zgaszenie czerwonej diody i zapalenie zielonej diody jako 
-     * sygnalizacja nawiązania połączenia */
+    /* Turn the red LED off and set green LED on to signalize
+       the connection has been established */
     HAL_GPIO_WritePin(LD1_GPIO_Port, LD1_Pin, GPIO_PIN_SET);
     HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_RESET);
   }
-  /* W przypadku odłączenia kabla sieciowego lub nie otrzymaniu adresu 
-   * z DHCP routera */
+  /* In case the network cable is disconnected or DHCP does not provide
+     an IP address */
   else
   {
-    /* Jeżeli wcześniej stan połączenia był podłączony */
+    /* If previous state was connected */
     if (connected)
     {
-      /* Przygotowanie wiadomości o rozłączeniu */
+      /* Prepare disconnected message */
       sprintf(conn_msg_str, "DISCONNECTED\n\r");
-      /* Zresetowanie adresu IP */
+      /* Reset IP address */
       netif->ip_addr.addr = 0;
-      /* Zresetowanie flagi połączenia */
+      /* Reset connection flag */
       connected = 0;
-      /* Przesłanie wiadomości o rozłączeniu za pomocą portu 
-       * szeregowego */
+      /* Transmit disconection message via serial port */
       HAL_UART_Transmit(&huart3, (unsigned char*)conn_msg_str, 
                         sizeof(conn_msg_str), 10);
     }
-    /* Zgaszenie zielonej diody i zapalenie czerwonej diody jako 
-     * sygnalizacja rozłączenia */
+    /* Turn off green LED and turn on red LED to signalize
+       disconnection */
     HAL_GPIO_WritePin(LD1_GPIO_Port, LD1_Pin, GPIO_PIN_RESET);
     HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_SET);
   }

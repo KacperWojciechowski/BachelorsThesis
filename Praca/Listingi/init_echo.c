@@ -1,30 +1,30 @@
-/* Funkcja inicjalizująca serwer echo */
+/* Echo server initialization function */
 err_t init_echo()
 {
   err_t err;
-  pcb_server = tcp_new(); // alokacja pamięci pcb
+  pcb_server = tcp_new(); // allocating pcb memory
 
   if(pcb_server == NULL)
   {
-    /* W przypadku braku pamięci, zwolnienie zaalokowanej pamięci
-     * i zwrócenie błędu */
+    /* In case of lack of memory, free allocated memory and
+       return an error */
     memp_free(MEMP_TCP_PCB, pcb_server);
     return ERR_MEM;
   }
 
-  /* Powiązanie serwera z portem 7 */
+  /* Bind server to port 7 */
   err = tcp_bind(pcb_server, IP_ADDR_ANY, 7);
   if (err != ERR_OK)
   {
-    /* W przypadku błędu powiązania, zwolnienei pamieci i zwrócenie 
-     * błędu */
+    /* In case binding fails, free memory and return 
+       an error */
     memp_free(MEMP_TCP_PCB, pcb_server);
     return err;
   }
 
-  /* Nasłuchiwanie */
+  /* Listening */
   pcb_server = tcp_listen(pcb_server);
-  /* Zarejestrowanie funkcji zwrotnej zaakceptowania połączenia */
+  /* Registering connection accept callback */
   tcp_accept(pcb_server, app_callback_accepted);
 
   return ERR_OK;

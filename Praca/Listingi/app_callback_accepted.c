@@ -1,44 +1,44 @@
-/* Funkcja zwrotna zaakceptowania połączenia */
+/* Connection accept callback */
 static err_t app_callback_accepted(void* arg, struct tcp_pcb* pcb_new, 
                                    err_t err)
 {
   struct echo_info* info;
 
-  /* usunięcie ostrzeżeń */
+  /* removing unused parameters warning */
   (void)arg;
   (void)err;
 
-  /* Ustawienie priorytetu nowego pcb */
+  /* Setting new pcb priority */
   tcp_setprio(pcb_new, TCP_PRIO_NORMAL);
 
-  /* alokacja struktury echo_info */
+  /* Allocating echo_info */
   info = (struct echo_info*)mem_malloc(sizeof(struct echo_info));
 
 
   if (info == NULL)
   {
-    /* W przypadku braku pamięci, zamknięcie połączenia i zwrócenie 
-     * błędu */
+    /* In case of memory error, close connection and propagate 
+     * error */
     app_close_connection(pcb_new, info);
     return ERR_MEM;
   }
 
-  /* Ustawienie stanu połączenia na zaakceptowane */
+  /* Setting connection state to accepted */
   info->state = TCP_STATE_ACCEPTED;
-  /* Zapisanie wskaźnika na pcb */
+  /* Saving pcb pointer */
   info->pcb = pcb_new;
-  /* Wyzerowanie licznika */
+  /* Reset retransmission counter */
   info->retries = 0;
-  /* Wyczyszczenie wskaźnika na bufor */
+  /* Reset buffer pointer */
   info->p = NULL;
 
-  /* Przesłanie struktury pcb_new jako argument */
+  /* Passing pcb_new as an argument */
   tcp_arg(pcb_new, info);
-  /* Zarejestrowanie funkcji zwrotnej odbioru wiadomości */
+  /* Registering data receive callback */
   tcp_recv(pcb_new, app_callback_received);
-  /* Zarejestrowanie funkcji zwrotnej błędu */
+  /* Registering error callback */
   tcp_err(pcb_new, app_callback_error);
-  /* Zarejestrowanie funkcji zwrotnej nasłuchiwania */
+  /* Registering polling callback */
   tcp_poll(pcb_new, app_callback_poll, 0);
 
   return ERR_OK;

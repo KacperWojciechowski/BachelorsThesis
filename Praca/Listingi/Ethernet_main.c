@@ -1,13 +1,13 @@
-/* Struktura połączenia */
+/* Connection structure */
 extern struct netif gnetif;
 extern UART_HandleTypeDef huart3;
 
-/* Bufory tekstowe na dane połączenia */
-char conn_msg_str[24];  // wiadomość
-char ip_str[24];        // adres IP
-char mask_str[24];      // maska
-char gw_str[24];        // brama
-char mac_str[30];       // adres MAC
+/* Char buffer for connection data */
+char conn_msg_str[24];  // message
+char ip_str[24];        // IP address
+char mask_str[24];      // mask
+char gw_str[24];        // gateway
+char mac_str[30];       // MAC address
 
 int main(void)
 {
@@ -37,11 +37,11 @@ int main(void)
   MX_USART3_UART_Init();
   MX_LWIP_Init();
   /* USER CODE BEGIN 2 */
-  /* Przesłanie adresu MAC za pomocą portu szeregowego */
+  /* Sending MAC via serial port */
   send_MAC_address();
-  /* Sprawdzenie stanu połączenia */
+  /* Check connection status */
   notify_dhcp_status(&gnetif);
-  /* Inicjalizacja serwera echo */
+  /* Initialize echo server */
   init_echo();
   /* USER CODE END 2 */
 
@@ -49,9 +49,9 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    /* Przetworzenie danych przez stos LwIP */
+    /* Process data via LwIP stack */
     MX_LWIP_Process();
-    /* Sprawdzenie stanu połączenia */
+    /* Check connection status */
     notify_dhcp_status(&gnetif);
     /* USER CODE END WHILE */
 

@@ -12,7 +12,7 @@
 #include "lwip/stats.h"
 #include "lwip/tcp.h"
 
-/* Stany serwera echo */
+/* Echo server states */
 enum tcp_state_enum {
   TCP_STATE_NONE = 0,
   TCP_STATE_ACCEPTED,
@@ -20,12 +20,12 @@ enum tcp_state_enum {
   TCP_STATE_CLOSING
 };
 
-/* Info serwera echo */
+/* Echo server info */
 struct echo_info {
-  uint8_t state;       // stan
-  uint8_t retries;     // licznik powtórzeń
-  struct tcp_pcb* pcb; // wskaźnik PCB
-  struct pbuf* p;      // bufor pakietów
+  uint8_t state;       // state
+  uint8_t retries;     // retransmission counter
+  struct tcp_pcb* pcb; // PCB pointer
+  struct pbuf* p;      // packet buffer
 };
 
 err_t init_echo(void);

@@ -9,7 +9,7 @@
 
 static struct tcp_pcb* pcb_server; // echoserver pcb
 
-/* Funkcje callback dla stosu LwIP */
+/* LwIP stack callbacks */
 static err_t app_callback_accepted(void* arg, struct tcp_pcb* pcb_new, 
                                    err_t err);
 static err_t app_callback_received(void* arg, struct tcp_pcb* tpcb, 
@@ -19,7 +19,7 @@ static err_t app_callback_sent(void* arg, struct tcp_pcb* tpcb,
                                uint16_t len);
 static err_t app_callback_poll(void* arg, struct tcp_pcb* tpcb);
 
-/* Funkcje użytkowe */
+/* Utility function */
 static void app_send_data(struct tcp_pcb* tpcb, struct echo_info* info);
 static void app_close_connection(struct tcp_pcb* tpcb,
                                  struct echo_info* info);

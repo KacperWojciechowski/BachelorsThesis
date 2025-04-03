@@ -1,19 +1,19 @@
-/* Funkcja zwrotna błędu */
+/* Error callback */
 static void app_callback_error(void* arg, err_t err)
 {
-  /* Wskaźnik na strukturę echo_info */
+  /* echo_info pointer */
   struct echo_info* info;
-  /* Uciszenie ostrzeżeń */
+  /* Silence warnings */
   (void)err;
 
-  /* Przypisanie zrzutowanego wskaźnika na strukturę */
+  /* Downcasting the echo_info pointer from the parameter */
   info = (struct echo_info*) arg;
-  /* Jeżeli zapisano strukturę echo_info */
+  /* If the echo_info pointer was properly downcasted */
   if (info != NULL)
   {
-    /* Zwolnienie zaalokowanej pamięci */
+    /* Release allocated memory */
     mem_free(info);
   }
-  /* Włączenie niebieskiej diody LED jako sygnalizację błędu */
+  /* Turn on the blue LED to signalize error */
   HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, GPIO_PIN_SET);
 }

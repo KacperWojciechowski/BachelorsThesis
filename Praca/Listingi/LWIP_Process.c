@@ -11,12 +11,12 @@ void MX_LWIP_Process(void)
 
   /* USER CODE BEGIN 4_3 */
   ethernetif_set_link(&gnetif);
-  /* Jeżeli kabel sieciowy jest podłączony, i nie ustawiono połączenia */
+  /* If network cable is connected and coonection not set */
   if(netif_is_link_up(&gnetif) && ! netif_is_up(&gnetif))
   {
-    /* Ustawienie połączenia */
+    /* Establish connection */
     netif_set_up(&gnetif);
-    /* Pobór adresu z DHCP routera */
+    /* Get IP from DHCP */
     dhcp_start(&gnetif);
   }
   /* USER CODE END 4_3 */

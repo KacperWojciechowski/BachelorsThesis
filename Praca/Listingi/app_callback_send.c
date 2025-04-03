@@ -1,31 +1,31 @@
-/* Funkcja zwrotna wysyłania */
+/* Sending callback */
 static err_t app_callback_sent(void* arg, struct tcp_pcb* tpcb, uint16_t len)
 {
-  /* Wskaźnik na strukturę */
+  /* Pointer to the echo_info struct */
   struct echo_info* info;
-  /* Uciszenie ostrzeżeń */
+  /* Silencing warnings */
   (void)len;
 
-  /* Zapisanie zrzutowanego wskaźnika na strukturę */
+  /* Downcasting the echo_info pointer */
   info = (struct echo_info*) arg;
-  /* Wyzerowanie licznika ponownych prób */
+  /* Resetting the retransmission counter */
   info->retries = 0;
 
-  /* Jeżeli są dane do wysłania */
+  /* If there is data to be sent */
   if(info->p != NULL)
   {
-    /* Zarejestrowanie funkcji zwrotnej wysyłania danych */
+    /* Registering the send callback */
     tcp_sent(tpcb, app_callback_sent);
-    /* Przesłanie danych */
+    /* Data transmission */
     app_send_data(tpcb, info);
   }
-  /* Jeżeli nie ma danych do wysłania */
+  /* If there is no data to be sent */
   else
   {
-    /* Jeżeli stan połączenia jest jako zamykane */
+    /* If the connection is being closed */
     if(info->state == TCP_STATE_CLOSING)
     {
-      /* Zamknięcie połączenia */
+      /* Closing the connection */
       app_close_connection(tpcb, info);
     }
   }
