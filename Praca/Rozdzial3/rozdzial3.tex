@@ -19,9 +19,7 @@ This layer serves as an interface between computer software and the remaining TC
 	\item [8)] DGCP (\emph{Dynamic Host Configuration Protocol}) -- it is responsible for dynamically configuring the end devices connected to a computer network through assigning them so called dynamic IP address based on the available address pool.
 \end{itemize}
 
-Regardless of the different form of information created by the aforementioned protocols, 
-
-Pomimo różnej konstrukcji informacji wytworzonej przez wymienione protokoły, w niższych warstwach są one uniwersalnie interpretowane jako sekcja danych, która następnie jest obudowywana przez protokoły warstw niższych w procesie tzw. enkapsulacji. Do komunikacji pomiędzy warstwą aplikacji a warstwą transportową wykorzystywane są tzw. gniazda sieciowe (ang. \emph{Internet Sockets}) będące konstrukcjami programowymi zawierającymi informacje o adresie IP, numerze portu i wykorzystywanym protokole \cite{tcpip:layers}.
+Regardless of the different form of information created by the aforementioned protocols, lower layers interpret it as an universal data section, which is subsequently wrapped by lower layer protocols in the encapsulation process. In order to communicate between the application and transport layer, so called \emph{Internet Sockets} are used, which are software constructs containing information such as IP address, port number and used protocol \cite{tcpip:layers}.
 
 \section{Transport layer}
 
@@ -146,7 +144,6 @@ The connection of lines within the UTP cables for the 8P8C connectors is an impo
     \label{fig:my_label}
 \end{figure}
 
-\newpage
 \subsection{Wireless connectivity}
 
 Thanks to the popularity of integration of embedded systems with wireless networks, especially in case of home and office automation, the market offers a number of different modules providing wireless network functionalities, both for Wi-Fi and cellular data. Due to their very similar construction, in which the major difference often is only the type of antenna for given frequency, this thesis provides only a general description of said modules.
@@ -201,14 +198,14 @@ W5500 is another example of wired connectivity as shown on figure 3.13. On contr
     \centering
     \caption{Ethernet module parameters comparison}
     \begin{tabular}{c|c|c|c|c|c}
-        \multirow{2}{*}{Module} & Standard & \multirow{2}{*}{Protocols} & \multirow{2}{*}{Interface} & Speed & \multirow{2}{*}{Price} \\
-        & Transmission & & & Interface \\
+        \multirow{2}{*}{Module} & Transmission & \multirow{2}{*}{Protocols} & \multirow{2}{*}{Interface} & Interface & \multirow{2}{*}{Price} \\
+        & Standard & & & Interface \\
         \hline
         ENC28J60 & 10Base-T & MAC & SPI & 20 MHz & 32.70 PLN \\
         \hline
-        \multirow{3}{*}{W5500} & \multirow{3}{*}{10/100Base-T} & MAC, TCP, UDP, & \multirow{3}{*}{SPI} & \multirow{3}{*}{80 MHz} & \multirow{3}{*}{115.00 PLN} \\
-        & & ICMP, IPv4, ARP, & & & \\
-        & & & IGMP, PPPoE & &
+        \multirow{3}{*}{W5500} & \multirow{3}{*}{10/100Base-T} & MAC, TCP, & SPI & \multirow{3}{*}{80 MHz} & \multirow{3}{*}{115.00 PLN} \\
+        & & UDP, ICMP, & IGMP, & & \\
+        & & IPv4, ARP & PPPoE & &
     \end{tabular}
     \label{tab:my_label}
 \end{table}
@@ -237,14 +234,16 @@ ESP32 is a newer version or said ESP8266. The circuit contains a dual core proce
     \centering
     \caption{Overview of wireless modules parameters}
     \begin{tabular}{c|c|c|c|c|c}
-        \multirow{2}{*}{Module} & Standard & \multirow{2}{*}{Protocol} & \multirow{2}{*}{Interface} & Speed & \multirow{2}{*}{Price} \\
-        & of transmission & & & of transmission \\
+        \multirow{2}{*}{Module} & Transmission & \multirow{2}{*}{Protocol} & \multirow{2}{*}{Interface} & Interface & \multirow{2}{*}{Price} \\
+        & Standard & & & Speed \\
         \hline
-        \multirow{2}{*}{ESP8266} & \multirow{2}{*}{802.11 b/g/n} & MAC, TCP, UDP, & \multirow{2}{*}{UART} & \multirow{2}{*}{72,2 Mbps} & \multirow{2}{*}{14.90 PLN} \\
-                & & HTTP, IPv4, ICMP & & & \\
+        \multirow{3}{*}{ESP8266} & \multirow{3}{*}{802.11 b/g/n} & MAC, TCP, & \multirow{3}{*}{UART} & \multirow{3}{*}{72,2 Mbps} & \multirow{3}{*}{14.90 PLN} \\
+                & & UDP, HTTP,  & & & \\
+                & & IPv4, ICMP & & & \\
         \hline
-        \multirow{3}{*}{ESP32} & \multirow{3}{*}{802.11 b/g/n} & MAC, TCP, UDP, & \multirow{2}{*}{SPI, I$^2$C,} & \multirow{3}{*}{150 Mbps} & \multirow{3}{*}{127.50 PLN} \\
-        & & HTTP, IPv4, (IPv6), & \multirow{2}{*}{UART} & & \\
+        \multirow{4}{*}{ESP32} & \multirow{4}{*}{802.11 b/g/n} & MAC, TCP, & \multirow{3}{*}{SPI, I$^2$C,} & \multirow{4}{*}{150 Mbps} & \multirow{4}{*}{127.50 PLN} \\
+        & & UDP, HTTP, & \multirow{3}{*}{UART} & & \\
+        & & IPv4, (IPv6), & & & \\
         & & ICMP & & &
     \end{tabular}
     \label{tab:my_label}

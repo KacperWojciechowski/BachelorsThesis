@@ -1,124 +1,129 @@
-\chapter{Praktyczna implementacja interfejsu sieciowego}
+\chapter{Practical implementation of the network interface}
 %=================================================================================================
-\section{Założenia projektowe}
+\section{Project goals}
 
-Podczas opracowywania projektu praktycznego rozwiązania podjęto następujące założenia projektowe:
+Following project goals were defined while constructing the practical solution: 
 
 \begin{itemize}
-    \item [1)] Zaimplementowany zostanie interfejs sieciowy przewodowy wykorzystujący złącze Ethernet oraz interfejs sieciowy bezprzewodowy wykorzystujący moduł ESP8266.
-    \item [2)] Moduł IoT będzie otrzymywał informacje sieciowe, takie jak swój adres IP, maskę sieci oraz adres IP bramy domyślnej za pomocą usługi DHCP.
-    \item [3)] Przygotowane rozwiązanie będzie pozwalać na nawiązanie komunikacji z wykorzystaniem polecenia \emph{ping}.
-    \item [4)] Przygotowane rozwiązanie oferować będzie serwer echo odsyłający otrzymane przez moduł IoT wiadomości za pomocą protokołu TCP z powrotem do nadawcy.
+    \item [1)] The implementation will consist of a wired network interface using Ethernet and wireless network interface using ESP8266 module;
+    \item [2)] The IoT module will receive the network information such as its assigned IP address, subnetwork mask and gateway IP via DHCP service;
+    \item [3)] Solution will allow to establish communication with the device using the \emph{ping} command;
+    \item [4)] Solution will offer an echo server which will relay back messages received by the IoT module via TCP protocol back to the sender.
 \end{itemize}
 
 %=================================================================================================
-\section{Wybrane komponenty}
-\subsection{Platforma sprzętowa}
+\section{Chosen components}
+\subsection{Hardware platform}
 
-Ze względu na gotową realizację części fizycznej oraz dużą dostępność materiałów pomocniczych w postaci dokumentacji i zasobów społeczności, jako platformę sprzętową wybrano płytkę Nucleo-F429ZI firmy ST Microelectronics. Do implementacji interfejsu bezprzewodowego wykorzystano omówiony we wcześniejszej części pracy moduł ESP8266, ze względu na jego niewielki koszt.
+Due to the already available physical implementation for 8P8C socket and wide availability of reference materials such as documentation and resources produced by the community, Nucleo-F429ZI by ST Microelectronics was chosen as the target hardware platform. In order to implement the wireless interface, the aforementioned ESP8266 module was used due to its small cost.
 
-\subsection{Środowisko i język programowania}
+\subsection{Environment and programming language}
 
-Podczas analizy dostępnych zasobów zdecydowano się na wybór dedykowanego dla wybranej platformy sprzętowej środowiska STM32CubeIDE. Wynika to z dostępności wbudowanych narzędzi konfiguracyjnych umożliwiających ustawienie wybranych parametrów platformy sprzętowej bez konieczności przechodzenia na poziom manipulacji rejestrami mikrokontrolera. Jako język programowania wybrano język C.
+During the analysis of available resources a decision was undertaken to pick STM32\dywiz CubeIDE which is the dedicated environment for the chosen hardware platform, as the IDE of choice. This is a result of the availability of embedded configuration tools, which allow for configuring selected parameters of the hardware platform without the need to manually manipulate the registers of the microcontroller. The programming language was determined to be C.
 
-\subsection{Metody weryfikacji działania systemu}
+\subsection{Verification methods of the system functionality}
 
-Weryfikacja działania systemu odbędzie się w sposób dwuetapowy. Pierwszym etapem weryfikacji poprawności funkcjonowania rozwiązania jest przesłanie informacji na temat modułu IoT, takich jak jego adres IP, maska sieci oraz adres bramy domyślnej poprzez wirtualny port szeregowy. Drugi etap stnowi próba komunikacji z modułem IoT z wykorzystaniem polecenia \emph{ping}, oraz poprzez komunikację z zaimplementowanym serwerem echo z użyciem programu Hercules SETUP Utility umożliwiającego komunikację z wykorzystaniem protokołu TCP.
+Verification of the system functionality will happen in a two-step process. First step includes transferring information about the IoT module, such as its IP address, subnetwork mask and gateway address via a virtual serial port. Second step consists of an attempt to communicate with the module via \emph{ping} command and communication with the implemented echo server using Hercules SETUP Utility software, which allows communication using the TCP protocol. 
 
 %=================================================================================================
-\section{Implementacja części sprzętowej}
+\section{Hardware implementation}
 
-\subsection{Interfejs Ethernet}
-Ze względu na wybraną platformę sprzętową, implementacja części sprzętowej została wykonana fabrycznie na płytce Nucleo-F429ZI. Płytka posiada wlutowane złącze 8P8C z podłączonym interfejsem RMII, przedstawione na rys. 4.1.
+\subsection{Ethernet interface}
+
+Thanks to the selected hardware platform, the hardware implementation was already done in-factory on the Nucleo-F429ZI board. The board contains soldered in 8P8C connector with designated RMII interface, as presented on figure 4.1.
 
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=120mm]{Rysunki/Rozdzial4/nucleo 8p8c.jpg}
-    \caption{Złącze 8P8C obecne na płytce Nucleo-F429ZI}
+    \caption{8P8C connector present on the Nucleo-F429ZI board}
     \label{fig:my_label}
 \end{figure}
 
-\subsection{Interfejs bezprzewodowy}
-Do komunikacji z układem ESP8266 wykorzystano interfejs USART6 mikrokontrolera STM32-F429ZI, obecnego na wyprowadzeniach PC6 oraz PC7. Dodatkowo wykorzystano wyprowadzenie PB3 do podania stanu wysokiego na wejściu \emph{enable} modułu ESP8266. Rysunek 4.2 przedstawia schemat połączeń.
+\subsection{Wireless interface}
+
+In order to communicate with the ESP8266 module, an USART6 serial interface of the STM32-F429ZI microcontroller was used. It is present at pins PC6 and PC7. Additionally a PB3 pin was used in order to provide logical high level to the \emph{enable} input pin of the ESP8266. Figure 4.2 shows the schematic of the connections.
 
 \begin{figure}[!ht]
     \centering
     \includegraphics{Rysunki/Rozdzial4/schemat_esp8266.png}
-    \caption{Schemat podłączenia modułu ESP8266}
+    \caption{ESP8266 connection schematic}
     \label{fig:my_label}
 \end{figure}
 
 %=================================================================================================
-\section{Implementacja części programowej}
+\section{Software implementation}
 
-\subsection{Interfejs Ethernet}
-Pierwszym etapem implementacji rozwiązania była inicjalizacja interfejsu Ethernet umożliwiając prawidłowe przesłanie polecenia \emph{ping} oraz sygnalizację stanu połączenia za pomocą diody LED.
+\subsection{Ethernet interface}
 
-Proces inicjalizacji rozpoczęty został od uruchomienia środowiska STM32CubeIDE i utworzenia w nim nowego projektu wybierając mikrokontroler STM32L429ZI. Rys. 4.3 przedstawia wybór platformy mikrokontrolera, natomiast rys. 4.4. opcje tworzonego projektu.
+The first step of the implementation consisted of initializing the Ethernet interface allowing for correct transmission of the \emph{ping} packet and to signalize the state of the connection via an LED.
+
+Initialization process started by launching the STM32CubeIDE environment and creating a new project selecting STM32L429ZI microcontroller. Figure 4.3 shows the microcontroller platform selection, and figure 4.4 options of the created project.
 
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=155mm]{Rysunki/Rozdzial4/wybór mikrokontrolera.jpg}
-    \caption{Wybór mikrokontrolera w STM32CubeIDE}
+    \caption{Microcontroller selection in STM32CubeIDE}
     \label{fig:my_label}
 \end{figure}
 
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=80mm]{Rysunki/Rozdzial4/utworzenie projektu.jpg}
-    \caption{Utworzenie projektu}
+    \caption{Creating the project}
     \label{fig:my_label}
 \end{figure}
 
 \newpage
-Jako zegar został wykorzystany sygnał zegarowy dostarczony przez moduł ST-LINK stanowiący część płytki Nucleo-F429ZI. W tym celu należało przestawić High Speed Clock w zakładce RCC w tryb BYPASS, co przedstawiono na rys. 4.5. Wynikowa konfiguracja sygnału zegarowego została przedstawiona na rys. 4.6.
+The clock signal provided by ST-LINK module being an embedded part of the Nucleo-F429ZI board was used as the system clock. In order to achieve this, High Speed Clock in the RRC tab needed to be set to BYPASS, which was showcased by the figure 4.5. Resulting configuration of the clocking signal was presented on figure 4.6.
 
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=120mm]{Rysunki/Rozdzial4/tryb bypass.jpg}
-    \caption{Przełączenie zegaru HSE w tryb BYPASS}
+    \caption{Switching the HSE clock into BYPASS mode}
     \label{fig:my_label}
 \end{figure}
 
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=155mm]{Rysunki/Rozdzial4/clock_signal_bypass.jpg}
-    \caption{Konfiguracja sygnału zegarowego po przestawieniu HSE w tryb BYPASS}
+    \caption{Configuring clocking signal after switching HSE to BYPASS mode}
     \label{fig:my_label}
 \end{figure}
 
 \newpage
-W zakładce \emph{Connectivity} należy wstępnie skonfigurować interfejs Ethernet ustawiając jego tryb na RMII. Wynika to z konstrukcji płytki Nucleo-429ZI w której do połączenia interfejsu Ethernet wykonane jest przy pomocy interfejsu RMII. Domyślny adres MAC urządzenia wynosi 00:80:E1:00:00:00. W trakcie ustawiania domyślnych wartości przez konfigurator, adres PHY urządzenia przypisany został na 1. Należy go zmienić na 0. Wyniki powyższych działań przedstawiono na rys. 4.7. i 4.8.
+The Ethernet interface needs to be initially configured in the \emph{Connectivity} tab, setting its mode to RMII. It is a result of the Nucleo-429ZI board structure, in which the Ethernet connection is realized using RMII interface. The default MAC address of the device is equal to 00:80:E1:00:00:00. During the setup of default values via a configurator, the PHY address of the device was assigned as 1. It needed to be changed to 0. The results were shown on figures 4.7 and 4.8.
+
 
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=120mm]{Rysunki/Rozdzial4/rmii1.jpg}
-    \caption{Przypisanie trybu RMII do interfejsu Ethernet}
+    \caption{Assigning RMII mode to the Ethernet interface}
     \label{fig:my_label}
 \end{figure}
 
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=120mm]{Rysunki/Rozdzial4/rmii2.jpg}
-    \caption{Docelowe parametry interfejsu RMII}
+    \caption{Target values of RMII parameters}
     \label{fig:my_label}
 \end{figure}
 
+Due to the connections present on the Nucleo-F429ZI board in accordance to the table presented in the manufacturer documentation \cite{nucleo-manual} the output pins of the microcontroller were assigned in a way showcased in table 4.1. The RMII interface connection schematics are presented by figure 4.9.
+
 \newpage
-W związku z połączeniami występującymi na płytce Nucleo-F429ZI zgodnie z tabelą przedstawioną w dokumentacji producenta \cite{nucleo-manual} piny wyjściowe mikrokontrolera zostały przypisane w sposób przedstawiony w tabeli 4.1. Schemat połączeń interfejsu RMII przedstawiony jest na rys. 4.9.
 
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=140mm]{Rysunki/Rozdzial4/schemat_RMII.png}
-    \caption{Schemat podłączenia interfejsu RMII}
+    \caption{RMII interface connection schematics}
     \label{fig:my_label}
 \end{figure}
 
 {\centering
 
 \begin{longtable}{c|c}
-    \caption{Przyporządkowanie linii wyjściowych mikrokontrolera} \\
-    Nazwa pinu & Funkcja \\
+    \caption{Output line assignment} \\
+    Pin name & Functionality \\
     \hline
     PA1 & ETH\texttt{\char`_}REF\texttt{\char`_}CLK \\
     PA2 & ETH\texttt{\char`_}MDIO \\
@@ -128,252 +133,253 @@ W związku z połączeniami występującymi na płytce Nucleo-F429ZI zgodnie z t
     PG11 & ETH\texttt{\char`_}TX\texttt{\char`_}EN \\
     PG13 & ETH\texttt{\char`_}TXD0 \\
     PB13 & ETH\texttt{\char`_}TXD1 \\
-    PB14 & Dioda LED Czerwona \\
-    PB0 & Dioda LED Zielona \\
-    PB7 & Dioda LED Niebieska \\
-    Nazwa pinu & Funkcja \\
+    PB14 & Red LED \\
+    PB0 & Green LED \\
+    PB7 & Blue LED \\
+    Pin name & Functionality \\
     \hline
-    PD9 & Linia RX wirtualnego portu szeregowego USART3 \\
-    PD8 & Linia TX wirtualnego portu szeregowego USART3
+    PD9 & RX line of virtual serial port USART3 \\
+    PD8 & TX line of virtual serial port USART3
     \label{tab:my_label}
 \end{longtable}
 }
 
-Kolejny krok stanowiła konfiguracja stosu LwIP wykorzystywanego do obsługi protokołów stosu TCP/IP. Aby tego dokonać należy przejść do zakładki \emph{Middleware} jak przedstawiono na rys. 4.10, w której użytkownik otrzymuje dostęp do różnego rodzaju oprogramowania dla wybranego mikrokontrolera, jak np. stos LwIP lub system czasu rzeczywistego freeRTOS. Stos LwIP charakteryzuje się bardzo dużą ilością dostępnych opcji konfiguracyjnych. Na potrzeby implementacji realizowanego w ramach pracy rozwiązania, większość konfiguracji można pozostawić jako domyślną. Należy się jednak upewnić, iż uruchomiona jest opcja LWIP\texttt{\char`_}NETIF\texttt{\char`_}LINK\texttt{\char`_}CALL-BACK, stanowiąca funkcję wołaną w momencie wykrycia podłączenia wtyczki Ethernet do gniazda 8P8C, jak pokazano na rys. 4.11.
+The next step included configuring the LwIP stacked used for operating the TCP/IP stack protocols. In order to do that, user needs to proceed to the \emph{Middleware} tab as shown on figure 4.10, where the user gains access to various software for selected microcontroller, such as the LwIP stack or freeRTOS real time operating system. The LwIP stack is characterized by big selection of configuration options. In the implementation for the needs of this dissertation, majority of the configuration can be left as default. User needs to make sure however that the LWIP\texttt{\char`_}NETIF\texttt{\char`_}LINK\texttt{\char`_}CALL-BACK, which designates a function called when the Ethernet connector is plugged in to 8P8C socket, is enabled, as shown on figure 4.11. 
 
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=120mm]{Rysunki/Rozdzial4/middleware_lwip.jpg}
-    \caption{Uruchomienie stosu LwIP}
+    \caption{Enabling LwIP stack}
     \label{fig:my_label}
 \end{figure}
 
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=100mm]{Rysunki/Rozdzial4/middleware_lwip_2.jpg}
-    \caption{Opcja LWIP\texttt{\char`_}NETIF\texttt{\char`_}LINK\texttt{\char`_}CALLBACK}
+    \caption{LWIP\texttt{\char`_}NETIF\texttt{\char`_}LINK\texttt{\char`_}CALLBACK option}
     \label{fig:my_label}
 \end{figure}
 
 \newpage
-Korzystając z zakładki \emph{Clock Configuration}, zegar taktujący interfejs Ethernet został ustawiony na częstotliwość 180 MHz, za pomocą pętli PLL i odpowiednich modyfikatorów (ang. \emph{prescaler}), jak przedstawiono na rysunku 4.12.
+Using the \emph{Clock Configuration} tab, the Ethernet clock signal was set to the frequency of 180 MHz, via the PLL loop and correct prescalers, as presented by figure 4.12.
 
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=120mm]{Rysunki/Rozdzial4/clock_config.jpg}
-    \caption{Konfiguracja zegarów}
+    \caption{Clock configuration}
     \label{fig:my_label}
 \end{figure}
 
-Kolejny krok stanowiło wygenerowanie kodu oraz jego stosowna modyfikacja. Podczas implementacji serwera echo z wykorzystaniem stosu LwIP oraz modyfikacji funkcji \textit{MX\char`_LWIP\char`_Process()} wykorzystano kod z przykładowej implementacji autorstwa koreańskiego użytkownika blogu Naver o pseudonimie eziya76 \cite{eziya76}.
+The follow up included generating the code and its modification. During the implementation of the echo server using the LwIP stack and modification of the \textit{MX\char`_LWIP\char`_Process()} function, it was decided to use a sample implementation by a korean Naver blog user nicknamed eziya76 \cite{eziya76}.
 
-\cppcode{Listingi/Ethernet_main.c}{Funkcja \textit{main()} implementacji interfejsu Ethernet}
+\cppcode{Listingi/Ethernet_main.c}{Ethernet implementation \textit{main()} function}
 
-Listing 4.1 przedstawia implementację funkcji \textit{main()} dla projektu implementującego interfejs Ethernet. Część funkcji została wygenerowana poprzez narzędzie do generowania kodu na podstawie konfiguracji środowiska STM32CubeIDE (części oznaczone komentarzami w języku angielskim). 
+Listing 4.1 presents the contents of the \textit{main()} function for the project implementing the Ethernet interface. Part of this function was generated via the code generator based on the STM32CubeIDE environment configuration.
 
-Utworzone zostało 5 globalnych buforów tekstowych służących do przechowywania i formatowania informacji o połączeniu takich jak adres IP, maska sieci i adres bramy, adresu MAC oraz informacji o statusie połączenia. Informacje o połączeniu, informacja o statusie połączenia oraz adres MAC przesyłane są do komputera nadzorującego za pomocą portu szeregowego USART3 wewnątrz funkcji \textit{notify\char`_dhcp\char`_status()}. 
+In order to store and format information regarding the connection, such as the IP address, subnetwork mask, gateway address, MAC address and connection status, 5 globally available buffers were created. This information is transmitted to the overseeing computer via USART3 serial port inside the \textit{notify\char`_dhcp\char`_status()} function.
 
-Funkcja \textit{MX\char`_LWIP\char`_Process()} odpowiada za otrzymanie dynamicznego adresu IP z serwera DHCP uruchomionego na routerze i została przedstawiona na listingu 4.2. Funkcja \textit{init\char`_echo()} inicjalizuje serwer echo, odsyłający kopię otrzymanej wiadomości do nadawcy. Listing 4.3 przedstawia implementację funkcji \textit{notify\char`_dhcp\char`_status()}. Listingi 4.4 - 4.7 przedstawiają implementacje funkcji przekształcających informacje o połączeniu i adresie MAC na podstać ciągu znakowego.
+The \textit{MX\char`_LWIP\char`_Process()} function takes care of receiving the dynamic IP address from the DHCP server enabled in the router and was presented on listing 4.2. The echo server is initialized in the \textit{init\char`_echo()}, repeating a copy of received message to the sender. Listing 4.3 showcases implementation of the \textit{notify\char`_dhcp\char`_status()} function. Listings 4.4 - 4.7 picture the implementation of functions that process information about connection and MAC address into a character string.
 
-\cppcode{Listingi/LWIP_Process.c}{Funkcja MX\textit{\char`_}LWIP\textit{\char`_}Process}
-
-\newpage
-\cppcode{Listingi/notify_dhcp_status.c}{Funkcja nadzoru stanu połączenia}
-
-\cppcode{Listingi/parse_ip.c}{Funkcja przekształcająca adres IP na postać ciągu znakowego}
-
-\cppcode{Listingi/parse_mask.c}{Funkcja przekształcająca maskę sieci na postać ciągu znakowego}
-
-\cppcode{Listingi/parse_gateway.c}{Funkcja przekształcająca adres bramy na postać ciągu znakowego}
+\cppcode{Listingi/LWIP_Process.c}{MX\textit{\char`_}LWIP\textit{\char`_}Process() function}
 
 \newpage
-\cppcode{Listingi/send_mac_address.c}{Funkcja przesyłająca adres MAC na początku pracy urządzenia}
+\cppcode{Listingi/notify_dhcp_status.c}{Connection state overseeing function}
 
-Do obsługi serwera echo utworzona została struktura \textit{echo\char`_info} przechowująca informacje dotyczące stanu połączenia, ilości retransmisji, wskaźnik na strukturę pcb stosu LwIP, oraz wskaźnik na bufor odbiorczo/nadawczy. Oprócz tego utworzony został typ wyliczeniowy pozwalający na posługiwanie się nazwami stanów połączenia zamiast wartościami numerycznymi. Wymienione wyżej elementy umieszczone zostały w pliku nagłówkowym przedstawionym na listingu 4.8.
+\cppcode{Listingi/parse_ip.c}{Function processing the IP address}
 
-\cppcode{Listingi/echo.h}{Plik nagłówkowy serwera echo}
+\cppcode{Listingi/parse_mask.c}{Function processing the subnetwork mask}
 
-Plik źródłowy połączony z powyższym plikiem nagłówkowym zawiera prototypy oraz implementacje funkcji zwrotnych oraz funkcji wysyłania i zakończenia połączenia. Zostały one przedstawione na listingu 4.9.
+\cppcode{Listingi/parse_gateway.c}{Function processing the gateway address}
 
-\cppcode{Listingi/echo.c}{Fragment pliku źródłowego serwera echo}
+\newpage
+\cppcode{Listingi/send_mac_address.c}{Function transferring the MAC address during the start of the device}
 
-Uruchomienie serwera echo rozpoczyna się od inicjalizacji serwera za pomocą funkcji \textit{init\char`_echo()} wywołanej w funkcji \textit{main()} przed pętlą główną. Funkcja ta tworzy nowy obiekt serwera TCP, łączy go z wybranym portem oraz rejestruje funkcję zwrotną (ang. \emph{callback}) zaakceptowania połączenia. Do komunikacji wybrano port 7. Listing 4.10. przedstawia kod funkcji \textit{init\char`_echo()}.
+In order to control the echo server, a \textit{echo\char`_info} structure was created, which stores information regarding the connection status, retransmission count, pointer to the pcb structure of the LwIP stack and a pointer to the transceiveing buffer. Additionally, an enumerating type was created which allows to use connection state names instead of numerical values. Aforementioned elements were placed in a header file listed on listing 4.8. 
 
-\cppcode{Listingi/init_echo.c}{Funkcja inicjalizująca serwer TCP echo}
+\cppcode{Listingi/echo.h}{Echo server header file}
 
-Funkcja \textit{app\char`_callback\char`_accepted()} jest wywoływana w momencie akceptacji połączenia przez serwer. Ustawia ona priorytet utworzonego pcb, alokuje strukturę informacji o połączeniu \textit{echo\char`_info}, ustawia jej początkowe parametry oraz rejestruje funkcje zwrotne odbioru danych, błędu i pollingu. Kod funkcji został zamieszczony w listingu 4.11.
+The source file associated with the above header file contains prototypes and implementations of the callback functions, send function and connection shutdown function. They were presented on listing 4.9.
 
-\cppcode{Listingi/app_callback_accepted.c}{Funkcja zwrotna akceptacji połączenia}
+\cppcode{Listingi/echo.c}{A fragment of the echo server source file}
 
-Kolejną funkcję zwrotną stanowi \textit{app\char`_callback\char`_received()}, wywoływana w trakcie otrzymania danych z połączonego urządzenia. Zajmuje się ona nadzorem buforów, wywołuje obsługę wysłania danych z powrotem do nadawcy w postaci echo oraz odpowiednio zmienia stan połączenia zapisany w strukturze \textit{echo\char`_info}. Rejestruje ona także funkcję zwrotną \textit{app\char`_callback\char`_sent} Jej kod jest zaprezentowany na listingu 4.12.
+Starting the echo server begins with its initialization via the \textit{init\char`_echo()} function, called in the \textit{main()} function before the main loop. It creates a new TCP server object, connects it to a selected port and registers a connection accept callback. Port 7 was selected for the communication purposes. Listing 4.10. contains the code of the \textit{init\char`_echo()} function.
 
-\cppcode{Listingi/app_callback_received.c}{Funkcja zwrotna odbioru danych}
+\cppcode{Listingi/init_echo.c}{TCP echo server initialization function}
 
-Funkcja \textit{app\char`_callback\char`_sent()} odpowiada za nadzór sytuacji po wykonaniu transmisji. W przypadku wystąpienia dalszych danych do przesłania, inicjalizuje ona kolejną transmisję. Podobnie działa funkcja zwrotna \textit{app\char`_callback\char`_poll()} Listingi 4.13 i 4.14 przedstawiają kod wspomnianych funkcji.
+The \textit{app\char`_callback\char`_accepted()} function is called when the connection is accepted by the server. It sets the priority of the created pcb, allocates the \textit{echo\char`_info} structure, sets its initial parameters and registers callbacks for data reception, error and polling. The code of those functions was placed on listing 4.11.
 
-\cppcode{Listingi/app_callback_send.c}{Funkcja zwrotna transmisji danych}
+\cppcode{Listingi/app_callback_accepted.c}{Connection accept callback}
 
-\cppcode{Listingi/app_callback_poll.c}{Funkcja zwrotna nasłuchu}
+The next callback is \textit{app\char`_callback\char`_received()}, called during the data reception from the connected device. It takes care of supervising the buffers, engages sending data back to the sender in the form of echo, and accordingly modifies the connection state saved in the \textit{echo\char`_info} structure. Additionally it registers the \textit{app\char`_callback\char`_sent()} callback. Its code is presented by listing 4.12.
 
-Ostatnią z funkcji zwrotnych jest \textit{app\char`_callback\char`_error()} wywoływana w momencie wystąpienia błędu podczas transmisji. Odpowiada ona za sygnalizację błędu za pomocą niebieskiej diody LED oraz zwolnienie zaalokowanej struktury \textit{echo\char`_info}. Jej kod został ukazany na listingu 4.15.
+\cppcode{Listingi/app_callback_received.c}{Data reception callback function}
 
-\cppcode{Listingi/app_callback_error.c}{Funkcja zwrotna błędu}
+Function \textit{app\char`_callback\char`_sent()} oversees the situation after executing transmission. In case of subsequent data present, it initializes another transmission. \textit{app\char`_callback\char`_poll} function operates in a similar fashion. Listings 4.13 and 4.13 present their code.
 
-Kluczowym elementem serwera echo jest funkcja realizująca transmisję otrzymanych danych z powrotem do nadawcy. Jest to zadanie funkcji \textit{app\char`_send\char`_data()}, wykorzystującej do transmisji funkcję stosu LwIP \textit{tcp\char`_write()}. Obsługuje ona transmisję ciągu pakietów oraz nadzoruje poprawność przeprowadzenia transmisji, w razie potrzeby wykonując retransmisję. Listing 4.16 przedstawia kod funkcji.
+\cppcode{Listingi/app_callback_send.c}{Data transmission callback}
 
-\cppcode{Listingi/app_send_data.c}{Funkcja transmisji danych}
+\cppcode{Listingi/app_callback_poll.c}{Pooling callback}
 
-Po zakończeniu pracy z serwerem echo konieczne jest zamknięcie połączenia, za co odpowiada funkcja \textit{app\char`_close\char`_connection()}. Odrejestrowuje ona ustawione wcześniej funkcje zwrotne, zamyka połączenie oraz zwalnia alokację zasobów. Kod funkcji przedstawiony jest na listingu 4.17.
+The \textit{app\char`_callback\char`_error()} is the last callback, engaged when a transmission error occurs. It is responsible for signalizing error using the blue LED and for de-allocating the \textit{echo\char`_info} structure. Its code is shown on listing 4.15.
 
-\cppcode{Listingi/app_close_connection.c}{Funkcja zamknięcia połączenia}
+\cppcode{Listingi/app_callback_error.c}{Error callback}
 
-\subsection{Interfejs bezprzewodowy Wi-Fi}
+The key element of the echo server is a function carrying out the transmission of the data back to the sender. This task is placed upon the \textit{app\char`_send\char`_data()} function, utilizing the \textit{tcp\char`_write()} function of the LwIP stack. It allows the user to transmit a series of packets and oversees the correctness of the transmission, carrying out a retransmission if the need arises. Listing 4.16 presents the function content.
 
-W celu rozdzielenia implementacji interfejsu Ethernet i interfejsu bezprzewodowego, w środowisku STM32CubeIDE utworzony został nowy projekt. 
+\cppcode{Listingi/app_send_data.c}{Data transmission function}
 
-Implementacja interfejsu bezprzewodowego Wi-Fi została rozpoczęta od przygotowania odpowiedniej konfiguracji mikrokontrolera STM32-F429ZI. Wykorzystany moduł Wi-Fi komunikuje się z mikrokontrolerem za pomocą interfejsu UART, używając przy tym komend ze standardu AT. W związku z tym, konfiguracja rozpoczęła się od aktywowania dwóch interfejsów typu UART:
+After the connected device is done operating the echo server, the connection must be closed, which is the task of the \textit{app\char`_close\char`_connection()} function. It de-registers previously set up functions, closes the connection and releases related resources. Its code is shown on listing 4.17.
+
+\cppcode{Listingi/app_close_connection.c}{Connection close function}
+
+\subsection{Wi-Fi wireless interface}
+
+In order to separate the implementation of Ethernet and wireless interfaces, a new project was created in the STM32CubeIDE.
+
+The implementation of the Wi-Fi wireless interface begins with preparing the STM32-F429ZI microcontroller configuration. The Wi-Fi module used here communicates with the microcontroller using the UART interface, by exchanging the AT standard commands. As of such, the configuring process starts with activating two of the UARD interfaces:
 
 \begin{itemize}
-    \item [$\bullet$] USART3 - port szeregowy w celu komunikacji z komputerem nadzorującym,
-    \item [$\bullet$] USART6 - port szeregowy służący do komunikacji z modułem Wi-Fi.
+    \item [$\bullet$] USART3 - serial port for communicating with the overseeing computer;
+    \item [$\bullet$] USART6 - serial port for communicating with the Wi-Fi module.
 \end{itemize}
 
-Obydwa porty zostały skonfigurowane do pracy z częstotliwością 115200 bitów na sekundę, 8-bitową długością słowa, brakiem kontroli parzystości i pojedynczym bitem stopu. Konfigurację obu portów przedstawiono na rysunku 4.13.
+Both of the ports were configured to operate with the baudrate of 115200, 8-bit word length, no parity control and a singular stop bit. The configuration in question was shown on figure 4.13.
 
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=100mm]{Rysunki/Rozdzial4/usart3_parameters.jpg}
-    \caption{Konfiguracja interfejsów USART3 oraz USART6}
+    \caption{USART3 and USART6 configuration}
     \label{fig:my_label}
 \end{figure}
 
-Kolejny krok stanowiło ustawienie w zakładce RCC sekcji System Core zegara HSE w tryb BYPASS, podobnie jak w przypadku interfejsu Ethernet, aby wykorzystać do taktowania mikrokontrolera sygnał zegarowy generowany przez moduł ST-Link. 
+The next step consists of setting up the HSE in the System Core section of the RRC tab in the BYPASS mode, similarly as in case of the Ethernet interface, in order to use the ST-Link clock signal for clocking the microcontroller.
 
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=155mm]{Rysunki/Rozdzial4/rcc_wifi.jpg}
-    \caption{Ustawienie zegara HSE}
+    \caption{HSE clock setup}
     \label{fig:my_label}
 \end{figure}
 
-W zakładce \emph{Clock Configuration} częstotliwość taktowania zegara systemowego została ustawiona z pomocą konfiguratora zegarów na 180 MHz, co przedstawiono na rysunku 4.15.
+In the \emph{Clock Configuration} tab, the system clock frequency was set via the configurator to 180 MHz, as shown on figure 4.15.
 
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=155mm]{Rysunki/Rozdzial4/wifi_zegary.jpg}
-    \caption{Częstotliwości końcowe w menadżerze zegarów}
+    \caption{Target frequencies in the clock manager}
     \label{fig:my_label}
 \end{figure}
 
-Ostatnim krokiem konfiguracji była konfiguracja jednego z portów GPIO w tryb wyjścia, w celu sterowania linią \emph{enable} modułu Wi-Fi. W celu uaktywnienia modułu i możliwości pracy z nim, konieczne było podanie stanu wysokiego na linię \emph{enable}. Wykorzystano do tego linię PB3, zachowując jej domyślne parametry, których podgląd i modyfikacja dostępna jest w zakładce GPIO sekcji \emph{System Core}. Zostały one przedstawione na rysunku 4.16 i 4.17.
+The last steop of the configuration process required configuring one of the GPIO ports in the output mode, in order to control the \emph{enable} line of the Wi-Fi module. In order to activate the module and enable operating it, the line required a high logical state. Line PB3 was used for this purpose, keeping its default parameters, for which the monitoring and modification options are available in the GPIO tab of the \emph{System Core} section. They were presented on figures 4.16 and 4.17.
 
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=155mm]{Rysunki/Rozdzial4/gpio_pb3.jpg}
-    \caption{Lista skonfigurowanych linii GPIO}
+    \caption{Configured GPIO lines}
     \label{fig:my_label}
 \end{figure}
 
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=100mm]{Rysunki/Rozdzial4/gpio_pb3_2.jpg}
-    \caption{Podgląd parametrów linii PB3}
+    \caption{PB3 line parameters}
     \label{fig:my_label}
 \end{figure}
 
-Moduł ESP8266 posiada wbudowaną implementację stosu TCP/IP, w związku z czym aktywowanie stosu LwIP nie było konieczne. Na podstawie uzyskanej konfiguracji wygenerowany został kod źródłowy, który następnie został rozbudowany o polecenia konfigurujące moduł Wi-Fi oraz funkcje realizujące rolę serwera echo. Listing 4.18 przedstawia kod funkcji \textit{main()} i elementy globalne.
+The ESP8266 module contains a functioning implementation of the TCP/IP stack, and as such enabling the LwIP stack in the platform configurator was not required. Based on this configuration, the source was generated, which was subsequently extended with snippets that configure the Wi-Fi module and implement the echo server functionality. Listing 4.18 shows the contents of the \textit{main()} function and the globally available elements.
 
-\newpage
-\cppcode{Listingi/WiFi_main.c}{Funkcja \textit{main()} i elementy globalne}
+\cppcode{Listingi/WiFi_main.c}{\textit{main()} function and global elements}
 
-Jako elementy globalne zadeklarowane zostały:
-
-\begin{itemize}
-    \item [$\bullet$] bufor znakowy odbioru informacji zwrotnych z modułu Wi-Fi,
-    \item [$\bullet$] bufor znakowy sformatowanej wiadomości do odesłania do nadawcy,
-    \item [$\bullet$] makro określające ilość komend konfiguracyjnych modułu Wi-Fi,
-    \item [$\bullet$] tablica komend konfiguracyjnych modułu Wi-Fi.
-\end{itemize}
-
-Działanie każdej z komend konfiguracyjnych opisane zostało za pomocą komentarzy w listingu 4.18. W celu ochrony prywatności hasło zamieszczone na listingu dla komendy \textit{AT+CWJAP} zostało zamienione na znaki gwiazdki. 
-
-Funkcja \textit{main()} składa się z kilku kluczowych sekcji. Pierwszą z nich jest wygenerowana sekcja konfiguracji poszczególnych interfejsów i elementów mikrokontrolera, takich jak GPIO, zegar systemowy oraz interfejsy USART. Sekcja ta została rozszerzona o ustawienie linii PB3 podłączonej do wejścia \emph{enable} modułu Wi-Fi w stan wysoki.
-
-Drugą sekcją jest pętla konfiguracyjna. Jej zadaniem jest dokonanie resetu oraz konfiguracji modułu Wi-Fi w sposób pozwalający na nawiązanie połączenia i dwustronną transmisję wiadomości. Są to kolejno polecenia:
+The global elements were defined as:
 
 \begin{itemize}
-    \item [$\bullet$] \emph{AT+RST} - restart modułu;
-    \item [$\bullet$] \emph{ATE0} - wyłączenie echa wysłanych komend konfiguracyjnych;
-    \item [$\bullet$] \emph{AT} - test komunikacji z modułem;
-    \item [$\bullet$] \emph{AT+GMR} - uzyskanie informacji o wersji oprogramowania modułu;
-    \item [$\bullet$] \emph{AT+CWMODE=1} - ustawienie trybu pracy jako klient;
-    \item [$\bullet$] \emph{AT+CIPMODE=0} - ustawienie formatu odbieranych wiadomości jako "+IPD,\newline<kanał>,<liczba bajtów>,<dane>";
-    \item [$\bullet$] \emph{AT+CIPMUX=1} - ustawienie możliwości obsługi wielu połączeń;
-    \item [$\bullet$] \emph{AT+CIPSERVER=1,7} - włączenie funkcjonalności serwera na porcie 7;
-    \item [$\bullet$] \emph{AT+CWMODE=?} - sprawdzenie ustawionego trybu pracy;
-    \item [$\bullet$] \emph{AT+CWJAP=<SSID>,<hasło>} - połączenie z siecią Wi-Fi;
-    \item [$\bullet$] \emph{AT+CIPSTA?} - sprawdzenie statusu połączenia;
-    \item [$\bullet$] \emph{AT+CIFSR} - pobranie adresu IP serwera;
+    \item [$\bullet$] character buffer for reception from the Wi-Fi module;
+    \item [$\bullet$] character buffer for formatted message to be sent back;
+    \item [$\bullet$] macro defining the Wi-Fi configuration commands amount;
+    \item [$\bullet$] look up table containing the commands for configuring the Wi-Fi module.
 \end{itemize}
 
-Po przesłaniu polecenia restartu modułu, mikrokontroler odczekuje 1 sekundę przed przesłaniem kolejnych poleceń. Na transmisję każdego z poleceń składa się przesłanie polecenia do modułu, wyczyszczenie bufora odbiorczego za pomocą funkcji \textit{clr\char`_buffer()}, ukazanej na listingu 4.19, i odebranie wiadomości zwrotnej z modułu. Po poleceniu \emph{AT+CWJAP} występuje oczekiwanie na otrzymanie adresu DHCP poprzez wysyłanie w interwałach 1-sekundowych zapytania o status połączenia za pomocą funkcji \textit{is\char`_busy()}, której kod przedstawia listing 4.20. Tak długo, jak status informuje o zajętości modułu, następuje oczekiwanie i ponowne zapytanie. Informacje zwrotne odebrane z modułu przesyłane są do komputera nadzorującego za pomocą portu szeregowego.
+The result of each of the configuration commands was described via comments inside listing 4.18. For privacy protection reasons, the password contained in the listing for the \textit{AT+CWJAP} command was censored with asterisks.
+
+The \textit{main()} function consists of several key sections. The first one is the generated configuration section for each of the interfaces and microcontroller components, such as GPIO, system clock and USART interfaces. This section was extended with setting the PB3 line connected to the \emph{enable} input of the Wi-Fi module into high logical state.
+
+Second section is the configuration loop. Is is tasked with performing the reset and configuration of the Wi-Fi module in a way which enables connection and two-way transmission of messages. These commands are subsequently:
 
 \newpage
-\cppcode{Listingi/clr_buffer.c}{Funkcja czyszcząca bufor odbiorczy}
 
-\cppcode{Listingi/is_busy.c}{Funkcja sprawdzania stanu zajętości modułu Wi-Fi}
+\begin{itemize}
+    \item [$\bullet$] \emph{AT+RST} - module reset;
+    \item [$\bullet$] \emph{ATE0} - disabling the configuration commands echo;
+    \item [$\bullet$] \emph{AT} - communication test with the module;
+    \item [$\bullet$] \emph{AT+GMR} - acquiring module firmware version;
+    \item [$\bullet$] \emph{AT+CWMODE=1} - configuring the module into client mode;
+    \item [$\bullet$] \emph{AT+CIPMODE=0} - configuring the received message format as "+IPD,\newline<channel>,<byte count>,<data>";
+    \item [$\bullet$] \emph{AT+CIPMUX=1} - enabling multiconnectivity;
+    \item [$\bullet$] \emph{AT+CIPSERVER=1,7} - configuring the server on port 7;
+    \item [$\bullet$] \emph{AT+CWMODE=?} - verifying the operating mode;
+    \item [$\bullet$] \emph{AT+CWJAP=<SSID>,<password>} - connecting to the Wi-Fi network;
+    \item [$\bullet$] \emph{AT+CIPSTA?} - querrying connection status;
+    \item [$\bullet$] \emph{AT+CIFSR} - acquiring the server IP address;
+\end{itemize}
 
-Trzecią sekcją funkcji \textit{main()} jest pętla operacyjna, realizująca funkcjonalność serwera echo. Wewnątrz niej czyszczony jest bufor odbiorczy i odbierane są dane wysyłane z modułu przy wystąpieniu zdarzenia, takiego jak nawiązanie połączenia lub odbiór danych. W przypadku odebrania niepustej wiadomości zwrotnej, wykonywane jest przygotowanie do funkcjonalności echo za pomocą funkcji \textit{prepare\char`_echo()}, której kod znajduje się na listingu 4.21.
+After sending the module reset command, the microcontroller awaits 1 second before transmitting subsequent commands. Each transmission consists of sending the command to the module, clearing the reception buffer using the \textit{clr\char`_buffer()} function presented on listing 4.19, and receiving the feedback from the module. After the \emph{AT+CWJAP} querry, the microcontroller awaits acquiring an IP address from DHCP in 1-second intervals, by querrying the connection status via the \textit{is\char`_busy()} function shown on listing 4.20. As long as the status informs that the module is busy, the process is repeated. Feedback from the module is relayed to the overseeing computer via the serial port. 
 
-\cppcode{Listingi/prepare_echo.c}{Funkcja przygotowująca funkcjonalność echo}
+\cppcode{Listingi/clr_buffer.c}{Reception buffer clear function}
 
-Jeżeli otrzymana wiadomość zwrotna z modułu rozpoczyna się od sekwencji "+IPD", wyciągana jest z niej ilość otrzymanych bajtów oraz jej treść w celu odpowiedniego sformatowania i przygotowania do wysłania. Gotowość do wysłania oznaczana jest za pomocą flagi \textit{ready\char`_to\char`_send}. W przypadku wyciągnięcia wiadomości, wysyłane jest polecenie przesłania danych, a następnie w trzeciej sekcji funkcji \textit{main()} podawana jest do transmisji wiadomość uzyskana od nadawcy. Po wykonaniu transmisji echo, flaga \textit{ready\char`_to\char`_send} jest resetowana.
+\newpage
+\cppcode{Listingi/is_busy.c}{Wi-Fi module state querry function}
+
+The third section of the \textit{main()} function contains the operating loop, which acts as the echo server functionality. Inside it, a reception buffer is cleared and data is read from the module when an event such as establishing connection or data reception occurs. In case of receiving a non-empty feedback message, the echo functionality is prepared inside the \textit{prepare\char`_echo()} function, which code can be found in listing 4.21.
+
+\cppcode{Listingi/prepare_echo.c}{Preparing the echo functionality}
+
+If the received feedback message starts with the "+IPD" sequence, the program extracts the number of bytes and its content in order to properly format it and prepare it for sending back. Readiness for sending is stated by the \textit{ready\char`_to\char`_send} flag. In case of extracting the message, a "send data" command is transmitted, followed by the message content in the third section of the \textit{main()} function.\ After performing the echo transmission, the \textit{ready\char`_to\char`_send} flag is reset/
 
 %=================================================================================================
-\section{Testy rozwiązania}
+\section{Solution tests}
 
-\subsection{Interfejs Ethernet}
+\subsection{Ethernet interface}
 
-Podczas przeprowadzania testów sprawdzono następujące funkcjonalności:
+During the testing phase, following functionalities were validated:
 
 \begin{itemize}
-    \item [$\bullet$] komunikacja z komputerem nazdorującym za pomocą portu szeregowego, otrzymanie informacji o adresie MAC oraz stanach połączenia;
-    \item [$\bullet$] przesłanie polecenia ping za pomocą wiersza poleceń systemu Windows;
-    \item [$\bullet$] połączenie i transmisja dwustronna za pomocą programu Hercules SETUP Utility;
+    \item [$\bullet$] communication with the overseeing computer via the serial port, acquiring information about the MAC address and the connection state; 
+    \item [$\bullet$] exchanging the ping via Windows command prompt;
+    \item [$\bullet$] connection and two-way exchange via Hercules SETUP Utility software.
 \end{itemize}
 
-Rysunki 4.18, 4.19 oraz 4.20 przedstawiają rezultaty przeprowadzonych testów. Pierwszym z działań było uzyskanie informacji o adresie IP modułu za pomocą interfejsu szeregowego USART, co przedstawiono na rysunku 4.18. Następnie możliwe było sprawdzenie poprawności komunikacji za pomogą polecenia \emph{ping}, co pokazano na rysunku 4.19 oraz poprawności działania funkcjonalności serwera echo za pomocą programu Hercules SETUP Utility ukazanego na rys. 4.20. Wszystkie testy zakończyły się pomyślnie, weryfikując poprawne działanie funkcjonalności interfejsu sieciowego Ethernet.
+Figures 4.18, 4.19 and 4.20 showcase the results of carried out tests. The first action included acquiring the IP address of the module via USART serial interface. Subsequently, the connection could be validated using the \emph{ping} command, and the echo server functionality could be verified using the Hercules SETUP Utility. All of the tests were successful, confirming the proper functioning of the Ethernet network interface. 
 
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=50mm]{Rysunki/Rozdzial4/usart_ethernet.jpg}
-    \caption{Komunikacja za pomocą portu szeregowego}
+    \caption{Serial port communication}
     \label{fig:my_label}
 \end{figure}
 
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=130mm]{Rysunki/Rozdzial4/ping_ethernet.jpg}
-    \caption{Sprawdzenie połączenia za pomocą polecenia ping}
+    \caption{Verifying connection via ping}
     \label{fig:my_label}
 \end{figure}
 
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=110mm]{Rysunki/Rozdzial4/hercules_ethernet.jpg}
-    \caption{Komunikacja dwustronna z wykorzystaniem programu Hercules SETUP Utility}
+    \caption{Two-way communication validation using Hercules SETUP Utility}
     \label{fig:my_label}
 \end{figure}
 
 \newpage
-\subsection{Interfejs bezprzewodowy Wi-Fi}
+\subsection{Wi-Fi wireless interface}
 
-Rysunek 4.21 przedstawia zdjęcie przygotowanego układu. Podobnie jak w przypadku interfejsu Ethernet, przeprowadzony został ten sam zestaw testów. W wyniku restartu urządzenia, na rysunku 4.22 zauważyć można nieczytelną wiadomość spowodowaną inną prędkością transmisji w trakcie pracy programu \emph{bootloader} modułu. Podobnie jak w przypadku testów interfejsu Ethernet, najpierw uzyskano adres IP modułu za pomocą interfejsu USART, co pokazano na rys. 4.22 oraz 4.23. Następnie przeprowadzono test komunikacji za pomocą polecenia \emph{ping}, co przedstawiono na rys. 4.24 oraz test funkcjonalności serwera echo za pomocą programu Hercules SETUP Utility pokazany na rys. 4.25. Wszystkie testy zakończyły się powodzeniem.
+The figure 4.21 showcases a picture of the prepared circuit. Similarly to the Ethernet interface, the same set of tests was performed. Due to the reset of the device, on picture 4.22 some unreadable messages can be seen, caused by the different speed of transmission during the bootloader execution of the module. Just like in the case of the Ethernet interface, first the IP address of the module was acquired via an USART interface, which was shown on figure 4.22 and 4.23. Subsequently communication tests were carried out using the \emph{ping} command, which is shown on figure 4.24 and the echo server functionality using the Hercules SETUP Utility software shown on figure 4.25. All tests were successful.
 
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=80mm]{Rysunki/Rozdzial4/modul.jpg}
-    \caption{Zdjęcie przygotowanego układu}
+    \caption{Constructed circuit}
     \label{fig:my_label}
 \end{figure}
 
@@ -381,13 +387,13 @@ Rysunek 4.21 przedstawia zdjęcie przygotowanego układu. Podobnie jak w przypad
 \begin{minipage}[b]{0.4\textwidth}
     \centering
     \includegraphics[width=50mm]{Rysunki/Rozdzial4/wifi_usart_1.jpg}
-    \caption{Komunikacja z komputerem nadzorującym cz.1}
+    \caption{Communication with overseeing computer pt. 1}
   \end{minipage}
   \hfill
   \begin{minipage}[b]{0.4\textwidth}
     \centering
     \includegraphics[width=50mm]{Rysunki/Rozdzial4/wifi_usart_2.jpg}
-    \caption{Komunikacja z kom-puterem nadzorującym cz. 2}
+    \caption{Communication with overseeing computer pt. 2}
   \end{minipage}
 \end{figure}
 
@@ -395,14 +401,14 @@ Rysunek 4.21 przedstawia zdjęcie przygotowanego układu. Podobnie jak w przypad
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=120mm]{Rysunki/Rozdzial4/wifi_ping.jpg}
-    \caption{Sprawdzenie połączenia za pomocą polecenia ping}
+    \caption{Testing connectivity using \textit{ping}}
     \label{fig:my_label}
 \end{figure}
 
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=130mm]{Rysunki/Rozdzial4/wifi_hercules.jpg}
-    \caption{Komunikacja dwustronna z wykorzystaniem programu Hercules SETUP Utility}
+    \caption{Two-sided communication using Hercules SETUP Utility software}
     \label{fig:my_label}
 \end{figure}
 

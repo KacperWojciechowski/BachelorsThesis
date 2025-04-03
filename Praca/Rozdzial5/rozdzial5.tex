@@ -1,12 +1,12 @@
-\chapter{Dyskusja rezultatów i wnioski końcowe}
+\chapter{Results discussion and conclusions}
 %=================================================================================================
-W wyniku analizy istniejących rozwiązań implementacyjnych interfejsów sieciowych oraz analizy struktury stosu TCP/IP podjęte zostały decyzje o wyborze platform sprzętowych do implementacji modułu IoT w postaci serwera echo z obsługą połączeń sieciowych w części praktycznej niniejszej pracy. 
+As a result of the analysis of existing implementation solutions for network interfaces and the analysis of TCP/IP stack structure, it was decided which hardware platform was chosen for the task of implementing an IoT module as an echo server which serves network connections in the practical aspect of this dissertation.
 
-Podczas realizacji niniejszej pracy wyciągnięte zostały następujące uwagi i wnioski:
+During the making of this dissertation, following conclusions and observations were drafted:
 
 \begin{itemize}
-    \item [$\bullet$] Istnieje wiele dostępnych na rynku rozwiązań implementacyjnych interfejsów sieciowych, w tym zarówno sieci przewodowych jak i bezprzewodowych;
-    \item [$\bullet$] Część platform sprzętowych posiada gotowe implementacje części sprzętowej interfejsów sieciowych, jak np. wlutowane złącze 8P8C lub moduł Wi-Fi umieszczony na pokładzie płytki PCB;
-    \item [$\bullet$] Istnieje kilka implementacji stosu TCP/IP różniących się od siebie kwestiami takimi jak oferowane funkcjonalności oraz zużycie pamięci i czasu przetwarzania. Przykładami implementacji stosu TCP/IP o otwartej licencji są stosy LwIP oraz uIP.
-    \item [$\bullet$] Mimo zastosowania tego samej częstotliwości zegara systemowego, na podstawie obserwacji szybkości pojawiania się komunikatów w programie Hercules SETUP Utility i terminalu portu szeregowego, oraz na podstawie czasów zmierzonych przez polecenie ping, interfejs Wi-Fi charakteryzował się większym opóźnieniem przy przesyłaniu wiadomości echo niż interfejs Ethernet. W przypadku funkcjonalności echo oraz komunikacji za pomocą portu szeregowego prawdopodobną przyczyną jest konieczność komunikacji z układem mikrokontrolera za pomocą interfejsu UART oraz czas przetwarzania przez niego danych.
+	\item [$\bullet$] There is a wide arrangement of commercially available solutions for implementing network interfaces, both in case of wired and wireless connectivity;
+    \item [$\bullet$] Some of the available hardware platforms contain ready to use implementations of the physical part of the interface, such as soldered in 8P8C connectors or Wi-Fi modules placed onboard the PCB;
+    \item [$\bullet$] There are several versions of TCP/IP stack implementation, which differs in such terms as offered functionalities, memory usage and processing time. LwIP and uIP are examples of such open-source TCP/IP stack implementations.
+    \item [$\bullet$] Despite using the same frequency of the system clock, based on observing the timings of information logs appearing in Hercules SETUP Utility and the serial port terminal, and based on the roundtrip times measured by the \emph{ping} command, the Wi-Fi interface was characterized by increased delay when transferring echo messages, with regards to the Ethernet interface. In case of the echo functionality and communication using serial port, most likely the need to communicate with the Wi-Fi module by the microcontroller using UART interface and its data processing speed are the primary causes.
 \end{itemize}
